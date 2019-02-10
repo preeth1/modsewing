@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import './App.css';
+import logoImage from './images/logo.png';
 
 class App extends Component {
   render() {
@@ -19,42 +20,29 @@ class Measurements extends Component {
     return (
       <div className="Measurements">
         <div className="LogoPanel">
-          ModSewing
+          <img className="LogoImage" src={logoImage} alt="Modsewing"/>
         </div>
         <div className="HeaderPanel">
           Choose a size
         </div>
         <div className="ButtonPanel">
           <div className="SizeButtonPanel">
-            <SizeButton size={"S"} input type="radio"/>
-            <SizeButton size={"M"} input type="radio"/>
-            <SizeButton size={"L"} input type="radio"/>
+            <label className="container">
+              <input type="radio" name="radio"></input>
+              Small
+            </label> 
+            <label className="container">
+              <input type="radio" name="radio"></input>
+              Medium
+            </label>
+            <label className="container">
+              <input type="radio" name="radio"></input>
+              Large
+            </label>
           </div>
             <GenerateButton/>
-          <div className="XXXXX">
-          
-          </div>
         </div>
       </div>
-      )
-  }
-}
-
-class SizeButton extends Component {
-  state = {
-    backgroundColor: 'pink'
-  }
-  handleSizeButtonClick = (event) => {
-    this.setState({
-      backgroundColor: 'blue'
-    })
-  }
-
-  render () {
-    return (
-        <div className="CuteButton SizeButton" onClick={this.handleSizeButtonClick} style={{backgroundColor:this.state.backgroundColor}}>
-          {this.props.size}
-        </div>  
       )
   }
 }
