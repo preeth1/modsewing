@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import { BrowserRouter as Router, Link, Route } from 'react-router-dom';
 import './App.css';
 import logoImage from './images/logo.png';
+import Generate from './generate_pattern.js'
 
 class App extends Component {
   state = {
@@ -71,21 +72,3 @@ class Measurements extends Component {
   }
 }
 
-class Generate extends Component {
-  GeneratePattern = (event) => {
-    console.log("generate pattern clicked")
-    console.log(this.props.size)
-  }
-
-  render () {
-    return (
-      <div className="GeneratePanel">
-        <Link to={'/new_page'}>  
-          <div className="CuteButton GenerateButton" onClick={this.GeneratePattern}>
-            Generate Pattern
-          </div>
-        </Link> 
-      </div>  
-    )
-  }
-}
