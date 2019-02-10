@@ -3,10 +3,19 @@ import './App.css';
 import logoImage from './images/logo.png';
 
 class App extends Component {
+  state = {
+    size: '',
+  }
+
+  updateSize = (size) => {
+    this.setState({size: size});
+  }
+
   render() {
     return (
       <div className="App">
-        <Measurements/>
+        <Measurements size={this.state.size} updateSizeFn={this.updateSize}/>
+        <Generate size={this.state.size}/>
       </div>
     );
   }
@@ -16,13 +25,10 @@ export default App;
 
 
 class Measurements extends Component {
-  state = {
-    size: '',
-  }
-
+  
   onSizeButtonChange = (event) => {
     debugger
-    this.setState({size: event.currentTarget.value});
+    this.props.updateSizeFn(event.currentTarget.value);
   }
 
   render () {
@@ -46,22 +52,25 @@ class Measurements extends Component {
               <input type="radio" name="radio" value="Large" onChange={this.onSizeButtonChange}></input> Large
             </label>
           </div>
-            <GenerateButton/>
         </div>
       </div>
       )
   }
 }
 
-class GenerateButton extends Component {
+class Generate extends Component {
   GeneratePattern = (event) => {
-    
+    console.log("generate pattern clicked")
+    console.log(this.props.size)
   }
+
   render () {
     return (
+      <div className="GeneratePanel">
         <div className="CuteButton GenerateButton" onClick={this.GeneratePattern}>
           Generate Pattern
-        </div>  
-      )
+        </div> 
+      </div>  
+    )
   }
 }
