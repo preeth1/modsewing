@@ -27,7 +27,6 @@ export default App;
 class Measurements extends Component {
   
   onSizeButtonChange = (event) => {
-    debugger
     this.props.updateSizeFn(event.currentTarget.value);
   }
 
