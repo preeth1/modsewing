@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import { BrowserRouter as Router, Link, Route } from 'react-router-dom';
 import './App.css';
 import logoImage from './images/logo.png';
 
@@ -13,10 +14,12 @@ class App extends Component {
 
   render() {
     return (
-      <div className="App">
-        <Measurements size={this.state.size} updateSizeFn={this.updateSize}/>
-        <Generate size={this.state.size}/>
-      </div>
+      <Router>
+        <div className="App">
+          <Measurements size={this.state.size} updateSizeFn={this.updateSize}/>
+          <Generate size={this.state.size}/>
+        </div>
+      </Router>
     );
   }
 }
