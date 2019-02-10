@@ -16,6 +16,15 @@ export default App;
 
 
 class Measurements extends Component {
+  state = {
+    size: '',
+  }
+
+  onSizeButtonChange = (event) => {
+    debugger
+    this.setState({size: event.currentTarget.value});
+  }
+
   render () {
     return (
       <div className="Measurements">
@@ -28,16 +37,13 @@ class Measurements extends Component {
         <div className="ButtonPanel">
           <div className="SizeButtonPanel">
             <label className="container">
-              <input type="radio" name="radio"></input>
-              Small
+              <input type="radio" name="radio" onChange={this.onSizeButtonChange} value="Small"></input> Small
             </label> 
             <label className="container">
-              <input type="radio" name="radio"></input>
-              Medium
+              <input type="radio" name="radio" value="Medium" onChange={this.onSizeButtonChange}></input> Medium
             </label>
             <label className="container">
-              <input type="radio" name="radio"></input>
-              Large
+              <input type="radio" name="radio" value="Large" onChange={this.onSizeButtonChange}></input> Large
             </label>
           </div>
             <GenerateButton/>
@@ -48,9 +54,12 @@ class Measurements extends Component {
 }
 
 class GenerateButton extends Component {
+  GeneratePattern = (event) => {
+    
+  }
   render () {
     return (
-        <div className="CuteButton GenerateButton">
+        <div className="CuteButton GenerateButton" onClick={this.GeneratePattern}>
           Generate Pattern
         </div>  
       )
