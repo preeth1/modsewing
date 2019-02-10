@@ -16,8 +16,9 @@ class App extends Component {
     return (
       <Router>
         <div className="App">
-          <Measurements size={this.state.size} updateSizeFn={this.updateSize}/>
-          <Generate size={this.state.size}/>
+          <Route exact path='/' render={(props) => 
+            <MeasurementsPage size={this.state.size} updateSizeFn={this.updateSize} />}
+          />
         </div>
       </Router>
     );
@@ -26,6 +27,16 @@ class App extends Component {
 
 export default App;
 
+class MeasurementsPage extends Component {
+  render () {
+    return (
+      <div className="MeasurementsPage">
+        <Measurements size={this.props.size} updateSizeFn={this.props.updateSizeFn} />
+        <Generate size={this.props.size}/>
+      </div>
+    )
+  }
+}
 
 class Measurements extends Component {
   
@@ -69,9 +80,11 @@ class Generate extends Component {
   render () {
     return (
       <div className="GeneratePanel">
-        <div className="CuteButton GenerateButton" onClick={this.GeneratePattern}>
-          Generate Pattern
-        </div> 
+        <Link to={'/new_page'}>  
+          <div className="CuteButton GenerateButton" onClick={this.GeneratePattern}>
+            Generate Pattern
+          </div>
+        </Link> 
       </div>  
     )
   }
