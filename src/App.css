@@ -68,6 +68,7 @@ html,body,#root {
 
 .ContentPanelPattern {
 	flex-direction: row;
+	justify-content: space-around;
 }
 
 .HeaderPanel {
@@ -109,7 +110,7 @@ html,body,#root {
 .GenerateButton {
 	background-color: pink;
 	cursor: pointer;
-	font-size: 1.5em;
+	font-size: .2em;
 	height: 50%;
   	width: 50%;
 }
@@ -118,18 +119,23 @@ html,body,#root {
 	display: flex;
 	flex-direction: column;
 	align-items: center;
-	height: 100%;
-	width: 50%;
-	color: red;
+	justify-content: center;
+	height: 90%;
+	width: 40%;
+	border:1px solid;
+	border-radius:30px;
 }
 
 .PrintButtonPanel {
 	display: flex;
 	flex-direction: column;
 	align-items: center;
-	height: 100%;
-	width: 50%;
-	color: red;
+	justify-content: center;
+	height: 90%;
+	width: 40%;
+	border:1px solid;
+	border-radius:30px;
+
 }
 
 
