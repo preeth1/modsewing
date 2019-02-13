@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import { BrowserRouter as Router, Link, Route } from 'react-router-dom';
 import './App.css';
 import logoImage from './images/logo.png';
-import Generate from './generate_pattern.js'
+import GeneratePage from './generate_pattern.js'
 
 class App extends Component {
   state = {
@@ -20,6 +20,7 @@ class App extends Component {
           <Route exact path='/' render={(props) => 
             <MeasurementsPage size={this.state.size} updateSizeFn={this.updateSize} />}
           />
+          <Route path='/generate_pattern' component={GeneratePage}/>
         </div>
       </Router>
     );
@@ -33,7 +34,7 @@ class MeasurementsPage extends Component {
     return (
       <div className="MeasurementsPage">
         <Measurements size={this.props.size} updateSizeFn={this.props.updateSizeFn} />
-        <Generate size={this.props.size}/>
+        <GenerateButton size={this.props.size}/>
       </div>
     )
   }
@@ -69,6 +70,25 @@ class Measurements extends Component {
         </div>
       </div>
       )
+  }
+}
+
+class GenerateButton extends Component {
+  GeneratePattern = (event) => {
+    console.log("generate pattern clicked")
+    console.log(this.props.size)
+  }
+
+  render () {
+    return (
+      <div className="GeneratePanel">
+        <div className="CuteButton GenerateButton" onClick={this.GeneratePattern}>
+          <Link to={'/generate_pattern'}>  
+            Generate Pattern
+          </Link> 
+        </div>
+      </div>  
+    )
   }
 }
 
