@@ -20,7 +20,9 @@ class App extends Component {
           <Route exact path='/' render={(props) => 
             <MeasurementsPage size={this.state.size} updateSizeFn={this.updateSize} />}
           />
-          <Route path='/generate_pattern' component={GeneratePage}/>
+          <Route exact path='/generate_pattern' render={(props) => 
+            <GeneratePage size={this.state.size}/>}
+          />
         </div>
       </Router>
     );
@@ -52,20 +54,22 @@ class Measurements extends Component {
         <div className="LogoPanel">
           <img className="LogoImage" src={logoImage} alt="Modsewing"/>
         </div>
-        <div className="HeaderPanel">
-          Choose a size
-        </div>
-        <div className="ButtonPanel">
-          <div className="SizeButtonPanel">
-            <label className="container">
-              <input type="radio" name="radio" onChange={this.onSizeButtonChange} value="Small"></input> Small
-            </label> 
-            <label className="container">
-              <input type="radio" name="radio" value="Medium" onChange={this.onSizeButtonChange}></input> Medium
-            </label>
-            <label className="container">
-              <input type="radio" name="radio" value="Large" onChange={this.onSizeButtonChange}></input> Large
-            </label>
+        <div className="ContentPanelMeasurements">
+          <div className="HeaderPanel">
+            Choose a size
+          </div>
+          <div className="ButtonPanel">
+            <div className="SizeButtonPanel">
+              <label className="container">
+                <input type="radio" name="radio" onChange={this.onSizeButtonChange} value="Small"></input> Small
+              </label> 
+              <label className="container">
+                <input type="radio" name="radio" value="Medium" onChange={this.onSizeButtonChange}></input> Medium
+              </label>
+              <label className="container">
+                <input type="radio" name="radio" value="Large" onChange={this.onSizeButtonChange}></input> Large
+              </label>
+            </div>
           </div>
         </div>
       </div>
