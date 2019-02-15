@@ -86,11 +86,12 @@ class GenerateButton extends Component {
   render () {
     return (
       <div className="GeneratePanel">
-        <div className="CuteButton GenerateButton" onClick={this.GeneratePattern}>
-          <Link to={'/generate_pattern'}>  
-            Generate Pattern
-          </Link> 
-        </div>
+
+      <div className="CuteButton GenerateButton"  onClick={()=> {this.props.history.replace('/generate_pattern')}}>
+      Generate Pattern
+      </div>
+
+
       </div>  
     )
   }

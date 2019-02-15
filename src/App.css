@@ -34,8 +34,6 @@ html,body,#root {
 	cursor: pointer;
 	font-size: .2em;
 	border-radius: 20px;
-	height: 20%;
-	width: 20%;
 }
 
 .Measurements {

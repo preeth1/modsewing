@@ -18,9 +18,7 @@ class GeneratePage extends Component {
     pathString = addAbsLine(pathString, {x: 2, y: 69})
     pathString = addAbsLine(pathString, {x: 66, y: 9})
     let pathElement = createPathElement('id', pathString)
-    console.log(pathString)
     return pathElement
-
   }
 
   render () {
