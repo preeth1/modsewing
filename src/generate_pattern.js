@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import { BrowserRouter as Router, Link, Route } from 'react-router-dom';
 import './App.css';
+import history from './history';
 import logoImage from './images/logo.png';
 import { absMovePen,
          addAbsLine,
@@ -49,16 +50,14 @@ export default GeneratePage;
 
 
 class PrintButton extends Component {
-  HandlePrint = (event) => {
-    console.log("print clicked")
+  PrintButtonClicked = (event) => {
+    console.log("print button clicked")
   }
 
   render () {
     return (
-      <div className="CuteButton PrintButton" onClick={this.HandlePrint}>
-        <Link to={'/generate_pattern'}>  
+      <div className="CuteButton PrintButton" onClick={this.PrintButtonClicked}> 
           Print Pattern
-        </Link> 
       </div>
     )
   }
