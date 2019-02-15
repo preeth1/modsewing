@@ -1,8 +1,9 @@
 import React, { Component } from 'react';
-import { BrowserRouter as Router, Link, Route } from 'react-router-dom';
+import { Router, Link, Route } from 'react-router-dom';
 import './App.css';
 import logoImage from './images/logo.png';
 import GeneratePage from './generate_pattern.js'
+import history from './history';
 
 class App extends Component {
   state = {
@@ -15,10 +16,10 @@ class App extends Component {
 
   render() {
     return (
-      <Router>
+      <Router history={history}>
         <div className="App">
           <Route exact path='/' render={(props) => 
-            <MeasurementsPage size={this.state.size} updateSizeFn={this.updateSize} />}
+            <MeasurementsPage size={this.state.size} updateSizeFn={this.updateSize} history={history}/>}
           />
           <Route exact path='/generate_pattern' render={(props) => 
             <GeneratePage size={this.state.size}/>}
@@ -36,7 +37,7 @@ class MeasurementsPage extends Component {
     return (
       <div className="MeasurementsPage">
         <Measurements size={this.props.size} updateSizeFn={this.props.updateSizeFn} />
-        <GenerateButton size={this.props.size}/>
+        <GenerateButton size={this.props.size} history={this.props.history}/>
       </div>
     )
   }
@@ -78,7 +79,8 @@ class Measurements extends Component {
 }
 
 class GenerateButton extends Component {
-  GeneratePattern = (event) => {
+  GeneratePatternClicked = (event) => {
+    this.props.history.replace('/generate_pattern')
     console.log("generate pattern clicked")
     console.log(this.props.size)
   }
@@ -86,12 +88,9 @@ class GenerateButton extends Component {
   render () {
     return (
       <div className="GeneratePanel">
-
-      <div className="CuteButton GenerateButton"  onClick={()=> {this.props.history.replace('/generate_pattern')}}>
-      Generate Pattern
-      </div>
-
-
+        <div className="CuteButton GenerateButton"  onClick={this.GeneratePatternClicked}>
+          Generate Pattern
+        </div>
       </div>  
     )
   }
