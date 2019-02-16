@@ -3,6 +3,7 @@
   "version": "0.1.0",
   "private": true,
   "dependencies": {
+    "lodash": "^4.17.11",
     "raphael": "^2.2.7",
     "react": "^16.8.1",
     "react-dom": "^16.8.1",

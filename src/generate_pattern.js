@@ -8,10 +8,16 @@ import { absMovePen,
        } from './svgHelpers/pathHelpers.jsx'
 
 import {createPathElement} from './svgHelpers/elementHelpers.jsx'
+import {STANDARD_MEASUREMENTS} from './constants.js'
+import _ from 'lodash';
 
 class GeneratePage extends Component {
 
-  preethi_fn = () => {
+  generate_sloper = (selected_size) => {
+    console.log(selected_size)
+    const measurments = _.find(STANDARD_MEASUREMENTS, {size: selected_size});
+    console.log("standard measurements")
+    console.log(measurments)
     let pathString = "";
     pathString = absMovePen(pathString, {x: 5, y: 12})
     pathString = addAbsLine(pathString, {x: 10, y: 3})
@@ -32,7 +38,7 @@ class GeneratePage extends Component {
           <div className="PatternPreview">
 
           <svg>
-          {this.preethi_fn() }
+          {this.generate_sloper(this.props.size) }
           </svg>
 
 
