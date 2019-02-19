@@ -7,44 +7,27 @@ export const relMovePen = (pathString, movePoint) => {
   return `${pathString} m ${movePoint.x} ${movePoint.y}`;
 }
 
-export const addAbsLine = (pathString, endPoint) => {
-  return `${pathString} L ${endPoint.x} ${endPoint.y}`;
+export const drawAbsLine = (pathString, movePoint) => {
+  return `${pathString} L ${movePoint.x} ${movePoint.y}`;
 }
 
-export const addAbsArc = (pathString, radius, endPoint, clockwise) => {
-  let rotationDir;
-  if (clockwise === true) {
-    rotationDir = 0;
-  } else {
-    rotationDir = 1;
-  }
-  return `${pathString} A ${radius} ${radius}  ${0} ${0} ${rotationDir} ${endPoint.x} ${endPoint.y}`;
-}
-
-export const addRelLine = (pathString, movePoint) => {
+export const drawRelLine = (pathString, movePoint) => {
   return `${pathString} l ${movePoint.x} ${movePoint.y}`;
 }
 
-export const calculateAbsBezierControlPoint = (startPoint, movePoint, fractionAlongLine, controlPointXMove, controlPointYMove) => {
+// This function draws an abs quadratic bezier with a specified control point (instead of specifying the control point params)
+export const drawAbsBezAbsPoint = (pathString, movePoint, controlPoint) => {
+  return `${pathString} Q ${controlPoint.x} ${controlPoint.y} ${movePoint.x} ${movePoint.y}`;
+}
+
+// Calculates a control point by first specifying how far along the line (made by startPoint and movePoint) to go, and then 
+// how far to translate in x and y
+export const drawAbsBezRelPoint = (pathString, movePoint, startPoint, fractionAlongLine, controlPointXMove, controlPointYMove) => {
   const controlPoint = {x: ((startPoint.x + (movePoint.x - startPoint.x) * fractionAlongLine)) + controlPointXMove, y: ((startPoint.y + (movePoint.y - startPoint.y) * fractionAlongLine)) + controlPointYMove};
-  return controlPoint;
-}
-
-export const addAbsQuadraticBezier = (pathString, startPoint, movePoint, fractionAlongLine, controlPointXMove, controlPointYMove) => {
-  const controlPoint = calculateAbsBezierControlPoint(startPoint, movePoint, fractionAlongLine, controlPointXMove, controlPointYMove, startPoint)
-  return `${pathString} Q ${controlPoint.x} ${controlPoint.y} ${movePoint.x} ${movePoint.y}`;
-}
-
-// This function adds an abs quadratic bezier with a specified control point (instead of specifying the control point params)
-export const addAbsQuadraticBezierWithControlPoint = (pathString, controlPoint, movePoint) => {
-  return `${pathString} Q ${controlPoint.x} ${controlPoint.y} ${movePoint.x} ${movePoint.y}`;
+  return drawAbsBezAbsPoint(pathString, controlPoint, movePoint)
 }
 
 export const closePath = (pathString) => {
   return `${pathString} Z`
 }
 
-// Add 1/2 inch of ease to every measurement
-export const addEase = (value) => {
-  return value + .5
-}
