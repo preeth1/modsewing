@@ -175,7 +175,6 @@ export const calculateLineToLineIntersection = (P0, P1, P2, P3) => {
 
   var svgIntersections = require('svg-intersections');
   var intersect = svgIntersections.intersect;
-
   const intersectionPoint2D = intersect(
           shape("path", {d: path0}),
           shape("path", {d: path1})

@@ -5,25 +5,23 @@ import history from './history';
 import logoImage from './images/logo.png';
 import { absMovePen,
          addAbsLine,
-       } from './svgHelpers/pathHelpers.jsx'
+       } from './svgHelpers/pathHelpers'
 
-import {createPathElement} from './svgHelpers/elementHelpers.jsx'
-import {STANDARD_MEASUREMENTS} from './constants.js'
+import {createPathElement} from './svgHelpers/elementHelpers'
+import {STANDARD_MEASUREMENTS} from './constants'
 import _ from 'lodash';
+import {calculateBackCoordinates} from './bodice'
 
 class GeneratePage extends Component {
 
   generate_sloper = (selected_size) => {
-    console.log(selected_size)
-    const measurments = _.find(STANDARD_MEASUREMENTS, {size: selected_size});
-    console.log("standard measurements")
-    console.log(measurments)
-    let pathString = "";
-    pathString = absMovePen(pathString, {x: 5, y: 12})
-    pathString = addAbsLine(pathString, {x: 10, y: 3})
-    pathString = addAbsLine(pathString, {x: 53, y: 63})
-    pathString = addAbsLine(pathString, {x: 2, y: 69})
-    pathString = addAbsLine(pathString, {x: 66, y: 9})
+    const measurements = _.find(STANDARD_MEASUREMENTS, {size: selected_size}).measurements;
+    
+    const measurement_obj = {}
+    _.forEach(measurements, function(measurements_entry) {
+      measurement_obj[measurements_entry.name] = measurements_entry.value
+    });
+    let pathString = calculateBackCoordinates({measurements: measurement_obj});
     let pathElement = createPathElement('id', pathString)
     return pathElement
   }
