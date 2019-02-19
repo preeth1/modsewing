@@ -5,7 +5,7 @@ import history from './history';
 import logoImage from './images/logo.png';
 import { absMovePen,
          addAbsLine,
-       } from './svgHelpers/pathHelpers.jsx'
+       } from './svgHelpers/drawing'
 
 import {createPathElement} from './svgHelpers/elementHelpers.jsx'
 
