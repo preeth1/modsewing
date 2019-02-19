@@ -102,3 +102,9 @@ venv.bak/
 
 # mypy
 .mypy_cache/
+
+# Extra stuff
+*.DS_Store
+
+# node_modules
+node_modules/
