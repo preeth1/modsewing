@@ -114,7 +114,7 @@ html,body,#root {
   	width: 50%;
 }
 
-.PatternPreview {
+.PatternDisplay {
 	display: flex;
 	align-items: center;
 	justify-content: center;
@@ -122,6 +122,11 @@ html,body,#root {
 	width: 40%;
 	border:1px solid;
 	border-radius:30px;
+}
+
+svg {
+	height: 100%;
+	width: 100%;
 }
 
 .PrintButtonPanel {

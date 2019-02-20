@@ -13,12 +13,31 @@ import {createPathElement,
 
 class GeneratePage extends Component {
 
-  preethi_fn = () => {
+  state = {
+    displayWidth: 300,
+    displayHeight: 150,
+  }
+
+  generatePattern = () => {
     let pathString = "";
-    pathString = 'M 2 4 l 5 0 l 0 5 l -5 0 l 0 -5'
+    pathString = 'M 0 0 l 600 0 l 0 15 l -600 0 l 0 -15 Z'
     let pathElement = createPathElement('id', pathString)
-    pathElement = centerAndScalePath(pathElement, pathString);
+    console.log("Height")
+    console.log(this.state.displayWidth)
+    console.log("Width")
+    console.log(this.state.displayHeight)
+    pathElement = centerAndScalePath(pathElement, pathString, this.state.displayWidth, this.state.displayHeight);
     return pathElement
+  }
+
+  componentDidMount() {
+    this.setDisplayHeight()
+  }
+
+  setDisplayHeight = () => {
+    this.setState({displayWidth: this.divElement.clientWidth});
+    this.setState({displayHeight: this.divElement.clientHeight});
+    this.forceUpdate();
   }
 
   render () {
@@ -28,10 +47,10 @@ class GeneratePage extends Component {
           <img className="LogoImage" src={logoImage} alt="Modsewing"/>
         </div>
         <div className="ContentPanelPattern">
-          <div className="PatternPreview">
+          <div className="PatternDisplay" ref={ (divElement) => this.divElement = divElement}>
 
           <svg>
-          {this.preethi_fn() }
+          {this.generatePattern() }
           </svg>
 
 
