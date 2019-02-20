@@ -4,8 +4,8 @@ import './App.css';
 import history from './history';
 import logoImage from './images/logo.png';
 import { absMovePen,
-         addAbsLine,
-         addRelLine
+         drawAbsLine,
+         drawRelLine
        } from './svgHelpers/drawing'
 
 import {createPathElement} from './svgHelpers/elements'
@@ -15,9 +15,9 @@ class GeneratePage extends Component {
   preethi_fn = () => {
     let pathString = "";
     pathString = absMovePen(pathString, {x: 0, y: 0})
-    pathString = addRelLine(pathString, {x: 100, y: 0})
-    pathString = addRelLine(pathString, {x: 0, y: 100})
-    pathString = addRelLine(pathString, {x: 50, y: 80})
+    pathString = drawRelLine(pathString, {x: 100, y: 0})
+    pathString = drawRelLine(pathString, {x: 0, y: 100})
+    pathString = drawRelLine(pathString, {x: 50, y: 80})
     let pathElement = createPathElement('id', pathString)
     return pathElement
   }
