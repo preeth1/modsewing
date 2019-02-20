@@ -8,7 +8,8 @@ import { absMovePen,
          drawRelLine
        } from './svgHelpers/drawing'
 
-import {createPathElement} from './svgHelpers/elements'
+import {createPathElement,
+        centerAndScalePath} from './svgHelpers/elements'
 
 class GeneratePage extends Component {
 
@@ -16,6 +17,7 @@ class GeneratePage extends Component {
     let pathString = "";
     pathString = 'M 2 4 l 5 0 l 0 5 l -5 0 l 0 -5'
     let pathElement = createPathElement('id', pathString)
+    pathElement = centerAndScalePath(pathElement, pathString);
     return pathElement
   }
 

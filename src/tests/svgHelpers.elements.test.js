@@ -3,10 +3,9 @@ import { getHeight,
 		getWidth,
 		getTopLeftX,
 		getTopLeftY,
-		createPathElement 
+		createPathElement,
+		centerAndScalePath 
 		} from './../svgHelpers/elements'
-
-
 
 it('gets path height', () => {
 	// Draw a 5x10 rectangle that starts at (2, 4) 
@@ -36,7 +35,6 @@ it('gets path top left y', () => {
 	topLeftY = 4
 });
 
-
 it('creates path element', () => {
 	let id = 'testId';
 	let path = 'M 0 0';
@@ -50,4 +48,11 @@ it('creates path element', () => {
 					fill="none"
 					>
 				    </path>;
+});
+
+it('centers and scales path', () => {
+	// Draw a 5x10 rectangle that starts at (2, 4) 
+	let pathString = 'M 2 4 l 5 0 l 0 5 l -5 0 l 0 -5'
+	let topLeftY = centerAndScalePath(pathString);
+	topLeftY = 4
 });
