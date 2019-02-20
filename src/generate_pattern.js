@@ -14,10 +14,7 @@ class GeneratePage extends Component {
 
   preethi_fn = () => {
     let pathString = "";
-    pathString = absMovePen(pathString, {x: 0, y: 0})
-    pathString = drawRelLine(pathString, {x: 100, y: 0})
-    pathString = drawRelLine(pathString, {x: 0, y: 100})
-    pathString = drawRelLine(pathString, {x: 50, y: 80})
+    pathString = 'M 2 4 l 5 0 l 0 5 l -5 0 l 0 -5'
     let pathElement = createPathElement('id', pathString)
     return pathElement
   }
