@@ -9,6 +9,9 @@ import { absMovePen,
 import {createPathElement,
         centerAndScalePath} from './svgHelpers/elements'
 
+import { STANDARD_MEASUREMENTS } from './constants'
+
+
 class GeneratePage extends Component {
 
   state = {
@@ -17,6 +20,7 @@ class GeneratePage extends Component {
   }
 
   generatePattern = () => {
+    const measurements = STANDARD_MEASUREMENTS[this.props.size]
     let pathString = "";
     pathString = 'M 0 0 l 600 0 l 0 15 l -600 0 l 0 -15 Z'
     let pathElement = createPathElement('id', pathString)
