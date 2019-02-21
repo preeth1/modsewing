@@ -7,61 +7,75 @@ import { absMovePen,
 		 closePath } from './../svgHelpers/drawing'
 
 it('moves pen (absolute)', () => {
-	const pathString = '';
-	const endPoint = {x: 10, y: 10};
-	const newPathString = absMovePen(pathString, endPoint);
-	expect(newPathString).toBe(' M 10 10');
+	const path = [];
+	const end = {x: 10, y: 10};
+	absMovePen(path, end);
+	expect(path).toEqual([{command: 'M', end: {x: 10, y:10}}]);
 });
 
 it('moves pen (relative)', () => {
-	const pathString = '';
-	const endPoint = {x: 10, y: 10};
-	const newPathString = relMovePen(pathString, endPoint);
-	expect(newPathString).toBe(' m 10 10');
+	const path = [];
+	const end = {x: 10, y: 10};
+	relMovePen(path, end);
+	expect(path).toEqual([{command: 'm', end: {x: 10, y:10}}]);
 });
 
 it('draws line (absolute)', () => {
-	const pathString = '';
-	const endPoint = {x: 10, y: 10};
-	const newPathString = drawAbsLine(pathString, endPoint);
-	expect(newPathString).toBe(' L 10 10');
+	const path = [];
+	const end = {x: 10, y: 10};
+	drawAbsLine(path, end);
+	expect(path).toEqual([{command: 'L', end: {x: 10, y:10}}]);
 });
 
 it('draws line (relative)', () => {
-	const pathString = '';
-	const endPoint = {x: 10, y: 10};
-	const newPathString = drawRelLine(pathString, endPoint);
-	expect(newPathString).toBe(' l 10 10');
+	const path = [];
+	const end = {x: 10, y: 10};
+	drawRelLine(path, end);
+	expect(path).toEqual([{command: 'l', end: {x: 10, y:10}}]);
 });
 
 it('draws bezier with absolute control point (absolute bezier)', () => {
-	const pathString = '';
-	const endPoint = {x: 10, y: 10};
-	const controlPoint = {x: 3, y: 3};
-	const newPathString = drawAbsBez(pathString, endPoint, controlPoint);
-	expect(newPathString).toBe(' Q 3 3 10 10');
+	const path = [];
+	const end = {x: 10, y: 10};
+	const control = {x: 3, y: 3};
+	drawAbsBez(path, end, control);
+	expect(path).toEqual([
+					{command: 'Q', end: {x: 10, y:10}, control: {x: 3, y: 3}
+				}]);
 });
 
 it('closes path', () => {
-	const pathString = 'L 0 0 L 10 10 L 0 10';
-	const endPoint = {x: 10, y: 10};
-	const newPathString = closePath(pathString, endPoint);
-	expect(newPathString).toBe('L 0 0 L 10 10 L 0 10 Z');
+	const path = [
+					{command: 'M', end: {x: 10, y:10}},
+					{command: 'l', end: {x: 10, y:10}},
+				 ];
+	const end = {x: 10, y: 10};
+	closePath(path, end);
+	expect(path).toEqual([
+					{command: 'M', end: {x: 10, y:10}},
+					{command: 'l', end: {x: 10, y:10}},
+					{command: 'Z'},
+				 ]);
 });
 
 it('creates svg with all drawing functions', () => {
-	let pathString = '';
-	const endPoint = {x: 10, y: 10};
-	pathString = absMovePen(pathString, endPoint);
-	pathString = relMovePen(pathString, endPoint);
-	pathString = drawAbsLine(pathString, endPoint);
-	pathString = drawRelLine(pathString, endPoint);
-
-	const controlPoint = {x: 3, y: 3};
-	pathString = drawAbsBez(pathString, endPoint, controlPoint);
-
-	pathString = closePath(pathString, endPoint);
-	expect(pathString).toBe(' M 10 10 m 10 10 L 10 10 l 10 10 Q 3 3 10 10 Z');
+	let path = [];
+	const end = {x: 10, y: 10};
+	const control = {x: 3, y: 3};
+	absMovePen(path, end);
+	relMovePen(path, end);
+	drawAbsLine(path, end);
+	drawRelLine(path, end);
+	drawAbsBez(path, end, control);
+	closePath(path, end);
+	expect(path).toEqual([
+					{command: 'M', end: {x: 10, y:10}},
+					{command: 'm', end: {x: 10, y:10}},
+					{command: 'L', end: {x: 10, y:10}},
+					{command: 'l', end: {x: 10, y:10}},
+					{command: 'Q', end: {x: 10, y:10}, control: {x: 3, y: 3}},
+					{command: 'Z'},
+				 ]);
 });
 
 
