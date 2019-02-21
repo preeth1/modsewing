@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { Router, Link, Route } from 'react-router-dom';
+import { Router, Route } from 'react-router-dom';
 import './App.css';
 import logoImage from './images/logo.png';
 import GeneratePage from './generate_pattern.js'

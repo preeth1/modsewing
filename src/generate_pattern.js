@@ -1,7 +1,5 @@
 import React, { Component } from 'react';
-import { BrowserRouter as Router, Link, Route } from 'react-router-dom';
 import './App.css';
-import history from './history';
 import logoImage from './images/logo.png';
 import { absMovePen,
          drawAbsLine,
