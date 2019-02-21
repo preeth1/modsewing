@@ -1,6 +1,8 @@
 import React, { Component } from 'react';
 import raphael from 'raphael';
 import ReactDOM from 'react-dom';
+import { DISPLAY_FRACTION_TO_FILL,
+         STANDARD_MEASUREMENTS } from '../constants';
 
 export const createPathElement = (id, path) => {
   return <path
@@ -42,10 +44,11 @@ export const centerAndScalePath = (pathElement, pathString, displayWidth, displa
 }
 
 export const calculateScaleFactor = (pathString, displayWidth, displayHeight) => {
-  const fractionToCover = 0.9;
   const widthRatio = displayWidth / getWidth(pathString);
   const heightRatio = displayHeight / getHeight(pathString);
-  const scaleFactor = (widthRatio < heightRatio) ? (widthRatio * fractionToCover) : (heightRatio * fractionToCover);
+  console.log("DISPLAY_FRACTION_TO_FILL")
+  console.log(DISPLAY_FRACTION_TO_FILL)
+  const scaleFactor = (widthRatio < heightRatio) ? (widthRatio * DISPLAY_FRACTION_TO_FILL) : (heightRatio * DISPLAY_FRACTION_TO_FILL);
   return scaleFactor;
 }
 

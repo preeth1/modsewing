@@ -81,8 +81,6 @@ class Measurements extends Component {
 class GenerateButton extends Component {
   GeneratePatternClicked = (event) => {
     this.props.history.replace('/generate_pattern')
-    console.log("generate pattern clicked")
-    console.log(this.props.size)
   }
 
   render () {

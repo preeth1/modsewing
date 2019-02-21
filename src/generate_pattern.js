@@ -22,10 +22,6 @@ class GeneratePage extends Component {
     let pathString = "";
     pathString = 'M 0 0 l 600 0 l 0 15 l -600 0 l 0 -15 Z'
     let pathElement = createPathElement('id', pathString)
-    console.log("Height")
-    console.log(this.state.displayWidth)
-    console.log("Width")
-    console.log(this.state.displayHeight)
     pathElement = centerAndScalePath(pathElement, pathString, this.state.displayWidth, this.state.displayHeight);
     return pathElement
   }
