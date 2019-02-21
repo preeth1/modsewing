@@ -17,20 +17,30 @@ html,body,#root {
 	width: 100%;
 }
 
+.MeasurementsPage, .GeneratePage {
+	display: flex;
+	flex-direction: column;
+	justify-content: center;
+	align-items: center;
+	height: 100%;
+	width: 100%;
+}
+
 .CuteButton {
 	display: flex;
 	align-items: center;
 	justify-content: center;
+	background-color: pink;
+	cursor: pointer;
+	font-size: .2em;
 	border-radius: 20px;
-	height: 20%;
-	width: 20%;
 }
 
 .Measurements {
 	display: flex;
 	flex-direction: column;
-	height: 100%;
-	width: 60%;
+	height: 60%;
+	width: 100%;
 	justify-content: center;
 	align-items: center;
 }
@@ -39,12 +49,27 @@ html,body,#root {
 	display: flex;
 	justify-content: center;
 	align-items: center;
-	height: 30%;
+	height: 20%;
 	width: 100%;
 }
 
 .LogoImage {
 	height: 100%;
+}
+
+.ContentPanelMeasurements, .ContentPanelPattern {
+	display: flex;
+	flex-direction: column;
+	justify-content: center;
+	align-items: center;
+	height: 80%;
+	width: 100%;
+	font-size: 4em;
+}
+
+.ContentPanelPattern {
+	flex-direction: row;
+	justify-content: space-around;
 }
 
 .HeaderPanel {
@@ -53,7 +78,7 @@ html,body,#root {
 	align-items: center;
 	height: 20%;
 	width: 100%;
-	font-size: 4em;
+	font-size: 1.2em;
 }
 
 .ButtonPanel {
@@ -61,7 +86,7 @@ html,body,#root {
 	align-items: center;
 	justify-content: center;
 	flex-direction: column;
-	height: 50%;
+	height: 80%;
 	width: 100%;
 }
 
@@ -71,7 +96,7 @@ html,body,#root {
 	align-items: center;
 	height: 50%;
 	width: 100%;
-	font-size: 3em;
+	font-size: 1em;
 }
 
 .GeneratePanel {
@@ -83,10 +108,41 @@ html,body,#root {
 	height: 40%;
 	width: 100%;
 }
+
 .GenerateButton {
-	background-color: pink;
-	cursor: pointer;
-	font-size: 1.5em;
 	height: 50%;
   	width: 50%;
 }
+
+.PatternDisplay {
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	height: 90%;
+	width: 40%;
+	border:1px solid;
+	border-radius:30px;
+}
+
+svg {
+	height: 100%;
+	width: 100%;
+}
+
+.PrintButtonPanel {
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	justify-content: center;
+	height: 90%;
+	width: 40%;
+	border:1px solid;
+	border-radius:30px;
+}
+
+.PrintButton {
+	height: 30%;
+  	width: 30%;
+}
+
+
