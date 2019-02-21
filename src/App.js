@@ -64,12 +64,6 @@ class Measurements extends Component {
               <label className="container">
                 <input type="radio" name="radio" onChange={this.onSizeButtonChange} value="Small"></input> Small
               </label> 
-              <label className="container">
-                <input type="radio" name="radio" value="Medium" onChange={this.onSizeButtonChange}></input> Medium
-              </label>
-              <label className="container">
-                <input type="radio" name="radio" value="Large" onChange={this.onSizeButtonChange}></input> Large
-              </label>
             </div>
           </div>
         </div>
