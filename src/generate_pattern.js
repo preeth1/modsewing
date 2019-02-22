@@ -25,22 +25,21 @@ class GeneratePage extends Component {
   generatePattern = () => {
     const measurements = STANDARD_MEASUREMENTS[this.props.size]
     
-    const path1 = [];
-    // const path1 = [
-    // ...absMovePen({x: 0, y: 0})
-    // ];
-    absMovePen(path1, {x: 0, y: 0});
-    drawRelLine(path1, {x: 10, y: 0});
-    drawRelLine(path1, {x: 0, y: 10});
-    drawRelLine(path1, {x: -10, y: 0});
-    drawRelLine(path1, {x: 0, y: -10});
+    const path1 = [
+    ...absMovePen({x: 0, y: 0}),
+    ...drawRelLine({x: 10, y: 0}),
+    ...drawRelLine({x: 0, y: 10}),
+    ...drawRelLine({x: -10, y: 0}),
+    ...drawRelLine({x: 0, y: -10}),
+    ];
 
-    const path2 = [];
-    absMovePen(path2, {x: 0, y: 0});
-    drawRelLine(path2, {x: 10, y: 0});
-    drawRelLine(path2, {x: 0, y: 10});
-    drawRelLine(path2, {x: -10, y: 0});
-    drawRelLine(path2, {x: 0, y: -10});
+    const path2 = [
+    ...absMovePen({x: 0, y: 0}),
+    ...drawRelLine({x: 10, y: 0}),
+    ...drawRelLine({x: 0, y: 10}),
+    ...drawRelLine({x: -10, y: 0}),
+    ...drawRelLine({x: 0, y: -10}),
+    ];
 
     const translation = {x: 15, y: 20};
     const transPath2 = translatePath(path2, translation)
