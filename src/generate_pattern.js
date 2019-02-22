@@ -8,7 +8,9 @@ import { absMovePen,
        } from './svgHelpers/drawing'
 
 import {createPathElement,
-        centerAndScalePath} from './svgHelpers/elements'
+        centerAndScalePath,
+        joinPaths,
+        translatePath} from './svgHelpers/elements'
 
 import { STANDARD_MEASUREMENTS } from './constants'
 
@@ -23,16 +25,28 @@ class GeneratePage extends Component {
   generatePattern = () => {
     const measurements = STANDARD_MEASUREMENTS[this.props.size]
     
-    const path = [];
-    absMovePen(path, {x: 0, y: 0});
-    drawRelLine(path, {x: 60, y: 0});
-    drawRelLine(path, {x: 0, y: 100});
-    drawAbsBez(path, {x: 50, y: 40}, {x: 0, y: 0});
-    closePath(path);
+    const path1 = [];
+    absMovePen(path1, {x: 0, y: 0});
+    drawRelLine(path1, {x: 10, y: 0});
+    drawRelLine(path1, {x: 0, y: 10});
+    drawRelLine(path1, {x: -10, y: 0});
+    closePath(path1);
+
+    const path2 = [];
+    absMovePen(path2, {x: 0, y: 0});
+    drawRelLine(path2, {x: 10, y: 0});
+    drawRelLine(path2, {x: 0, y: 10});
+    drawRelLine(path2, {x: -10, y: 0});
+    closePath(path2);
+
+    const translation = {x: 10, y: 10};
+    const transPath2 = translatePath(path2, translation)
+    const joinedPaths = joinPaths(path1, transPath2);
+
 
     const displayDimensions = {x: this.state.displayWidth, y: this.state.displayHeight}
 
-    let pathElement = createPathElement('id', path, displayDimensions)
+    let pathElement = createPathElement('id', transPath2, displayDimensions)
     return pathElement
   }
 

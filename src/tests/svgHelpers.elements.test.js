@@ -3,6 +3,7 @@ import { getHeight,
 		getWidth,
 		getTopLeftX,
 		getTopLeftY,
+		translatePath,
 		createPathElement,
 		createFormattedPath,
 		concatStrokes,
@@ -12,30 +13,76 @@ import { getHeight,
 		calculateTranslation
 		} from './../svgHelpers/elements'
 
+it('translates path', () => {
+	// Draw a 5x10 rectangle that starts at (2, 4) 
+	const path = [
+					{command: 'M', end: {x: 10, y:10}},
+					{command: 'm', end: {x: 10, y:10}},
+					{command: 'L', end: {x: 10, y:10}},
+					{command: 'l', end: {x: 10, y:10}},
+					{command: 'Q', end: {x: 10, y:10}, control: {x: 10, y: 10}},
+					{command: 'Z'},
+				 ]
+	const translation = {x: 10, y: 10};
+	const translatedPath = translatePath(path, translation);
+	expect(translatedPath).toEqual([
+					{command: 'M', end: {x: 20, y:20}},
+					{command: 'm', end: {x: 20, y:20}},
+					{command: 'L', end: {x: 20, y:20}},
+					{command: 'l', end: {x: 20, y:20}},
+					{command: 'Q', end: {x: 20, y:20}, control: {x: 20, y: 20}},
+					{command: 'Z'},
+				 ]);
+});
+
 it('gets path height', () => {
 	// Draw a 5x10 rectangle that starts at (2, 4) 
-	const path = 'M 2 4 l 5 0 l 0 10 l -5 0 l 0 -10'
+	const path = [
+					{command: 'M', end: {x: 2, y:4}},
+					{command: 'l', end: {x: 5, y:0}},
+					{command: 'l', end: {x: 0, y:10}},
+					{command: 'l', end: {x: -5, y:0}},
+					{command: 'l', end: {x: 0, y:-10}},
+				 ];
 	const height = getHeight(path);
 	expect(height).toEqual(10);
 });
 
 it('gets path width', () => {
 	// Draw a 5x10 rectangle that starts at (2, 4) 
-	const path = 'M 2 4 l 5 0 l 0 5 l -5 0 l 0 -5'
+	const path = [
+					{command: 'M', end: {x: 2, y:4}},
+					{command: 'l', end: {x: 5, y:0}},
+					{command: 'l', end: {x: 0, y:10}},
+					{command: 'l', end: {x: -5, y:0}},
+					{command: 'l', end: {x: 0, y:-10}},
+				 ];
 	const width = getWidth(path);
 	expect(width).toEqual(5);
 });
 
 it('gets path top left x', () => {
 	// Draw a 5x10 rectangle that starts at (2, 4) 
-	const path = 'M 2 4 l 5 0 l 0 5 l -5 0 l 0 -5'
+	const path = [
+					{command: 'M', end: {x: 2, y:4}},
+					{command: 'l', end: {x: 5, y:0}},
+					{command: 'l', end: {x: 0, y:10}},
+					{command: 'l', end: {x: -5, y:0}},
+					{command: 'l', end: {x: 0, y:-10}},
+				 ];
 	const topLeftX = getTopLeftX(path);
 	expect(topLeftX).toEqual(2);
 });
 
 it('gets path top left y', () => {
 	// Draw a 5x10 rectangle that starts at (2, 4) 
-	const path = 'M 2 4 l 5 0 l 0 5 l -5 0 l 0 -5'
+	const path = [
+					{command: 'M', end: {x: 2, y:4}},
+					{command: 'l', end: {x: 5, y:0}},
+					{command: 'l', end: {x: 0, y:10}},
+					{command: 'l', end: {x: -5, y:0}},
+					{command: 'l', end: {x: 0, y:-10}},
+				 ];
 	const topLeftY = getTopLeftY(path);
 	expect(topLeftY).toEqual(4);
 });
