@@ -30,8 +30,9 @@ class GeneratePage extends Component {
     drawAbsBez(path, {x: 50, y: 40}, {x: 0, y: 0});
     closePath(path);
 
-    let pathElement = createPathElement('id', path)
-    pathElement = centerAndScalePath(pathElement, path, this.state.displayWidth, this.state.displayHeight);
+    const displayDimensions = {x: this.state.displayWidth, y: this.state.displayHeight}
+
+    let pathElement = createPathElement('id', path, displayDimensions)
     return pathElement
   }
 

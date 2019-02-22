@@ -4,9 +4,11 @@ import _ from 'lodash';
 import { DISPLAY_FRACTION_TO_FILL,
          STANDARD_MEASUREMENTS } from '../constants';
 
-export const createPathElement = (id, path) => {
-  const formattedPath = createFormattedPath(path)
-  return createPathDiv(id, formattedPath)
+export const createPathElement = (id, path, displayDimensions) => {
+  const formattedPath = createFormattedPath(path);
+  let pathElement = addPathToElement(id, formattedPath);
+  pathElement = centerAndScalePath(pathElement, formattedPath, displayDimensions);
+  return pathElement;
 }
 
 export const createFormattedPath = (path) => {
@@ -31,7 +33,7 @@ export const concatStrokes = (formattedPath, strokeToAdd) => {
   return formattedPath;
 }
 
-export const createPathDiv =(id, formattedPath) => {
+export const addPathToElement =(id, formattedPath) => {
   return <path
       id={id}
       d={formattedPath}
@@ -63,26 +65,26 @@ export const getTopLeftY = (path) => {
   return topLeftY
 }
 
-export const centerAndScalePath = (pathElement, path, displayWidth, displayHeight) => {
-  const scaleFactor = calculateScaleFactor(path, displayWidth, displayHeight);
-  const translation = calculateTranslation(path, displayWidth, displayHeight, scaleFactor);
+export const centerAndScalePath = (pathElement, formattedPath, displayDimensions) => {
+  const scaleFactor = calculateScaleFactor(formattedPath, displayDimensions.x, displayDimensions.y);
+  const translation = calculateTranslation(formattedPath, displayDimensions.x, displayDimensions.y, scaleFactor);
   const centeringString = `translate(${translation.x} ${translation.y}) scale(${scaleFactor})`;
   return <g transform={centeringString}> {pathElement} </g>
 }
 
-export const calculateScaleFactor = (path, displayWidth, displayHeight) => {
-  const widthRatio = displayWidth / getWidth(path);
-  const heightRatio = displayHeight / getHeight(path);
+export const calculateScaleFactor = (formattedPath, displayWidth, displayHeight) => {
+  const widthRatio = displayWidth / getWidth(formattedPath);
+  const heightRatio = displayHeight / getHeight(formattedPath);
   const scaleFactor = (widthRatio < heightRatio) ? (widthRatio * DISPLAY_FRACTION_TO_FILL) : (heightRatio * DISPLAY_FRACTION_TO_FILL);
   return scaleFactor;
 }
 
-export const calculateTranslation = (path, displayWidth, displayHeight, scaleFactor) => {
+export const calculateTranslation = (formattedPath, displayWidth, displayHeight, scaleFactor) => {
   const displayCenterX = displayWidth / 2;
   const displayCenterY = displayHeight / 2;
 
-  const pathCenterX = getTopLeftX(path) + (getWidth(path) * scaleFactor) / 2;
-  const pathCenterY = getTopLeftY(path) + (getHeight(path) * scaleFactor) / 2;
+  const pathCenterX = getTopLeftX(formattedPath) + (getWidth(formattedPath) * scaleFactor) / 2;
+  const pathCenterY = getTopLeftY(formattedPath) + (getHeight(formattedPath) * scaleFactor) / 2;
 
   const translateX = displayCenterX - pathCenterX;
   const translateY = displayCenterY - pathCenterY;

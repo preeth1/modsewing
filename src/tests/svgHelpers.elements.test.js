@@ -78,11 +78,11 @@ it('concats strokes', () => {
 	expect(concattedStrokes).toEqual('M 10 10 l 10 10 Z ');
 });
 
-it('creates path div', () => {
+it('adds path to element', () => {
 	// Draw a 5x10 rectangle that starts at (2, 4) 
 	const id = 'testId';
 	const path = 'M 10 10 l 10 10 Z '
-	const pathDiv = createPathDiv(id, path);
+	const pathDiv = addPathToElement(id, path);
 	expect(pathDiv).toEqual(<path
 					id='testId'
 					d='M 10 10 l 10 10 Z '
