@@ -50,7 +50,7 @@ it('closes path', () => {
 					{command: 'l', end: {x: 10, y:10}},
 				 ];
 	const end = {x: 10, y: 10};
-	closePath(path, end);
+	closePath(path);
 	expect(path).toEqual([
 					{command: 'M', end: {x: 10, y:10}},
 					{command: 'l', end: {x: 10, y:10}},
@@ -67,7 +67,7 @@ it('creates svg with all drawing functions', () => {
 	drawAbsLine(path, end);
 	drawRelLine(path, end);
 	drawAbsBez(path, end, control);
-	closePath(path, end);
+	closePath(path);
 	expect(path).toEqual([
 					{command: 'M', end: {x: 10, y:10}},
 					{command: 'm', end: {x: 10, y:10}},

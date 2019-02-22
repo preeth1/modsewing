@@ -2,8 +2,9 @@ import React, { Component } from 'react';
 import './App.css';
 import logoImage from './images/logo.png';
 import { absMovePen,
-         drawAbsLine,
-         drawRelLine
+         drawRelLine,
+         closePath,
+         drawAbsBez
        } from './svgHelpers/drawing'
 
 import {createPathElement,
@@ -21,10 +22,16 @@ class GeneratePage extends Component {
 
   generatePattern = () => {
     const measurements = STANDARD_MEASUREMENTS[this.props.size]
-    let pathString = "";
-    pathString = 'M 0 0 l 600 0 l 0 15 l -600 0 l 0 -15 Z'
-    let pathElement = createPathElement('id', pathString)
-    pathElement = centerAndScalePath(pathElement, pathString, this.state.displayWidth, this.state.displayHeight);
+    
+    const path = [];
+    absMovePen(path, {x: 0, y: 0});
+    drawRelLine(path, {x: 60, y: 0});
+    drawRelLine(path, {x: 0, y: 100});
+    drawAbsBez(path, {x: 50, y: 40}, {x: 0, y: 0});
+    closePath(path);
+
+    let pathElement = createPathElement('id', path)
+    pathElement = centerAndScalePath(pathElement, path, this.state.displayWidth, this.state.displayHeight);
     return pathElement
   }
 

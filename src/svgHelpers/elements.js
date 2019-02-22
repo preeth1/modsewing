@@ -1,12 +1,40 @@
 import React from 'react';
 import raphael from 'raphael';
+import _ from 'lodash';
 import { DISPLAY_FRACTION_TO_FILL,
          STANDARD_MEASUREMENTS } from '../constants';
 
 export const createPathElement = (id, path) => {
+  const formattedPath = createFormattedPath(path)
+  return createPathDiv(id, formattedPath)
+}
+
+export const createFormattedPath = (path) => {
+  let formattedPath = "";
+  _.each(path, (stroke) => {
+    formattedPath = concatStrokes(formattedPath, stroke.command);
+    if (stroke.control) {
+      formattedPath = concatStrokes(formattedPath, stroke.control.x);
+      formattedPath = concatStrokes(formattedPath, stroke.control.y);
+    }
+    if (stroke.end) {
+      formattedPath = concatStrokes(formattedPath, stroke.end.x);
+      formattedPath = concatStrokes(formattedPath, stroke.end.y);
+    }
+  })
+  return formattedPath;
+}
+
+export const concatStrokes = (formattedPath, strokeToAdd) => {
+  formattedPath = formattedPath.concat(strokeToAdd);
+  formattedPath = formattedPath.concat(" ");
+  return formattedPath;
+}
+
+export const createPathDiv =(id, formattedPath) => {
   return <path
       id={id}
-      d={path}
+      d={formattedPath}
       vectorEffect='non-scaling-stroke'
       strokeWidth='1'
       stroke='black'
