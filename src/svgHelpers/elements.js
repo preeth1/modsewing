@@ -9,23 +9,22 @@ export const joinPaths = (path1, path2) => {
 }
 
 export const translatePath = (path, translation) => {
-  const translatedPath = [];
-  _.each(path, (stroke) => {
-    let thisStroke = {};
-    thisStroke.command = stroke.command;
-    if (stroke.control) {
-      thisStroke.control = {}
-      thisStroke.control.x = stroke.control.x + translation.x;
-      thisStroke.control.y = stroke.control.y + translation.y;
+  const translatedPath = _.map(path, (stroke) => {
+    let thisStroke = _.cloneDeep(stroke);
+    if (stroke.absolute) {
+      stroke.control && (thisStroke.control = translateStroke(stroke.control, translation));
+      stroke.end && (thisStroke.end = translateStroke(stroke.end, translation));
     }
-    if (stroke.end) {
-      thisStroke.end = {}
-      thisStroke.end.x = stroke.end.x + translation.x;
-      thisStroke.end.y = stroke.end.y + translation.y;
-    }
-    translatedPath.push(thisStroke);
+    return thisStroke;
   });
   return translatedPath;
+}
+
+export const translateStroke = (strokePoint, translation) => {
+  const translatedStroke = {};
+  translatedStroke.x = strokePoint.x + translation.x;
+  translatedStroke.y = strokePoint.y + translation.y;
+  return translatedStroke
 }
 
 export const createPathElement = (id, path, displayDimensions) => {

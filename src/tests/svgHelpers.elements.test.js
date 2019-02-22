@@ -16,21 +16,21 @@ import { getHeight,
 it('translates path', () => {
 	// Draw a 5x10 rectangle that starts at (2, 4) 
 	const path = [
-					{command: 'M', end: {x: 10, y:10}},
-					{command: 'm', end: {x: 10, y:10}},
-					{command: 'L', end: {x: 10, y:10}},
-					{command: 'l', end: {x: 10, y:10}},
-					{command: 'Q', end: {x: 10, y:10}, control: {x: 10, y: 10}},
+					{command: 'M', end: {x: 10, y:10}, absolute: true},
+					{command: 'm', end: {x: 10, y:10}, absolute: false},
+					{command: 'L', end: {x: 10, y:10}, absolute: true},
+					{command: 'l', end: {x: 10, y:10}, absolute: false},
+					{command: 'Q', end: {x: 10, y:10}, control: {x: 20, y: 20}, absolute: true},
 					{command: 'Z'},
 				 ]
 	const translation = {x: 10, y: 10};
 	const translatedPath = translatePath(path, translation);
 	expect(translatedPath).toEqual([
-					{command: 'M', end: {x: 20, y:20}},
-					{command: 'm', end: {x: 20, y:20}},
-					{command: 'L', end: {x: 20, y:20}},
-					{command: 'l', end: {x: 20, y:20}},
-					{command: 'Q', end: {x: 20, y:20}, control: {x: 20, y: 20}},
+					{command: 'M', end: {x: 20, y:20}, absolute: true},
+					{command: 'm', end: {x: 10, y:10}, absolute: false},
+					{command: 'L', end: {x: 20, y:20}, absolute: true},
+					{command: 'l', end: {x: 10, y:10}, absolute: false},
+					{command: 'Q', end: {x: 20, y:20}, control: {x: 30, y: 30}, absolute: true},
 					{command: 'Z'},
 				 ]);
 });
