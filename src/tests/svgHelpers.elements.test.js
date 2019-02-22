@@ -109,7 +109,6 @@ it('creates path element', () => {
 });
 
 it('creates formatted path', () => {
-	// Draw a 5x10 rectangle that starts at (2, 4) 
 	const path = [
 					{command: 'M', end: {x: 10, y:10}},
 					{command: 'l', end: {x: 10, y:10}},
@@ -120,7 +119,6 @@ it('creates formatted path', () => {
 });
 
 it('concats strokes', () => {
-	// Draw a 5x10 rectangle that starts at (2, 4) 
 	const formattedPath = 'M 10 10 l 10 10 '
 	const strokeToAdd = 'Z'
 	const concattedStrokes = concatStrokes(formattedPath, strokeToAdd);
@@ -128,9 +126,12 @@ it('concats strokes', () => {
 });
 
 it('adds path to element', () => {
-	// Draw a 5x10 rectangle that starts at (2, 4) 
 	const id = 'testId';
-	const path = 'M 10 10 l 10 10 Z '
+	const path = [
+					{command: 'M', end: {x: 10, y: 10}},
+					{command: 'l', end: {x: 10, y: 10}},
+					{command: 'Z'}
+				 ];
 	const pathDiv = addPathToElement(id, path);
 	expect(pathDiv).toEqual(<path
 					id='testId'
@@ -144,8 +145,14 @@ it('adds path to element', () => {
 });
 
 it('centers and scales path', () => {
-	// Draw a 5x10 rectangle that starts at (2, 4) 
-	const path = 'M 2 4 l 5 0 l 0 5 l -5 0 l 0 -5'
+	// Draw a 5x5 rectangle that starts at (2, 4) 
+	const path = [
+					{command: 'M', end: {x: 2, y: 4}},
+					{command: 'l', end: {x: 5, y: 0}},
+					{command: 'l', end: {x: 0, y: 5}},
+					{command: 'l', end: {x: -5, y: 0}},
+					{command: 'l', end: {x: 0, y: -5}},
+				 ];
 	const displayDimensions = {x: 100, y: 100};
 	const pathElement = <div> "Test path element" </div>
 	const newPath = centerAndScalePath(pathElement, path, displayDimensions);
@@ -154,7 +161,13 @@ it('centers and scales path', () => {
 
 it('calculates scale factor (vertical dimension is bigger)', () => {
 	// 1x3 path that scales up to 3x9
-	const path = 'M 0 0 l 1 0 l 0 3 l -1 0 l 0 -3'
+	const path = [
+					{command: 'M', end: {x: 0, y: 0}},
+					{command: 'l', end: {x: 1, y: 0}},
+					{command: 'l', end: {x: 0, y: 3}},
+					{command: 'l', end: {x: -1, y: 0}},
+					{command: 'l', end: {x: 0, y: -3}},
+				 ];
 	const displayWidth = 10;
 	const displayHeight = 10;
 	const scalefactor = calculateScaleFactor(path, displayWidth, displayHeight);
@@ -163,7 +176,13 @@ it('calculates scale factor (vertical dimension is bigger)', () => {
 
 it('calculates scale factor (horizontal dimension is bigger)', () => {
 	// 3x1 path that scales up to 9x3
-	const path = 'M 0 0 l 3 0 l 0 1 l -3 0 l 0 -1'
+	const path = [
+					{command: 'M', end: {x: 0, y: 0}},
+					{command: 'l', end: {x: 3, y: 0}},
+					{command: 'l', end: {x: 0, y: 1}},
+					{command: 'l', end: {x: -3, y: 0}},
+					{command: 'l', end: {x: 0, y: -1}},
+				 ];
 	const displayWidth = 10;
 	const displayHeight = 10;
 	const scalefactor = calculateScaleFactor(path, displayWidth, displayHeight);
@@ -172,17 +191,29 @@ it('calculates scale factor (horizontal dimension is bigger)', () => {
 
 it('calculates translation without scale factor', () => {
 	// Display is 10x10. Path is 2x4, with the bottom left corner at (0,0)
-	const path = 'M 0 0 l 2 0 l 0 -4 l -2 0 l 0 4'
+	const path = [
+					{command: 'M', end: {x: 0, y: 0}},
+					{command: 'l', end: {x: 2, y: 0}},
+					{command: 'l', end: {x: 0, y: -4}},
+					{command: 'l', end: {x: -2, y: 0}},
+					{command: 'l', end: {x: 0, y: 4}},
+				 ];
 	const displayWidth = 10;
 	const displayHeight = 10;
-	const scaleFactor = 1;
+	const scaleFactor = 1; 
 	const translation = calculateTranslation(path, displayWidth, displayHeight, scaleFactor);
 	expect(translation).toEqual({x: 4, y: 7});
 });
 
 it('calculates translation with scale factor', () => {
 	// Display is 10x10. Path is 1x2, with the bottom left corner at (0,0)
-	const path = 'M 0 0 l 1 0 l 0 -2 l -1 0 l 0 2'
+	const path = [
+					{command: 'M', end: {x: 0, y: 0}},
+					{command: 'l', end: {x: 1, y: 0}},
+					{command: 'l', end: {x: 0, y: -2}},
+					{command: 'l', end: {x: -1, y: 0}},
+					{command: 'l', end: {x: 0, y: 2}},
+				 ];
 	const displayWidth = 10;
 	const displayHeight = 10;
 	const scaleFactor = 2;
