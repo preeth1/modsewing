@@ -6,7 +6,7 @@ import { getHeight,
 		createPathElement,
 		createFormattedPath,
 		concatStrokes,
-		createPathDiv,
+		addPathToElement,
 		centerAndScalePath,
 		calculateScaleFactor,
 		calculateTranslation
@@ -43,20 +43,22 @@ it('gets path top left y', () => {
 it('creates path element', () => {
 	const id = 'testId';
 	const path = [
-					{command: 'M', end: {x: 10, y:10}},
-					{command: 'Q', control: {x: 20, y:20}, end: {x: 10, y: 10}},
+					{command: 'M', end: {x: 0, y:0}},
+					{command: 'l', end: {x: 10, y: 0}},
+					{command: 'l', end: {x: 0, y: 10}},
+					{command: 'l', end: {x: -10, y: 0}},
 					{command: 'Z'},
 				];
-	const pathElement = createPathElement(id, path);
-	expect(pathElement).toEqual(<path
-					id='testId'
-					d='M 10 10 Q 20 20 10 10 Z '
-					vectorEffect="non-scaling-stroke"
-					strokeWidth="1"
-					stroke="black"
-					fill="none"
-					>
-				    </path>);
+	const displayDimensions = {x: 10, y: 10};
+	const pathElement = createPathElement(id, path, displayDimensions);
+	expect(pathElement).toEqual(
+		<g transform="translate(0.5 0.5) scale(0.9)"> <path 
+			d="M 0 0 l 10 0 l 0 10 l -10 0 Z " 
+			fill="none" 
+			id="testId" 
+			stroke="black" 
+			strokeWidth="1" 
+			vectorEffect="non-scaling-stroke" /> </g>);
 });
 
 it('creates formatted path', () => {
@@ -97,10 +99,9 @@ it('adds path to element', () => {
 it('centers and scales path', () => {
 	// Draw a 5x10 rectangle that starts at (2, 4) 
 	const path = 'M 2 4 l 5 0 l 0 5 l -5 0 l 0 -5'
-	const displayWidth = 100;
-	const displayHeight = 100;
+	const displayDimensions = {x: 100, y: 100};
 	const pathElement = <div> "Test path element" </div>
-	const newPath = centerAndScalePath(pathElement, path, displayWidth, displayHeight);
+	const newPath = centerAndScalePath(pathElement, path, displayDimensions);
 	expect(newPath).toEqual(<g transform="translate(3 1) scale(18)"> <div> "Test path element" </div> </g>);
 });
 
