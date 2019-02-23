@@ -1,4 +1,3 @@
-
 export const DISPLAY_FRACTION_TO_FILL = 0.9;
 export const STANDARD_MEASUREMENTS = {
   Small: {

@@ -12,7 +12,7 @@ import { getHeight,
 		centerAndScalePath,
 		calculateScaleFactor,
 		calculateTranslation
-		} from './../svgHelpers/elements'
+		} from 'svgHelpers/elements'
 
 it('joins paths', () => {
 	const path1 = [

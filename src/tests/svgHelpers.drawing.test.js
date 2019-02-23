@@ -4,7 +4,7 @@ import { absMovePen,
 		 drawRelLine,
 		 drawAbsBez,
 		 drawAbsBezRelPoint,
-		} from './../svgHelpers/drawing'
+		} from 'svgHelpers/drawing'
 
 it('moves pen (absolute)', () => {
 	const end = {x: 10, y: 10};
