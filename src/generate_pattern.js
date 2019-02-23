@@ -7,10 +7,12 @@ import { absMovePen,
          drawAbsBez
        } from 'svgHelpers/drawing'
 
-import {createPathElement,
-        centerAndScalePath,
-        joinPaths,
-        translatePath} from 'svgHelpers/elements'
+import { createPathElement,
+         centerAndScalePath,
+         joinPaths,
+         translatePath } from 'svgHelpers/elements'
+
+import { convertMeasurements } from 'measurements'
 
 import { STANDARD_MEASUREMENTS } from 'constants.js'
 
@@ -23,7 +25,10 @@ class GeneratePage extends Component {
   }
 
   generatePattern = () => {
-    const measurements = STANDARD_MEASUREMENTS[this.props.size]
+    // const size = this.props.size;
+    const size = 'Small';
+    const convertedMeasurements = convertMeasurements(STANDARD_MEASUREMENTS[size]);
+    console.log(convertedMeasurements);
     
     const path1 = [
     ...absMovePen({x: 0, y: 0}),

@@ -1,11 +1,4 @@
 export const convertMeasurements = (measurements) => {
-	
-	const createFrontBack = (measurement, divideBy=1, frontChange=0, backChange=0) => {
-		const front = measurement / divideBy + frontChange;
-		const back = measurement / divideBy + backChange;
-		return {front: front, back: back};
-	}
-
   const convertedMeasurements = {
 	  neck: createFrontBack(measurements.neck, 6, 1/4, 3/8),	
 	  shoulder: measurements.shoulder,
@@ -18,7 +11,7 @@ export const convertMeasurements = (measurements) => {
 	  	back: measurements.crossBack / 2,
 	  },
 	  bust: createFrontBack(measurements.bust, 4, 1/4, -1/4),
-	  underbust: "Figure this out later",
+	  cup: measurements.bust - measurements.underBust,
 	  waist: createFrontBack(measurements.waist, 4, 1/4, -1/4),
 	  hip: {
 	  	high: createFrontBack(measurements.highHip, 4, 1/4, -1/4),
@@ -30,6 +23,11 @@ export const convertMeasurements = (measurements) => {
   
   convertedMeasurements.hip.high.depth = measurements.highHipDepth;
   convertedMeasurements.hip.low.depth = measurements.lowHipDepth;
-  debugger
   return convertedMeasurements;
-}
+};
+
+export const createFrontBack = (measurement, divideBy=1, frontChange=0, backChange=0) => {
+	const front = measurement / divideBy + frontChange;
+	const back = measurement / divideBy + backChange;
+	return {front: front, back: back};
+};
