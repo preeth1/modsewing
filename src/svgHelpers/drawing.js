@@ -1,26 +1,21 @@
-export const absMovePen = (pathString, endPoint) => {
-  return `${pathString} M ${endPoint.x} ${endPoint.y}`;
+export const absMovePen = (end) => {
+  return [{command: 'M', end: {x: end.x, y: end.y}, absolute: true}];
 }
 
 // relMovePen has strange behavior if its called on a function with closePath called.
-export const relMovePen = (pathString, endPoint) => {
-  return `${pathString} m ${endPoint.x} ${endPoint.y}`;
+export const relMovePen = (end) => {
+  return [{command: 'm', end: {x: end.x, y: end.y}, absolute: false}];
 }
 
-export const drawAbsLine = (pathString, endPoint) => {
-  return `${pathString} L ${endPoint.x} ${endPoint.y}`;
+export const drawAbsLine = (end) => {
+  return [{command: 'L', end: {x: end.x, y: end.y}, absolute: true}];
 }
 
-export const drawRelLine = (pathString, endPoint) => {
-  return `${pathString} l ${endPoint.x} ${endPoint.y}`;
+export const drawRelLine = (end) => {
+  return [{command: 'l', end: {x: end.x, y: end.y}, absolute: false}];
 }
 
 // This function draws an abs quadratic bezier with a specified control point (instead of specifying the control point params)
-export const drawAbsBez = (pathString, endPoint, controlPoint) => {
-  return `${pathString} Q ${controlPoint.x} ${controlPoint.y} ${endPoint.x} ${endPoint.y}`;
+export const drawAbsBez = (end, control) => {
+  return [{command: 'Q', control: {x: control.x, y: control.y}, end: {x: end.x, y: end.y}, absolute: true}];
 }
-
-export const closePath = (pathString) => {
-  return `${pathString} Z`
-}
-

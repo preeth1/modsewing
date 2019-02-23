@@ -2,12 +2,15 @@ import React, { Component } from 'react';
 import './App.css';
 import logoImage from './images/logo.png';
 import { absMovePen,
-         drawAbsLine,
-         drawRelLine
+         drawRelLine,
+         closePath,
+         drawAbsBez
        } from './svgHelpers/drawing'
 
 import {createPathElement,
-        centerAndScalePath} from './svgHelpers/elements'
+        centerAndScalePath,
+        joinPaths,
+        translatePath} from './svgHelpers/elements'
 
 import { STANDARD_MEASUREMENTS } from './constants'
 
@@ -21,10 +24,31 @@ class GeneratePage extends Component {
 
   generatePattern = () => {
     const measurements = STANDARD_MEASUREMENTS[this.props.size]
-    let pathString = "";
-    pathString = 'M 0 0 l 600 0 l 0 15 l -600 0 l 0 -15 Z'
-    let pathElement = createPathElement('id', pathString)
-    pathElement = centerAndScalePath(pathElement, pathString, this.state.displayWidth, this.state.displayHeight);
+    
+    const path1 = [
+    ...absMovePen({x: 0, y: 0}),
+    ...drawRelLine({x: 10, y: 0}),
+    ...drawRelLine({x: 0, y: 10}),
+    ...drawRelLine({x: -10, y: 0}),
+    ...drawRelLine({x: 0, y: -10}),
+    ];
+
+    const path2 = [
+    ...absMovePen({x: 0, y: 0}),
+    ...drawRelLine({x: 10, y: 0}),
+    ...drawRelLine({x: 0, y: 10}),
+    ...drawRelLine({x: -10, y: 0}),
+    ...drawRelLine({x: 0, y: -10}),
+    ];
+
+    const translation = {x: 15, y: 20};
+    const transPath2 = translatePath(path2, translation)
+    const joinedPaths = joinPaths(path1, transPath2);
+
+
+    const displayDimensions = {x: this.state.displayWidth, y: this.state.displayHeight}
+
+    let pathElement = createPathElement('id', joinedPaths, displayDimensions)
     return pathElement
   }
 
