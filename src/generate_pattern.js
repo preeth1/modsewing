@@ -1,18 +1,18 @@
 import React, { Component } from 'react';
-import './App.css';
-import logoImage from './images/logo.png';
+import 'App.css';
+import logoImage from 'images/logo.png';
 import { absMovePen,
          drawRelLine,
          closePath,
          drawAbsBez
-       } from './svgHelpers/drawing'
+       } from 'svgHelpers/drawing'
 
 import {createPathElement,
         centerAndScalePath,
         joinPaths,
-        translatePath} from './svgHelpers/elements'
+        translatePath} from 'svgHelpers/elements'
 
-import { STANDARD_MEASUREMENTS } from './constants'
+import { STANDARD_MEASUREMENTS } from 'constants.js'
 
 
 class GeneratePage extends Component {
