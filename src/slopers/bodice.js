@@ -8,12 +8,7 @@ import { absMovePen,
 import { calculateArmholeShoulderCenterFrontDart,
          calculateSideDart,
          calculateWaistDart } from 'slopers/darts'
-import { t0FromTQuadraticBezier,
-         quadraticEquation,
-         quadraticEquationForBezier,
-         subdivideQuadraticBezierFromt0,
-         subdivideQuadraticBezierFromT,
-         quadraticBezierLength,
+import { quadraticBezierLength,
          calculateLineToLineIntersection,
          calculateLineToBezierIntersection,
          calculateCoordAlongLine } from 'svgHelpers/pathMath.js'
