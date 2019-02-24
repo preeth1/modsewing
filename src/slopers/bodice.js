@@ -22,7 +22,21 @@ import { t0FromTQuadraticBezier,
 export const front = (size) => {
 
   const convertedMeasurements = convertMeasurements(STANDARD_MEASUREMENTS[size]);
-  const frontCoordinates = calculateFrontCoordinates(STANDARD_MEASUREMENTS[size], convertedMeasurements);
+  const front = calculateFrontCoordinates(STANDARD_MEASUREMENTS[size], convertedMeasurements);
+
+  // const frontPath = [
+  //   ...absMovePen({x: 0, y: 0}),
+  //   ...drawAbsLine({x: front.x20, y: front.y0}),
+  //   ...drawAbsLine({x: front.x19, y: front.y1}),
+  //   ...drawAbsLine({x: front.x13, y: front.y3}),
+  //   // ...drawAbsLine({x: front.x, y: front.y}),
+  //   // ...drawAbsLine({x: front.x, y: front.y}),
+  //   // ...drawAbsLine({x: front.x, y: front.y}),
+  //   // ...drawAbsLine({x: front.x, y: front.y}),
+  //   // ...drawAbsLine({x: front.x, y: front.y}),
+  //   // ...drawAbsLine({x: front.x, y: front.y}),
+  //   // ...drawAbsLine({x: front.x, y: front.y}),
+  //   ]
 
   const frontPath = [
     ...absMovePen({x: 0, y: 0}),
@@ -89,7 +103,6 @@ export const calculateFrontCoordinates = (measurements, convertedMeasurements) =
   const armholeCenterY = front.y9 + (front.y12 - front.y9)/2;
   front.y10 = armholeCenterY - sideDartWidth/(2*Math.sqrt(2));
   front.y11 = armholeCenterY + sideDartWidth/(2*Math.sqrt(2));
-  debugger
   front.x11 = calculateLineToBezierIntersection({x: -100, y: front.y11},
                                                 {x: 100, y: front.y11},
                                                 {x: front.x18, y: front.y9},

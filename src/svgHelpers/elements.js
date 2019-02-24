@@ -86,8 +86,9 @@ export const getTopLeftX = (path) => {
 }
 
 export const getTopLeftY = (path) => {
+  // Flipping the default coordinate system, so multiple by negative 1
   const formattedPath = createFormattedPath(path);
-  const topLeftY = raphael.pathBBox(formattedPath).y;
+  const topLeftY = (-1)*raphael.pathBBox(formattedPath).y;
   return topLeftY
 }
 
@@ -110,9 +111,10 @@ export const calculateTranslation = (path, displayWidth, displayHeight, scaleFac
   const displayCenterY = displayHeight / 2;
 
   const pathCenterX = getTopLeftX(path) + (getWidth(path) * scaleFactor) / 2;
-  const pathCenterY = getTopLeftY(path) + (getHeight(path) * scaleFactor) / 2;
+  const pathCenterY = getTopLeftY(path) - (getHeight(path) * scaleFactor) / 2;
 
   const translateX = displayCenterX - pathCenterX;
-  const translateY = displayCenterY - pathCenterY;
+  // Add the height to translateY because the svg has the opposite coordinate system of path
+  let translateY = displayCenterY - pathCenterY + getHeight(path);
   return {x: translateX, y: translateY}
 }

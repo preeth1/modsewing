@@ -101,7 +101,7 @@ it('gets path top left y', () => {
 					{command: 'l', end: {x: 0, y: -10}, absolute: false},
 				 ];
 	const topLeftY = getTopLeftY(path);
-	expect(topLeftY).toEqual(4);
+	expect(topLeftY).toEqual(-4);
 });
 
 it('creates path element', () => {
@@ -116,7 +116,7 @@ it('creates path element', () => {
 	const displayDimensions = {x: 10, y: 10};
 	const pathElement = createPathElement(id, path, displayDimensions);
 	expect(pathElement).toEqual(
-		<g transform="translate(0.5 0.5) scale(0.9)"> <path 
+		<g transform="translate(0.5 9.5) scale(0.9)"> <path 
 			d="M 0 0 l 10 0 l 0 10 l -10 0 Z " 
 			fill="none" 
 			id="testId" 
@@ -173,7 +173,7 @@ it('centers and scales path', () => {
 	const displayDimensions = {x: 100, y: 100};
 	const pathElement = <div> "Test path element" </div>
 	const newPath = centerAndScalePath(pathElement, path, displayDimensions);
-	expect(newPath).toEqual(<g transform="translate(3 1) scale(18)"> <div> "Test path element" </div> </g>);
+	expect(newPath).toEqual(<g transform="translate(3 99) scale(18)"> <div> "Test path element" </div> </g>);
 });
 
 it('calculates scale factor (vertical dimension is bigger)', () => {
@@ -219,7 +219,7 @@ it('calculates translation without scale factor', () => {
 	const displayHeight = 10;
 	const scaleFactor = 1; 
 	const translation = calculateTranslation(path, displayWidth, displayHeight, scaleFactor);
-	expect(translation).toEqual({x: 4, y: 7});
+	expect(translation).toEqual({x: 4, y: 3});
 });
 
 it('calculates translation with scale factor', () => {
