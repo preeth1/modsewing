@@ -22,14 +22,49 @@ import { t0FromTQuadraticBezier,
 export const front = (size) => {
 
   const convertedMeasurements = convertMeasurements(STANDARD_MEASUREMENTS[size]);
-  const frontCoordinates = calculateFrontCoordinates(STANDARD_MEASUREMENTS[size], convertedMeasurements);
+  const fc = calculateFrontCoordinates(STANDARD_MEASUREMENTS[size], convertedMeasurements);
 
   const frontPath = [
-    ...absMovePen({x: 0, y: 0}),
-    ...drawRelLine({x: 10, y: 0}),
-    ...drawRelLine({x: 0, y: 10}),
-    ...drawRelLine({x: -10, y: 0}),
-    ...drawRelLine({x: 0, y: -10}),
+    // Draw the sloper outline
+    ...absMovePen({x: fc.x0, y: fc.y14}),
+    ...drawAbsLine({x: fc.x0, y: fc.y0}),
+    ...drawAbsLine({x: fc.x20, y: fc.y0}),
+    ...drawAbsLine({x: fc.x19, y: fc.y1}),
+    ...drawAbsLine({x: fc.x13, y: fc.y3}),
+    ...drawAbsBez({x: fc.x16, y: fc.y5}, {x: fc.x18, y: fc.y9}),
+    ...drawAbsBez({x: fc.x10, y: fc.y9}, {x: fc.x10, y: fc.y12}),
+    ...drawAbsLine({x: fc.x14, y: fc.y15}),
+    ...drawAbsLine({x: fc.x8, y: fc.y16}),
+    ...drawAbsBez({x: fc.x9, y: fc.y13}, {x: fc.x5, y: fc.y7}),
+    ...drawAbsLine({x: fc.x3, y: fc.y17}),
+    ...drawAbsLine({x: fc.x1, y: fc.y18}),
+    ...drawAbsBez({x: fc.x1, y: fc.y14}, {x: fc.x0, y: fc.y14}),
+
+    // Waist darts
+    ...absMovePen({x: fc.x5, y: fc.y0}),
+    ...drawAbsLine({x: fc.x5, y: fc.y1}),
+    ...drawAbsLine({x: fc.x2, y: fc.y2}),
+    ...drawAbsLine({x: fc.x2, y: fc.y3}),
+    ...drawAbsLine({x: fc.x5, y: fc.y4}),
+    ...drawAbsLine({x: fc.x5, y: fc.y7}),
+
+    ...absMovePen({x: fc.x5, y: fc.y1}),
+    ...drawAbsLine({x: fc.x6, y: fc.y2}),
+    ...drawAbsLine({x: fc.x6, y: fc.y3}),
+    ...drawAbsLine({x: fc.x5, y: fc.y4}),
+
+    // Armhole dart
+    ...absMovePen({x: fc.x5, y: fc.y7}),
+    ...drawAbsLine({x: fc.x11, y: fc.y11}),
+    ...absMovePen({x: fc.x5, y: fc.y7}),
+    ...drawAbsLine({x: fc.x12, y: fc.y10}),
+
+    // Side dart
+    ...absMovePen({x: fc.x5, y: fc.y7}),
+    ...drawAbsLine({x: fc.x15, y: fc.y6}),
+    ...absMovePen({x: fc.x5, y: fc.y7}),
+    ...drawAbsLine({x: fc.x17, y: fc.y8}),
+
     ]
 
 	return frontPath;
@@ -85,11 +120,11 @@ export const calculateFrontCoordinates = (measurements, convertedMeasurements) =
 
   front.y12 = front.y14 - 3;
 
-  // Side dart values
+  // Armhole dart
   const armholeCenterY = front.y9 + (front.y12 - front.y9)/2;
   front.y10 = armholeCenterY - sideDartWidth/(2*Math.sqrt(2));
   front.y11 = armholeCenterY + sideDartWidth/(2*Math.sqrt(2));
-  debugger
+
   front.x11 = calculateLineToBezierIntersection({x: -100, y: front.y11},
                                                 {x: 100, y: front.y11},
                                                 {x: front.x18, y: front.y9},
@@ -152,13 +187,13 @@ export const calculateFrontCoordinates = (measurements, convertedMeasurements) =
                                              {x: front.x18, y: front.y9}).x;
 
   front.y4 = front.y7 - 3/4;
-  front.y6 = calculateLineToBezierIntersection({x: -100, y: front.y7 - sideDartWidth/2},
+  front.y6 = -calculateLineToBezierIntersection({x: -100, y: front.y7 - sideDartWidth/2},
                                              {x: 100, y: front.y7 - sideDartWidth/2},
                                              {x: front.x13, y: front.y3},
                                              {x: front.x16, y: front.y5},
                                              {x: front.x18, y: front.y9}).y;
 
-  front.y8 = calculateLineToBezierIntersection({x: -100, y: front.y7 + sideDartWidth/2},
+  front.y8 = -calculateLineToBezierIntersection({x: -100, y: front.y7 + sideDartWidth/2},
                                              {x: 100, y: front.y7 + sideDartWidth/2},
                                              {x: front.x13, y: front.y3},
                                              {x: front.x16, y: front.y5},
