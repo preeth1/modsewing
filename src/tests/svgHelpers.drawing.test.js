@@ -11,7 +11,7 @@ it('moves pen (absolute)', () => {
 	const path = [
 		...absMovePen(end)
 		];
-	expect(path).toEqual([{command: 'M', end: {x: 10, y: 10}, absolute: true}]);
+	expect(path).toEqual([{command: 'M', end: {x: 10, y: -10}, absolute: true}]);
 });
 
 it('moves pen (relative)', () => {
@@ -19,7 +19,7 @@ it('moves pen (relative)', () => {
 	const path = [
 		...relMovePen(end)
 		];
-	expect(path).toEqual([{command: 'm', end: {x: 10, y: 10}, absolute: false}]);
+	expect(path).toEqual([{command: 'm', end: {x: 10, y: -10}, absolute: false}]);
 });
 
 it('draws line (absolute)', () => {
@@ -27,7 +27,7 @@ it('draws line (absolute)', () => {
 	const path = [
 		...drawAbsLine(end)
 		];
-	expect(path).toEqual([{command: 'L', end: {x: 10, y: 10}, absolute: true}]);
+	expect(path).toEqual([{command: 'L', end: {x: 10, y: -10}, absolute: true}]);
 });
 
 it('draws line (relative)', () => {
@@ -35,7 +35,7 @@ it('draws line (relative)', () => {
 	const path = [
 		...drawRelLine(end)
 		];
-	expect(path).toEqual([{command: 'l', end: {x: 10, y: 10}, absolute: false}]);
+	expect(path).toEqual([{command: 'l', end: {x: 10, y: -10}, absolute: false}]);
 });
 
 it('draws bezier with absolute control point (absolute bezier)', () => {
@@ -45,7 +45,7 @@ it('draws bezier with absolute control point (absolute bezier)', () => {
 		...drawAbsBez(end, control)
 		];
 	expect(path).toEqual([
-					{command: 'Q', end: {x: 10, y: 10}, control: {x: 3, y: 3}, absolute: true
+					{command: 'Q', end: {x: 10, y: -10}, control: {x: 3, y: -3}, absolute: true
 				}]);
 });
 
@@ -60,11 +60,11 @@ it('creates svg with all drawing functions', () => {
 		...drawAbsBez(end, control),
 	];
 	expect(path).toEqual([
-					{command: 'M', end: {x: 10, y: 10}, absolute: true},
-					{command: 'm', end: {x: 10, y: 10}, absolute: false},
-					{command: 'L', end: {x: 10, y: 10}, absolute: true},
-					{command: 'l', end: {x: 10, y: 10}, absolute: false},
-					{command: 'Q', end: {x: 10, y: 10}, control: {x: 3, y: 3}, absolute: true},
+					{command: 'M', end: {x: 10, y: -10}, absolute: true},
+					{command: 'm', end: {x: 10, y: -10}, absolute: false},
+					{command: 'L', end: {x: 10, y: -10}, absolute: true},
+					{command: 'l', end: {x: 10, y: -10}, absolute: false},
+					{command: 'Q', end: {x: 10, y: -10}, control: {x: 3, y: -3}, absolute: true},
 				 ]);
 });
 
