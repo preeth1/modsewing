@@ -110,8 +110,8 @@ export const calculateTranslation = (path, displayWidth, displayHeight, scaleFac
   const displayCenterX = displayWidth / 2;
   const displayCenterY = displayHeight / 2;
 
-  const pathCenterX = getTopLeftX(path) + (getWidth(path) * scaleFactor) / 2;
-  const pathCenterY = getTopLeftY(path) + (getHeight(path) * scaleFactor) / 2;
+  const pathCenterX = (getTopLeftX(path) + getWidth(path) / 2) * scaleFactor;
+  const pathCenterY = (getTopLeftY(path) + getHeight(path) / 2) * scaleFactor;
 
   const translateX = displayCenterX - pathCenterX;
   const translateY = displayCenterY - pathCenterY;
