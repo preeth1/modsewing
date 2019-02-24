@@ -1,16 +1,4 @@
-export const calculateArmholeDart = (cup) => {
-	return genericDartFunction();
-}
-
-export const calculateShoulderDart = (cup) => {
-	return genericDartFunction();
-}
-
-export const calculateCenterFrontDart = (cup) => {
-	return genericDartFunction();
-}
-
-export const genericDartFunction = (cup) => {
+export const calculateArmholeShoulderCenterFrontDart = (cup) => {
 	const dartWidth = Math.min(.125 * cup + .25, .75);
 	return dartWidth;
 }
