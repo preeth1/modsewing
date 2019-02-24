@@ -52,7 +52,7 @@ export const calculateFrontCoordinates = (measurements, convertedMeasurements) =
   front.x2 = (cm.figureBreadth - waistDartWidth)/2;
 
   // ---Shoulder values
-  const originalShoulderHeight = (cm.frontNeck + 1/8)/2;
+  const originalShoulderHeight = (cm.neck.front + 1/8)/2;
   const originalShoulderWidth = Math.sqrt(Math.pow(cm.shoulder + shoulderDartWidth, 2) - Math.pow(originalShoulderHeight, 2));
 
   front.x5 = cm.figureBreadth/2;
@@ -164,5 +164,5 @@ export const calculateFrontCoordinates = (measurements, convertedMeasurements) =
                                              {x: front.x16, y: front.y5},
                                              {x: front.x18, y: front.y9}).y;
 
-  return {coordinates: front, height: front.y18 - front.y0, width: front.x20 - front.x0};
+  return front;
 }
