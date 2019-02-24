@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import { Router, Route } from 'react-router-dom';
 import 'App.css';
 import logoImage from 'images/logo.png';
-import GeneratePage from 'generate_pattern'
+import GeneratePage from 'generate_pattern.js'
 import history from 'history.js';
 
 class App extends Component {
