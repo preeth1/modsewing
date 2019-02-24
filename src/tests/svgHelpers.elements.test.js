@@ -162,18 +162,18 @@ it('adds path to element', () => {
 });
 
 it('centers and scales path', () => {
-	// Draw a 5x5 rectangle that starts at (2, 4) 
+	// Draw a 9x9 rectangle that starts at (2, 4) 
 	const path = [
 					{command: 'M', end: {x: 2, y: 4}, absolute: true},
-					{command: 'l', end: {x: 5, y: 0}, absolute: false},
-					{command: 'l', end: {x: 0, y: 5}, absolute: false},
-					{command: 'l', end: {x: -5, y: 0}, absolute: false},
-					{command: 'l', end: {x: 0, y: -5}, absolute: false},
+					{command: 'l', end: {x: 9, y: 0}, absolute: false},
+					{command: 'l', end: {x: 0, y: 9}, absolute: false},
+					{command: 'l', end: {x: -9, y: 0}, absolute: false},
+					{command: 'l', end: {x: 0, y: -9}, absolute: false},
 				 ];
 	const displayDimensions = {x: 100, y: 100};
 	const pathElement = <div> "Test path element" </div>
 	const newPath = centerAndScalePath(pathElement, path, displayDimensions);
-	expect(newPath).toEqual(<g transform="translate(3 99) scale(18)"> <div> "Test path element" </div> </g>);
+	expect(newPath).toEqual(<g transform="translate(-15 -35) scale(10)"> <div> "Test path element" </div> </g>);
 });
 
 it('calculates scale factor (vertical dimension is bigger)', () => {
@@ -235,5 +235,5 @@ it('calculates translation with scale factor', () => {
 	const displayHeight = 10;
 	const scaleFactor = 2;
 	const translation = calculateTranslation(path, displayWidth, displayHeight, scaleFactor);
-	expect(translation).toEqual({x: 4, y: 5});
+	expect(translation).toEqual({x: 4, y: 7});
 });
