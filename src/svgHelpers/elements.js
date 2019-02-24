@@ -1,8 +1,7 @@
 import React from 'react';
 import raphael from 'raphael';
 import _ from 'lodash';
-import { DISPLAY_FRACTION_TO_FILL,
-         STANDARD_MEASUREMENTS } from '../constants';
+import { DISPLAY_FRACTION_TO_FILL } from '../constants';
 
 export const joinPaths = (path1, path2) => {
   return path1.concat(path2);
