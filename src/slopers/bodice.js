@@ -21,6 +21,19 @@ import { t0FromTQuadraticBezier,
 
 export const front = (size) => {
 
+  const a = calculateLineToLineIntersection(
+    {x: 0, y: 0}, 
+    {x: 10, y: 10}, 
+    {x: 10, y: 0}, 
+    {x: 0, y: 10});
+  const b = calculateLineToBezierIntersection(
+    {x: 0, y: 0}, 
+    {x: 10, y: 10}, 
+    {x: 10, y: 0}, 
+    {x: 0, y: 10},
+    {x: 5, y: 7}, 
+    );
+
   const convertedMeasurements = convertMeasurements(STANDARD_MEASUREMENTS[size]);
   const frontCoordinates = calculateFrontCoordinates(STANDARD_MEASUREMENTS[size], convertedMeasurements);
 

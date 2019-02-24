@@ -1,9 +1,10 @@
-import { intersect, shape } from 'svg-intersections';
-intersect.plugin(require('svg-intersections/lib/functions/bezier'));
 import { absMovePen,
-         addAbsLine,
-         addAbsQuadraticBezierWithControlPoint, } from './svgDrawingHelpers.js'
+         drawAbsLine,
+         drawAbsBez, } from 'svgHelpers/drawing'
+import { createFormattedPath } from 'svgHelpers/elements'
+         
 import _ from 'lodash';
+import { intersect, shape } from 'svg-intersections';
 
 
 export const t0FromTQuadraticBezier = (P0, P1, P2, T) => {
@@ -160,23 +161,24 @@ export const quadraticBezierLength = (P0, P1, P2) => {
 }
 
 export const calculateLineToLineIntersection = (P0, P1, P2, P3) => {
-  /*
-  P0 and P1 define the first line, P2 and P3 define the second line
-  */
-  let path0 = "";
-  // Create path0
-  path0 = absMovePen(path0, P0);
-  path0 = addAbsLine(path0, P1);
+    /*
+    P0 and P1 define the first line, P2 and P3 define the second line
+    */
 
-  // Create path1
-  let path1 = "";
-  path1 = absMovePen(path1, P2);
-  path1 = addAbsLine(path1, P3);
+    const path0 = createFormattedPath([
+      ...absMovePen(P0),
+      ...drawAbsLine(P1)
+    ]);
+
+    const path1 = createFormattedPath([
+      ...absMovePen(P2),
+      ...drawAbsLine(P3)
+    ]);
 
     const intersectionPoint2D = intersect(
-            shape("path", {d: path0}),
-            shape("path", {d: path1})
-        );
+      shape("path", {d: path0}),
+      shape("path", {d: path1})
+    );
 
     const intersectionPoint = {x: intersectionPoint2D.points[0].x, y: intersectionPoint2D.points[0].y};
     return intersectionPoint
@@ -186,38 +188,41 @@ export const calculateLineToBezierIntersection = (P0, P1, P2, P3, P4) => {
   /*
   P0 and P1 define the first line, P2, P3, and P4 define the second line
   */
-  let path0 = "";
-  // Create path0
-  path0 = absMovePen(path0, P0);
-  path0 = addAbsLine(path0, P1);
 
-  // Create path1
-  let path1 = "";
-  path1 = absMovePen(path1, P2);
-  path1 = addAbsQuadraticBezierWithControlPoint(path1, P3, P4);
+  intersect.plugin(require('svg-intersections/lib/functions/bezier'));
 
-    const intersectionPoint2D = intersect(
-            shape("path", {d: path0}),
-            shape("path", {d: path1})
-        );
+  const path0 = createFormattedPath([
+    ...absMovePen(P0),
+    ...drawAbsLine(P1)
+  ]);
 
-    const intersectionPoint = {x: intersectionPoint2D.points[0].x, y: intersectionPoint2D.points[0].y};
-    return intersectionPoint
-  }
+  const path1 = createFormattedPath([
+    ...absMovePen(P2),
+    ...drawAbsBez(P3, P4)
+  ]);
+
+  const intersectionPoint2D = intersect(
+    shape("path", {d: path0}),
+    shape("path", {d: path1})
+  );
+
+  const intersectionPoint = {x: intersectionPoint2D.points[0].x, y: intersectionPoint2D.points[0].y};
+  return intersectionPoint
+}
 
 export const calculateCoordAlongLine = (P0, P2, newLength) => {
-/* This function takes in a line that goes from P0 to P2, and returns the coordinates of point
-P1, the point along that line of length newLength
-P0: Start of initial line
-P1: End of initial line
-newLength: Length of the new line
-*/
-const P1 = {}
-const originalHeight = P2.y -  P0.y;
-const originalWidth = P2.x - P0.x;
-const originalLength = Math.sqrt(Math.pow(originalHeight, 2) + Math.pow(originalWidth, 2))
-P1.x = P0.x + originalWidth * (newLength/originalLength);
-P1.y = P0.y + originalHeight * (newLength/originalLength);
+  /* This function takes in a line that goes from P0 to P2, and returns the coordinates of point
+  P1, the point along that line of length newLength
+  P0: Start of initial line
+  P1: End of initial line
+  newLength: Length of the new line
+  */
+  const P1 = {}
+  const originalHeight = P2.y -  P0.y;
+  const originalWidth = P2.x - P0.x;
+  const originalLength = Math.sqrt(Math.pow(originalHeight, 2) + Math.pow(originalWidth, 2))
+  P1.x = P0.x + originalWidth * (newLength/originalLength);
+  P1.y = P0.y + originalHeight * (newLength/originalLength);
 
-return P1;
+  return P1;
 }
