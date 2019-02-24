@@ -39,13 +39,13 @@ it('draws line (relative)', () => {
 });
 
 it('draws bezier with absolute control point (absolute bezier)', () => {
-	const end = {x: 10, y: 10};
 	const control = {x: 3, y: 3};
+	const end = {x: 10, y: 10};
 	const path = [
-		...drawAbsBez(end, control)
+		...drawAbsBez(control, end)
 		];
 	expect(path).toEqual([
-					{command: 'Q', end: {x: 10, y: 10}, control: {x: 3, y: 3}, absolute: true
+					{command: 'Q', control: {x: 3, y: 3}, end: {x: 10, y: 10}, absolute: true
 				}]);
 });
 
@@ -57,14 +57,14 @@ it('creates svg with all drawing functions', () => {
 		...relMovePen(end),
 		...drawAbsLine(end),
 		...drawRelLine(end),
-		...drawAbsBez(end, control),
+		...drawAbsBez(control, end),
 	];
 	expect(path).toEqual([
 					{command: 'M', end: {x: 10, y: 10}, absolute: true},
 					{command: 'm', end: {x: 10, y: 10}, absolute: false},
 					{command: 'L', end: {x: 10, y: 10}, absolute: true},
 					{command: 'l', end: {x: 10, y: 10}, absolute: false},
-					{command: 'Q', end: {x: 10, y: 10}, control: {x: 3, y: 3}, absolute: true},
+					{command: 'Q', control: {x: 3, y: 3}, end: {x: 10, y: 10}, absolute: true},
 				 ]);
 });
 

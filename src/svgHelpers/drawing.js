@@ -16,6 +16,6 @@ export const drawRelLine = (end) => {
 }
 
 // This function draws an abs quadratic bezier with a specified control point (instead of specifying the control point params)
-export const drawAbsBez = (end, control) => {
+export const drawAbsBez = (control, end) => {
   return [{command: 'Q', control: {x: control.x, y: control.y}, end: {x: end.x, y: end.y}, absolute: true}];
 }
