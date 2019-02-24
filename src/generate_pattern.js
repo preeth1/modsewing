@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import 'App.css';
 import logoImage from 'images/logo.png';
-import { front } from 'slopers/bodice'
+import { front } from 'slopers/bodice.js'
 
 import { createPathElement } from 'svgHelpers/elements'
 
