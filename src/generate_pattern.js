@@ -4,6 +4,7 @@ import logoImage from 'images/logo.png';
 import { front } from 'slopers/bodice.js'
 
 import { createPathElement } from 'svgHelpers/elements'
+import * as jsPDF  from 'jspdf'
 
 class GeneratePage extends Component {
 
@@ -63,6 +64,10 @@ export default GeneratePage;
 class PrintButton extends Component {
   PrintButtonClicked = (event) => {
     console.log("print button clicked")
+    var doc = new jsPDF()
+ 
+    doc.text('Hello world!', 10, 10)
+    doc.save('a4.pdf')
   }
 
   render () {
