@@ -189,8 +189,6 @@ export const calculateLineToBezierIntersection = (P0, P1, P2, P3, P4) => {
   P0 and P1 define the first line, P2, P3, and P4 define the second line
   */
 
-  intersect.plugin(require('svg-intersections/lib/functions/bezier'));
-
   const path0 = createFormattedPath([
     ...absMovePen(P0),
     ...drawAbsLine(P1)
