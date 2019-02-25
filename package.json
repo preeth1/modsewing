@@ -3,6 +3,7 @@
   "version": "0.1.0",
   "private": true,
   "dependencies": {
+    "canvg": "^1.5.3",
     "jspdf": "^1.5.3",
     "raphael": "^2.2.7",
     "react": "^16.8.1",

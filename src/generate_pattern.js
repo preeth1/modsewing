@@ -5,6 +5,7 @@ import { front } from 'slopers/bodice.js'
 
 import { createPathElement } from 'svgHelpers/elements'
 import * as jsPDF  from 'jspdf'
+import canvg from 'canvg'
 
 class GeneratePage extends Component {
 
@@ -41,7 +42,7 @@ class GeneratePage extends Component {
           <img className="LogoImage" src={logoImage} alt="Modsewing"/>
         </div>
         <div className="ContentPanelPattern">
-          <div className="PatternDisplay" ref={ (divElement) => this.divElement = divElement}>
+          <div className="PatternDisplay" id="PatternDisplay" ref={ (divElement) => this.divElement = divElement}>
 
           <svg>
           {this.generatePattern() }
@@ -63,11 +64,18 @@ export default GeneratePage;
 
 class PrintButton extends Component {
   PrintButtonClicked = (event) => {
-    console.log("print button clicked")
-    var doc = new jsPDF()
- 
-    doc.text('Hello world!', 10, 10)
-    doc.save('a4.pdf')
+  var svg = document.getElementById('PatternDisplay').innerHTML;
+  var canvas = document.createElement('canvas');
+  canvg(canvas, svg);
+
+  var imgData = canvas.toDataURL('image/png');
+  // Generate PDF
+  var doc = new jsPDF('p', 'pt', 'a4');
+  doc.addImage(imgData, 'PNG', 10, 10, 100, 100);
+  doc.save('test.pdf');
+  console.log("print button clicked")
+  var doc = new jsPDF()
+  doc.save('sewing.pdf')
   }
 
   render () {
