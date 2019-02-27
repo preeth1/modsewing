@@ -66,16 +66,26 @@ class PrintButton extends Component {
   PrintButtonClicked = (event) => {
   var svg = document.getElementById('PatternDisplay').innerHTML;
   var canvas = document.createElement('canvas');
+  console.log('--- canvas height and width ---')
+  console.log(canvas.height)
+  console.log(canvas.width)
   canvg(canvas, svg);
 
   var imgData = canvas.toDataURL('image/png');
   // Generate PDF
   var doc = new jsPDF('p', 'pt', 'a4');
-  doc.addImage(imgData, 'PNG', 10, 10, 100, 100);
-  doc.save('test.pdf');
-  console.log("print button clicked")
-  var doc = new jsPDF()
-  doc.save('sewing.pdf')
+
+  doc.addImage(imgData,
+               'PNG', 
+               0, // position (x)
+               0, // position (xy
+               canvas.width, // size (x)
+               canvas.height);// size (y)
+
+
+
+  doc.save('sewing.pdf');
+
   }
 
   render () {
