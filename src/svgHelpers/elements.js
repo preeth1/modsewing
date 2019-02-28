@@ -60,7 +60,6 @@ export const addPathToElement =(id, path) => {
       id={id}
       d={formattedPath}
       vectorEffect='non-scaling-stroke'
-      strokeWidth='1'
       stroke='black'
       fill='none'
       >
