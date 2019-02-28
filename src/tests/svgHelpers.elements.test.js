@@ -121,7 +121,7 @@ it('creates path element', () => {
 			fill="none" 
 			id="testId" 
 			stroke="black" 
-			strokeWidth="1" 
+			strokeWidth=".5" 
 			vectorEffect="non-scaling-stroke" /> </g>);
 });
 
@@ -154,7 +154,7 @@ it('adds path to element', () => {
 					id='testId'
 					d='M 10 10 l 10 10 Z '
 					vectorEffect="non-scaling-stroke"
-					strokeWidth="1"
+					strokeWidth=".5"
 					stroke="black"
 					fill="none"
 					>
@@ -187,7 +187,7 @@ it('calculates scale factor (vertical dimension is bigger)', () => {
 				 ];
 	const displayWidth = 10;
 	const displayHeight = 10;
-	const scalefactor = calculateScaleFactor(path, displayWidth, displayHeight);
+	const scalefactor = calculateScaleFactor(path, {x: displayWidth, y: displayHeight});
 	expect(scalefactor).toEqual(3);
 });
 
@@ -202,7 +202,7 @@ it('calculates scale factor (horizontal dimension is bigger)', () => {
 				 ];
 	const displayWidth = 10;
 	const displayHeight = 10;
-	const scalefactor = calculateScaleFactor(path, displayWidth, displayHeight);
+	const scalefactor = calculateScaleFactor(path, {x: displayWidth, y: displayHeight});
 	expect(scalefactor).toEqual(3);
 });
 
@@ -218,7 +218,7 @@ it('calculates translation without scale factor', () => {
 	const displayWidth = 10;
 	const displayHeight = 10;
 	const scaleFactor = 1; 
-	const translation = calculateTranslation(path, displayWidth, displayHeight, scaleFactor);
+	const translation = calculateTranslation(path, {x: displayWidth, y: displayHeight}, scaleFactor);
 	expect(translation).toEqual({x: 4, y: 7});
 });
 
@@ -234,6 +234,6 @@ it('calculates translation with scale factor', () => {
 	const displayWidth = 10;
 	const displayHeight = 10;
 	const scaleFactor = 2;
-	const translation = calculateTranslation(path, displayWidth, displayHeight, scaleFactor);
+	const translation = calculateTranslation(path, {x: displayWidth, y: displayHeight}, scaleFactor);
 	expect(translation).toEqual({x: 4, y: 7});
 });

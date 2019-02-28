@@ -32,6 +32,12 @@ export const createPathElement = (id, path, displayDimensions) => {
   return pathElement;
 }
 
+export const calculatePixelToInchRatio = (path, displayDimensions) => {
+  const widthRatio = displayDimensions.x / getWidth(path);
+  const heightRatio = displayDimensions.y / getHeight(path);
+  return (widthRatio < heightRatio) ? widthRatio : heightRatio;
+}
+
 export const createFormattedPath = (path) => {
   let formattedPath = "";
   _.each(path, (stroke) => {
@@ -61,6 +67,7 @@ export const addPathToElement =(id, path) => {
       d={formattedPath}
       vectorEffect='non-scaling-stroke'
       stroke='black'
+      strokeWidth='.5'
       fill='none'
       >
     </path>
@@ -91,22 +98,22 @@ export const getTopLeftY = (path) => {
 }
 
 export const centerAndScalePath = (pathElement, path, displayDimensions) => {
-  const scaleFactor = calculateScaleFactor(path, displayDimensions.x, displayDimensions.y);
-  const translation = calculateTranslation(path, displayDimensions.x, displayDimensions.y, scaleFactor);
+  const scaleFactor = calculateScaleFactor(path, displayDimensions);
+  const translation = calculateTranslation(path, displayDimensions, scaleFactor);
   const centeringString = `translate(${translation.x} ${translation.y}) scale(${scaleFactor})`;
   return <g transform={centeringString}> {pathElement} </g>
 }
 
-export const calculateScaleFactor = (path, displayWidth, displayHeight) => {
-  const widthRatio = displayWidth / getWidth(path);
-  const heightRatio = displayHeight / getHeight(path);
+export const calculateScaleFactor = (path, displayDimensions) => {
+  const widthRatio = displayDimensions.x / getWidth(path);
+  const heightRatio = displayDimensions.y / getHeight(path);
   const scaleFactor = (widthRatio < heightRatio) ? (widthRatio * DISPLAY_FRACTION_TO_FILL) : (heightRatio * DISPLAY_FRACTION_TO_FILL);
   return scaleFactor;
 }
 
-export const calculateTranslation = (path, displayWidth, displayHeight, scaleFactor) => {
-  const displayCenterX = displayWidth / 2;
-  const displayCenterY = displayHeight / 2;
+export const calculateTranslation = (path, displayDimensions, scaleFactor) => {
+  const displayCenterX = displayDimensions.x / 2;
+  const displayCenterY = displayDimensions.y / 2;
 
   const pathCenterX = (getTopLeftX(path) + getWidth(path) / 2) * scaleFactor;
   const pathCenterY = (getTopLeftY(path) + getHeight(path) / 2) * scaleFactor;

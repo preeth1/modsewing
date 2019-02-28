@@ -3,7 +3,8 @@ import 'App.css';
 import logoImage from 'images/logo.png';
 import { front } from 'slopers/bodice.js'
 
-import { createPathElement } from 'svgHelpers/elements'
+import { createPathElement, 
+         calculatePixelToInchRatio } from 'svgHelpers/elements'
 import * as jsPDF  from 'jspdf'
 import * as canvg  from 'canvg'
 
@@ -20,8 +21,9 @@ class GeneratePage extends Component {
     const size = 'Small';
     const frontPath = front(size); 
 
-    const displayDimensions = {x: this.state.displayWidth, y: this.state.displayHeight}
-    let pathElement = createPathElement('bodiceFront', frontPath, displayDimensions)
+    const displayDimensions = {x: this.state.displayWidth, y: this.state.displayHeight};
+    const pathElement = createPathElement('bodiceFront', frontPath, displayDimensions);
+    const pixelToInchRatio = calculatePixelToInchRatio(frontPath, displayDimensions)
     return pathElement
   }
 
@@ -82,7 +84,7 @@ class PrintButton extends Component {
   var imgData = canvas.toDataURL('image/png');
   // Generate PDF
   var doc = new jsPDF('p', 'pt', 'a4');
-  doc.addImage(imgData, 'PNG', 0, 0, canvas.width, canvas.height);
+  doc.addImage(imgData, 'PNG', 0, 0, canvas.width*3, canvas.height*3);
 
   
   doc.save('sewing.pdf');
