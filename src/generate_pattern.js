@@ -13,9 +13,10 @@ class GeneratePage extends Component {
   state = {
     displayWidth: 300,
     displayHeight: 150,
+    pixelToInchRatio: 1,
   }
 
-  generatePattern = () => {
+  generatePathElement = () => {
     
     // const size = this.props.size;
     const size = 'Small';
@@ -23,8 +24,18 @@ class GeneratePage extends Component {
 
     const displayDimensions = {x: this.state.displayWidth, y: this.state.displayHeight};
     const pathElement = createPathElement('bodiceFront', frontPath, displayDimensions);
-    const pixelToInchRatio = calculatePixelToInchRatio(frontPath, displayDimensions)
     return pathElement
+  }
+
+  generatePixelToInchRatio = () => {
+    // Making this function to call the helper function. Should be named better.
+    // Calling this because you can't set the state from here because this is in the render fn
+    // const size = this.props.size;
+    const size = 'Small';
+    const frontPath = front(size); 
+
+    const displayDimensions = {x: this.state.displayWidth, y: this.state.displayHeight};
+    return calculatePixelToInchRatio(frontPath, displayDimensions)
   }
 
   componentDidMount() {
@@ -47,14 +58,17 @@ class GeneratePage extends Component {
           <div className="PatternDisplay" id="PatternDisplay" ref={ (divElement) => this.divElement = divElement}>
 
           <svg>
-          {this.generatePattern() }
+          {this.generatePathElement() }
           </svg>
 
 
 
           </div>
           <div className="PrintButtonPanel">
-            <PrintButton size={this.props.size} displayWidth={this.state.displayWidth} displayHeight={this.state.displayHeight}/>
+            <PrintButton size={this.props.size} 
+                         displayWidth={this.state.displayWidth} 
+                         displayHeight={this.state.displayHeight}
+                         pixelToInchRatio={this.generatePixelToInchRatio()}/>
           </div>
         </div>
       </div>
@@ -66,7 +80,6 @@ export default GeneratePage;
 
 class PrintButton extends Component {
   PrintButtonClicked = (event) => {
-
 
   var svg = document.getElementById('PatternDisplay').innerHTML;
   if (svg)
@@ -84,7 +97,18 @@ class PrintButton extends Component {
   var imgData = canvas.toDataURL('image/png');
   // Generate PDF
   var doc = new jsPDF('p', 'pt', 'a4');
-  doc.addImage(imgData, 'PNG', 0, 0, canvas.width*3, canvas.height*3);
+
+  let imageWidth = canvas.width*this.props.pixelToInchRatio;
+  let imageHeight = canvas.height*this.props.pixelToInchRatio;
+
+  imageWidth = 30;
+  imageHeight = 40;
+
+
+  // const orientation = 'p'; // portrait ('p') or landscape ('l')
+  // const unit = 'in'; // points ('pt'), 'mm', 'cm', 'in'
+  // const format = 'a4'; // 'a3', 'a4','a5' ,'letter' ,'legal'
+  doc.addImage(imgData, 'PNG', 0, 0, imageWidth, imageHeight);
 
   
   doc.save('sewing.pdf');
