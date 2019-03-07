@@ -89,7 +89,7 @@ class PrintButton extends Component {
 
       var canvas = document.createElement('canvas');
 
-      canvas.width= this.props.displayWidth;
+      canvas.width = this.props.displayWidth;
       canvas.height = this.props.displayHeight;
 
       var context = canvas.getContext('2d');
@@ -112,8 +112,6 @@ class PrintButton extends Component {
     let imageWidth = canvasData.canvas.width/this.props.inchToPixelRatio
     let imageHeight = canvasData.canvas.height/this.props.inchToPixelRatio;
 
-
-
     const pageHeight = 11;
     const pageWidth = 8.5;
 
@@ -125,33 +123,24 @@ class PrintButton extends Component {
     let topLeftX = initialTopLeftX;
     let topLeftY = initialTopleftY; 
 
-    // do the width pages
-    console.log("numberHeightPages: " + numberHeightPages)
-    console.log("numberWidthPages: " + numberWidthPages)
+    // Add a preview page to the document
+    doc.setFontSize(22)
+    doc.text(2, 2, 'Pattern Title Page')
+    doc.addImage(canvasData.imgData, 'PNG', topLeftX, topLeftY, imageWidth/numberWidthPages, imageHeight/numberHeightPages);
 
     _.times(numberHeightPages, (heightPage) => {
       _.times(numberWidthPages, (widthPage) => {
-        
-        console.log("topLeftX: " + topLeftX)
-        console.log("topLeftY: " + topLeftY)
-
-        
         doc.addPage();
-        
         doc.addImage(canvasData.imgData, 'PNG', topLeftX, topLeftY, imageWidth, imageHeight);
-
+        doc.setFontSize(50)
+        doc.setTextColor(153, 204, 255);
+        doc.text(1, 2, 'Row: ' + heightPage)
+        doc.text(1, 3, 'Column: ' + widthPage)
         topLeftX = initialTopLeftX - (pageWidth * heightPage);
         topLeftY = initialTopleftY - (pageHeight * widthPage);
-
-
       });
     });
-    
-
-    
-    
     doc.save('sewing.pdf');
-
   }
 
   render () {
