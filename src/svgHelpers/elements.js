@@ -32,7 +32,7 @@ export const createPathElement = (id, path, displayDimensions) => {
   return pathElement;
 }
 
-export const calculatePixelToInchRatio = (path, displayDimensions) => {
+export const calculateInchToPixelRatio = (path, displayDimensions) => {
   const widthRatio = displayDimensions.x / getWidth(path);
   const heightRatio = displayDimensions.y / getHeight(path);
   return (widthRatio < heightRatio) ? widthRatio : heightRatio;
