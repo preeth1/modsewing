@@ -7,6 +7,7 @@ import { createPathElement,
          calculateInchToPixelRatio } from 'svgHelpers/elements'
 import * as jsPDF  from 'jspdf'
 import * as canvg  from 'canvg'
+import _ from 'lodash';
 
 class GeneratePage extends Component {
 
@@ -98,7 +99,7 @@ class PrintButton extends Component {
       var imgData = canvas.toDataURL('image/png');
       return {imgData: imgData, canvas: canvas};
     }
-    
+
     const canvasData = createCanvas();
 
     const orientation = 'p'; // portrait ('p') or landscape ('l')
@@ -111,8 +112,43 @@ class PrintButton extends Component {
     let imageWidth = canvasData.canvas.width/this.props.inchToPixelRatio
     let imageHeight = canvasData.canvas.height/this.props.inchToPixelRatio;
 
-    doc.addImage(canvasData.imgData, 'PNG', upperLeftX, upperLeftY, imageWidth, imageHeight);
 
+
+    const pageHeight = 11;
+    const pageWidth = 8.5;
+
+    const numberHeightPages = Math.ceil(imageHeight / pageHeight);
+    const numberWidthPages = Math.ceil(imageWidth / pageWidth);
+    let initialTopLeftX = (numberWidthPages * pageWidth - imageWidth) / 2;
+    let initialTopleftY = (numberHeightPages * pageHeight - imageHeight) / 2;
+
+    let topLeftX = initialTopLeftX;
+    let topLeftY = initialTopleftY; 
+
+    // do the width pages
+    console.log("numberHeightPages: " + numberHeightPages)
+    console.log("numberWidthPages: " + numberWidthPages)
+
+    _.times(numberHeightPages, (heightPage) => {
+      _.times(numberWidthPages, (widthPage) => {
+        
+        console.log("topLeftX: " + topLeftX)
+        console.log("topLeftY: " + topLeftY)
+
+        
+        doc.addPage();
+        
+        doc.addImage(canvasData.imgData, 'PNG', topLeftX, topLeftY, imageWidth, imageHeight);
+
+        topLeftX = initialTopLeftX - (pageWidth * heightPage);
+        topLeftY = initialTopleftY - (pageHeight * widthPage);
+
+
+      });
+    });
+    
+
+    
     
     doc.save('sewing.pdf');
 
