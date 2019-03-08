@@ -7,7 +7,8 @@ import { front,
 import { createPathElement, 
          calculateInchToPixelRatio,
          joinPaths,
-         translatePath } from 'svgHelpers/elements'
+         translatePath,
+         getWidth } from 'svgHelpers/elements'
 import { _createCanvasElement,
         _initializeDoc,
         _addPreviewPage,
@@ -28,15 +29,13 @@ class GeneratePage extends Component {
   }
 
   generatePathElement = () => {
-    
     // const size = this.props.size;
     const size = 'Small';
     const frontPath = front(size); 
     let backPath = back(size); 
-    backPath = translatePath(backPath, {x: 10, y: 0});
-
+    const backPathWidth = getWidth(backPath);
+    backPath = translatePath(backPath, {x: backPathWidth, y: 0});
     const sloperPath = joinPaths(frontPath, backPath);
-
     const displayDimensions = {x: this.state.displayWidth, y: this.state.displayHeight};
     const pathElement = createPathElement('bodiceFront', sloperPath, displayDimensions);
     return pathElement
