@@ -1,5 +1,9 @@
 
 export const DISPLAY_FRACTION_TO_FILL = 0.9;
+export const EASE = 3/8;
+export const WAISTSHAPING = 3/8;
+export const SHOULDERDARTMOVE = 1/4;
+
 export const STANDARD_MEASUREMENTS = {
   Small: {
     neck: 14.25,
