@@ -65,7 +65,108 @@ export const front = (size) => {
 	return frontPath;
 }
 
+export const back = (size) => {
 
+  const convertedMeasurements = convertMeasurements(STANDARD_MEASUREMENTS[size]);
+  const bc = calculateBackCoordinates(STANDARD_MEASUREMENTS[size], convertedMeasurements);
+
+  const backPath = [
+    // Draw the sloper outline
+    // ...absMovePen({x: bc.x0, y: bc.y14}),
+
+    ]
+
+  return backPath;
+}
+
+export const calculateBackCoordinates = (measurements, convertedMeasurements) => {
+  const cm = convertedMeasurements;
+  const waistDartWidth = calculateWaistDart(measurements.waist, measurements.lowHip);
+  const shoulderDartWidth = calculateArmholeShoulderCenterFrontDart(cm.cup);
+  const ease = 3/8;
+  const waistShaping = 3/8;
+  const highHipFromBottom = cm.hip.low.depth - cm.hip.high.depth;
+
+  let back = {};
+
+  back.x0 = cm.hip.low.back + ease;
+
+  back.x2 = cm.bust.back + ease;
+
+  const originalShoulderHeight = 1;
+  const originalShoulderWidth = Math.sqrt(Math.pow(cm.shoulder + shoulderDartWidth, 2) - Math.pow(originalShoulderHeight, 2));
+
+  back.x3 = cm.waist.back + waistDartWidth + ease;
+  back.x6 = cm.cross.back + 1/4;
+
+  back.x9 = waistShaping + (cm.waist.back + waistDartWidth)/2;
+
+  back.x12 = waistShaping + cm.waist.back/2;
+
+  back.x14 = waistShaping + (cm.waist.back - waistDartWidth)/2;
+  back.x15 = cm.neck.back + shoulderDartWidth;
+  back.x16 = waistShaping;
+
+  back.x18 = 0;
+
+  back.y0 = 0;
+  back.y1 = cm.hip.low.depth - 7;
+  back.y2 = highHipFromBottom;
+  back.y3 = cm.hip.low.depth;
+  back.y4 = cm.hip.low.depth + 1/2;
+  back.y5 = cm.hip.low.depth + 3;
+
+  back.y10 = cm.hip.low.depth + cm.length.back - 1/8;
+
+  back.y14 = back.y10 + 1;
+
+
+  back.y7 = cm.hip.low.depth + Math.sqrt(Math.pow(cm.side, 2) - Math.pow(back.x3 - back.x2, 2)) - 3/4;
+  back.y8 = back.y7 + cm.length.back/4;
+  back.y6 = back.y7 - 1;
+
+  const armholeBottomLength = quadraticBezierLength({x: back.x2, y: back.y7},
+                                                    {x: back.x6, y: back.y7},
+                                                    {x: back.x6, y: back.y8});
+
+  const shoulderBottomPoint = calculateCoordAlongLine({x: back.x6, y: back.y8},
+                                                      {x: back.x15 + originalShoulderWidth, y: back.y14 - originalShoulderHeight},
+                                                      cm.armhole.back - armholeBottomLength);
+  back.x5 = shoulderBottomPoint.x + 1/4;
+  back.y11 = shoulderBottomPoint.y;
+
+
+  const newShoulderLength = Math.sqrt(Math.pow(back.x15-back.x5, 2) + Math.pow(back.y14-back.y11, 2)) + shoulderDartWidth;
+
+  const shoulderBottomDart = calculateCoordAlongLine({x: back.x5, y: back.y11},
+                                                     {x: back.x15, y: back.y14},
+                                                      (newShoulderLength - shoulderDartWidth)/2);
+  const shoulderTopDart = calculateCoordAlongLine({x: back.x5, y: back.y11},
+                                                  {x: back.x15, y: back.y14},
+                                                  (newShoulderLength + shoulderDartWidth)/2);
+  // ---
+  back.x11 = shoulderTopDart.x;
+  back.x8 = back.x11 + 1/4;
+
+  back.y12 = shoulderBottomDart.y;
+  back.y13 = shoulderTopDart.y;
+  back.y9 = back.y13 - 3.5;
+
+  back.x7 = shoulderBottomDart.x + 1/4;
+
+  back.x4 = back.x3 - 1/8;
+
+  back.x17 = calculateLineToLineIntersection({x: back.x16, y: back.y3},
+                                             {x: back.x18, y: back.y1},
+                                             {x: -100, y: back.y2},
+                                             {x: 100, y: back.y2}).x;
+
+  back.x1 = cm.hip.high.back + back.x17 + ease;
+
+
+  debugger
+  return back;
+}
 
 export const calculateFrontCoordinates = (measurements, convertedMeasurements) => {
   const cm = convertedMeasurements;

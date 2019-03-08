@@ -1,7 +1,8 @@
 import React, { Component } from 'react';
 import 'App.css';
 import logoImage from 'images/logo.png';
-import { front } from 'slopers/bodice.js'
+import { front,
+        back } from 'slopers/bodice.js'
 
 import { createPathElement, 
          calculateInchToPixelRatio } from 'svgHelpers/elements'
@@ -29,6 +30,7 @@ class GeneratePage extends Component {
     // const size = this.props.size;
     const size = 'Small';
     const frontPath = front(size); 
+    const backPath = back(size); 
 
     const displayDimensions = {x: this.state.displayWidth, y: this.state.displayHeight};
     const pathElement = createPathElement('bodiceFront', frontPath, displayDimensions);
