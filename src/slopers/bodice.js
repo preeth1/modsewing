@@ -70,8 +70,6 @@ export const back = (size) => {
   const convertedMeasurements = convertMeasurements(STANDARD_MEASUREMENTS[size]);
   const bc = calculateBackCoordinates(STANDARD_MEASUREMENTS[size], convertedMeasurements);
 
-  debugger
-
   const backPath = [
     // Draw the sloper outline
     ...absMovePen({x: bc.x0, y: bc.y0}),

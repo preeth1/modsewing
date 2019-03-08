@@ -5,7 +5,9 @@ import { front,
         back } from 'slopers/bodice.js'
 
 import { createPathElement, 
-         calculateInchToPixelRatio } from 'svgHelpers/elements'
+         calculateInchToPixelRatio,
+         joinPaths,
+         translatePath } from 'svgHelpers/elements'
 import { _createCanvasElement,
         _initializeDoc,
         _addPreviewPage,
@@ -30,10 +32,13 @@ class GeneratePage extends Component {
     // const size = this.props.size;
     const size = 'Small';
     const frontPath = front(size); 
-    const backPath = back(size); 
+    let backPath = back(size); 
+    backPath = translatePath(backPath, {x: 10, y: 0});
+
+    const sloperPath = joinPaths(frontPath, backPath);
 
     const displayDimensions = {x: this.state.displayWidth, y: this.state.displayHeight};
-    const pathElement = createPathElement('bodiceFront', backPath, displayDimensions);
+    const pathElement = createPathElement('bodiceFront', sloperPath, displayDimensions);
     return pathElement
   }
 
