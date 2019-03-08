@@ -19,4 +19,10 @@ export const STANDARD_MEASUREMENTS = {
     lowHipDepth: 8.5,
     side: 9,
     armhole: 16.75
-}};
+  }
+};
+
+export const a4 = {
+    height: 11,
+    width: 8.5,
+};
