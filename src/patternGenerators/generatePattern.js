@@ -33,7 +33,7 @@ class GeneratePage extends Component {
     const backPath = back(size); 
 
     const displayDimensions = {x: this.state.displayWidth, y: this.state.displayHeight};
-    const pathElement = createPathElement('bodiceFront', frontPath, displayDimensions);
+    const pathElement = createPathElement('bodiceFront', backPath, displayDimensions);
     return pathElement
   }
 

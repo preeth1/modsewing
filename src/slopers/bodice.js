@@ -70,10 +70,44 @@ export const back = (size) => {
   const convertedMeasurements = convertMeasurements(STANDARD_MEASUREMENTS[size]);
   const bc = calculateBackCoordinates(STANDARD_MEASUREMENTS[size], convertedMeasurements);
 
+  debugger
+
   const backPath = [
     // Draw the sloper outline
-    // ...absMovePen({x: bc.x0, y: bc.y14}),
+    ...absMovePen({x: bc.x0, y: bc.y0}),
+    ...drawAbsLine({x: bc.x18, y: bc.y0}),
+    ...drawAbsLine({x: bc.x17, y: bc.y2}),
+    ...drawAbsLine({x: bc.x16, y: bc.y3}),
+    ...drawAbsLine({x: bc.x18, y: bc.y8}),
+    ...drawAbsLine({x: bc.x18, y: bc.y10}),
+    ...drawAbsBez({x: bc.x15, y: bc.y10}, {x: bc.x15, y: bc.y14}),
+    ...drawAbsLine({x: bc.x8, y: bc.y13}),
+    ...drawAbsLine({x: bc.x11, y: bc.y9}),
+    ...drawAbsLine({x: bc.x7, y: bc.y12}),
+    ...drawAbsLine({x: bc.x5, y: bc.y11}),
+    ...drawAbsLine({x: bc.x6, y: bc.y8}),
+    ...drawAbsBez({x: bc.x6, y: bc.y7}, {x: bc.x2, y: bc.y7}),
+    ...drawAbsBez({x: bc.x4, y: bc.y5}, {x: bc.x3, y: bc.y4}),
+    ...drawAbsLine({x: bc.x1, y: bc.y2}),
+    ...drawAbsLine({x: bc.x0, y: bc.y0}),
 
+    // Add waist dart
+    ...absMovePen({x: bc.x3, y: bc.y4}),
+    ...drawAbsLine({x: bc.x9, y: bc.y3}),
+    ...drawAbsLine({x: bc.x12, y: bc.y2}),
+    ...drawAbsLine({x: bc.x14, y: bc.y3}),
+    ...drawAbsLine({x: bc.x16, y: bc.y3}),
+
+    // Join shoulder dart and waist dart
+    ...absMovePen({x: bc.x11, y: bc.y9}),
+    ...drawAbsLine({x: bc.x11, y: bc.y6}),
+    ...drawAbsLine({x: bc.x9, y: bc.y3}),
+    ...absMovePen({x: bc.x11, y: bc.y6}),
+    ...drawAbsLine({x: bc.x14, y: bc.y3}),
+
+    // Draw line from waist dart to bottom
+    ...absMovePen({x: bc.x12, y: bc.y2}),
+    ...drawAbsLine({x: bc.x12, y: bc.y0}),
     ]
 
   return backPath;
@@ -163,8 +197,6 @@ export const calculateBackCoordinates = (measurements, convertedMeasurements) =>
 
   back.x1 = cm.hip.high.back + back.x17 + ease;
 
-
-  debugger
   return back;
 }
 
