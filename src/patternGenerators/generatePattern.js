@@ -9,7 +9,7 @@ import { _createCanvasElement,
         _initializeDoc,
         _addPreviewPage,
         _addPatternPage,
-        _calculatePatternPageValues,
+        _calculatePatternPageInitialValues,
         _generatePatternPages } from 'patternGenerators/printButtonHelpers'
 import { a4 } from '..//constants'; 
 import * as jsPDF  from 'jspdf'
@@ -87,7 +87,7 @@ class PrintButton extends Component {
     const canvas = _createCanvasElement(this.props.displayWidth,
                                        this.props.displayHeight,
                                        this.props.inchToPixelRatio);
-    const initialVals = _calculatePatternPageValues(canvas);
+    const initialVals = _calculatePatternPageInitialValues(canvas);
     const doc = _initializeDoc();
     const pdfTitle = "sewing"
     _addPreviewPage(doc, canvas);

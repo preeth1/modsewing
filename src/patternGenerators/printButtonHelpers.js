@@ -44,24 +44,29 @@ export const _addPatternPage = (doc, canvas, topLeftX, topLeftY, heightPage, wid
   doc.text(1, 3, 'Column: ' + widthPage)
 }
 
-export const _calculatePatternPageValues = (canvas) => {
+export const _calculatePatternPageInitialValues = (canvas) => {
   const numberHeightPages = Math.ceil(canvas.height / a4.height);
   const numberWidthPages = Math.ceil(canvas.width / a4.width);
-  let initialTopLeftX = (numberWidthPages * a4.width - canvas.width) / 2;
-  let initialTopleftY = (numberHeightPages * a4.height - canvas.height) / 2;
+  let topLeftX = (numberWidthPages * a4.width - canvas.width) / 2;
+  let topLeftY = (numberHeightPages * a4.height - canvas.height) / 2;
   return {numberHeightPages: numberHeightPages,
           numberWidthPages: numberWidthPages,
-          initialTopLeftX: initialTopLeftX,
-          initialTopleftY: initialTopleftY
+          topLeftX: topLeftX,
+          topLeftY: topLeftY
         };
+}
+
+export const _calculateNewTopLeftCoordinates = (initialVals, heightPage, widthPage) => {
+  const x = initialVals.topLeftX - (a4.width * heightPage);
+  const y = initialVals.topLeftY - (a4.height * widthPage);
+  return {x: x, y: y};
 }
 
 export const _generatePatternPages = (doc, canvas, initialVals, pdfTitle) => {
   _.times(initialVals.numberHeightPages, (heightPage) => {
     _.times(initialVals.numberWidthPages, (widthPage) => {
-      let topLeftX = initialVals.initialTopLeftX - (a4.width * heightPage);
-      let topLeftY = initialVals.initialTopleftY - (a4.height * widthPage);
-      _addPatternPage(doc, canvas, topLeftX, topLeftY, heightPage, widthPage)
+      let topLeftCoordinates = _calculateNewTopLeftCoordinates(initialVals, heightPage, widthPage);
+      _addPatternPage(doc, canvas, topLeftCoordinates.x, topLeftCoordinates.y, heightPage, widthPage)
     });
   });
   doc.save(pdfTitle + ".pdf");
