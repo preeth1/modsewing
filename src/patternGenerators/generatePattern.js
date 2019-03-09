@@ -8,7 +8,8 @@ import { createPathElement,
          calculateInchToPixelRatio,
          joinPaths,
          translatePath,
-         getWidth } from 'svgHelpers/elements'
+         getWidth,
+         getHeight } from 'svgHelpers/elements'
 import { _createCanvasElement,
         _initializeDoc,
         _addPreviewPage,
@@ -32,7 +33,7 @@ class GeneratePage extends Component {
     // const size = this.props.size;
     const size = 'Small';
     const frontPath = front(size); 
-    let backPath = back(size); 
+    let backPath = back(size);
     const backPathWidth = getWidth(backPath);
     backPath = translatePath(backPath, {x: backPathWidth, y: 0});
     const sloperPath = joinPaths(frontPath, backPath);
@@ -41,15 +42,24 @@ class GeneratePage extends Component {
     return pathElement
   }
 
-  generateinchToPixelRatio = () => {
+  generatePrintButtonValues = () => {
     // Making this function to call the helper function. Should be named better.
     // Calling this because you can't set the state from here because this is in the render fn
     // const size = this.props.size;
     const size = 'Small';
     const frontPath = front(size); 
+    let backPath = back(size); 
+    const backPathWidth = getWidth(backPath);
+    backPath = translatePath(backPath, {x: backPathWidth, y: 0});
+    const sloperPath = joinPaths(frontPath, backPath);
 
     const displayDimensions = {x: this.state.displayWidth, y: this.state.displayHeight};
-    return calculateInchToPixelRatio(frontPath, displayDimensions)
+    const sloperHeight = getHeight(sloperPath);
+    const sloperWidth = getWidth(sloperPath);
+
+
+    return {inchToPixelRatio: calculateInchToPixelRatio(frontPath, displayDimensions),
+            dimensions: {height: sloperHeight, width: sloperWidth}};
   }
 
   componentDidMount() {
@@ -78,7 +88,8 @@ class GeneratePage extends Component {
             <PrintButton size={this.props.size} 
                          displayWidth={this.state.displayWidth} 
                          displayHeight={this.state.displayHeight}
-                         inchToPixelRatio={this.generateinchToPixelRatio()}/>
+                         inchToPixelRatio={this.generatePrintButtonValues().inchToPixelRatio}
+                         dimensions={this.generatePrintButtonValues().dimensions}/>
           </div>
         </div>
       </div>
