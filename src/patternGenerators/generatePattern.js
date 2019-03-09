@@ -70,8 +70,8 @@ class GeneratePage extends Component {
   }
 
   setDisplayHeight = () => {
-    this.setState({displayWidth: this.PatternDisplayElement.clientWidth});
-    this.setState({displayHeight: this.PatternDisplayElement.clientHeight});
+    this.setState({displayWidth: this.patternDisplayElement.clientWidth});
+    this.setState({displayHeight: this.patternDisplayElement.clientHeight});
     this.forceUpdate();
   }
 
@@ -82,8 +82,8 @@ class GeneratePage extends Component {
           <img className="LogoImage" src={logoImage} alt="Modsewing"/>
         </div>
         <div className="ContentPanelPattern">
-          <div className="PatternDisplay" id="PatternDisplay" ref={ (PatternDisplayElement) => this.PatternDisplayElement = PatternDisplayElement}>
-            <svg width={`${this.calculatePathDimensions().width}px`} height={`${this.calculatePathDimensions().height}px`}>
+          <div className="PatternDisplay" ref={ (patternDisplayElement) => this.patternDisplayElement = patternDisplayElement} >
+            <svg  id="svg" width={`${this.calculatePathDimensions().width}px`} height={`${this.calculatePathDimensions().height}px`}>
             {this.generatePathElement() }
             </svg>
           </div>

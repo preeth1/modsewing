@@ -10,15 +10,18 @@ import * as jsPDF  from 'jspdf'
 import * as canvg  from 'canvg'
 import _ from 'lodash';
 
-export const _createCanvasElement = (canvasWidth, canvasHeight, inchToPixelRatio) => {
-  var svg = document.getElementById('PatternDisplay').innerHTML;
+export const _createCanvasElement = (canvasWidth, canvasHeight, scaleFactor) => {
+  var svg = document.getElementById('svg').innerHTML;
   var canvas = document.createElement('canvas');
   canvas.width = canvasWidth;
   canvas.height = canvasHeight;
+  console.log("Width: " + canvas.width)
+  console.log("Height: " + canvas.height)
   canvg(canvas, svg);
-  const width = canvas.width/inchToPixelRatio
-  const height = canvas.height/inchToPixelRatio;
+  const width = canvas.width/scaleFactor
+  const height = canvas.height/scaleFactor;
   const image = canvas.toDataURL('image/png');
+  debugger
   return {width: width, height: height, image: image};
 }
 
@@ -49,6 +52,7 @@ export const _calculatePatternPageInitialValues = (canvas) => {
   const numberWidthPages = Math.ceil(canvas.width / a4.width);
   let topLeftX = (numberWidthPages * a4.width - canvas.width) / 2;
   let topLeftY = (numberHeightPages * a4.height - canvas.height) / 2;
+  debugger
   return {numberHeightPages: numberHeightPages,
           numberWidthPages: numberWidthPages,
           topLeftX: topLeftX,
