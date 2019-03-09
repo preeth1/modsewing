@@ -11,7 +11,7 @@ import { getHeight,
 		addPathToElement,
 		centerAndScalePath,
 		calculateScaleFactor,
-		calculateTranslation
+		reflectAboutXAxis
 		} from 'svgHelpers/elements'
 
 it('joins paths', () => {
@@ -116,7 +116,7 @@ it('creates path element', () => {
 	const displayDimensions = {x: 10, y: 10};
 	const pathElement = createPathElement(id, path, displayDimensions);
 	expect(pathElement).toEqual(
-		<g transform="translate(0.5 0.5) scale(0.9)"> <path 
+		<g transform="translate(0 9) scale(0.9)"> <path
 			d="M 0 0 l 10 0 l 0 10 l -10 0 Z " 
 			fill="none" 
 			id="testId" 
@@ -173,7 +173,7 @@ it('centers and scales path', () => {
 	const displayDimensions = {x: 100, y: 100};
 	const pathElement = <div> "Test path element" </div>
 	const newPath = centerAndScalePath(pathElement, path, displayDimensions);
-	expect(newPath).toEqual(<g transform="translate(-15 -35) scale(10)"> <div> "Test path element" </div> </g>);
+	expect(newPath).toEqual(<g transform="translate(0 90) scale(10)"> <div> "Test path element" </div> </g>);
 });
 
 it('calculates scale factor (vertical dimension is bigger)', () => {
@@ -218,8 +218,8 @@ it('calculates translation without scale factor', () => {
 	const displayWidth = 10;
 	const displayHeight = 10;
 	const scaleFactor = 1; 
-	const translation = calculateTranslation(path, {x: displayWidth, y: displayHeight}, scaleFactor);
-	expect(translation).toEqual({x: 4, y: 7});
+	const translation = reflectAboutXAxis(path, scaleFactor);
+	expect(translation).toEqual({x: 0, y: 4});
 });
 
 it('calculates translation with scale factor', () => {
@@ -234,6 +234,6 @@ it('calculates translation with scale factor', () => {
 	const displayWidth = 10;
 	const displayHeight = 10;
 	const scaleFactor = 2;
-	const translation = calculateTranslation(path, {x: displayWidth, y: displayHeight}, scaleFactor);
-	expect(translation).toEqual({x: 4, y: 7});
+	const translation = reflectAboutXAxis(path, scaleFactor);
+	expect(translation).toEqual({x: 0, y: 4});
 });
