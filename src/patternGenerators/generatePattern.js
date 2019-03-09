@@ -1,10 +1,14 @@
 import React, { Component } from 'react';
 import 'App.css';
 import logoImage from 'images/logo.png';
-import { front } from 'slopers/bodice.js'
+import { front,
+        back } from 'slopers/bodice.js'
 
 import { createPathElement, 
-         calculateInchToPixelRatio } from 'svgHelpers/elements'
+         calculateInchToPixelRatio,
+         joinPaths,
+         translatePath,
+         getWidth } from 'svgHelpers/elements'
 import { _createCanvasElement,
         _initializeDoc,
         _addPreviewPage,
@@ -25,13 +29,15 @@ class GeneratePage extends Component {
   }
 
   generatePathElement = () => {
-    
     // const size = this.props.size;
     const size = 'Small';
     const frontPath = front(size); 
-
+    let backPath = back(size); 
+    const backPathWidth = getWidth(backPath);
+    backPath = translatePath(backPath, {x: backPathWidth, y: 0});
+    const sloperPath = joinPaths(frontPath, backPath);
     const displayDimensions = {x: this.state.displayWidth, y: this.state.displayHeight};
-    const pathElement = createPathElement('bodiceFront', frontPath, displayDimensions);
+    const pathElement = createPathElement('bodiceFront', sloperPath, displayDimensions);
     return pathElement
   }
 

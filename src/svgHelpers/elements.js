@@ -8,6 +8,7 @@ export const joinPaths = (path1, path2) => {
 }
 
 export const translatePath = (path, translation) => {
+  debugger
   const translatedPath = _.map(path, (stroke) => {
     let thisStroke = _.cloneDeep(stroke);
     if (stroke.absolute) {
