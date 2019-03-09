@@ -5,10 +5,11 @@ import { front,
         back } from 'slopers/bodice.js'
 
 import { createPathElement, 
-         calculateInchToPixelRatio,
          joinPaths,
          translatePath,
-         getWidth } from 'svgHelpers/elements'
+         getHeight,
+         getWidth,
+         calculateScaleFactor } from 'svgHelpers/elements'
 import { _createCanvasElement,
         _initializeDoc,
         _addPreviewPage,
@@ -29,6 +30,14 @@ class GeneratePage extends Component {
   }
 
   generatePathElement = () => {
+    const sloperPath = this.generatePath();
+    const displayDimensions = {x: this.state.displayWidth, y: this.state.displayHeight};
+    const pathElement = createPathElement('bodiceFront', sloperPath, displayDimensions);
+    const pathdims=this.calculatePathDimensions();
+    return pathElement
+  }
+
+  generatePath = () => {
     // const size = this.props.size;
     const size = 'Small';
     const frontPath = front(size); 
@@ -36,20 +45,24 @@ class GeneratePage extends Component {
     const backPathWidth = getWidth(backPath);
     backPath = translatePath(backPath, {x: backPathWidth, y: 0});
     const sloperPath = joinPaths(frontPath, backPath);
-    const displayDimensions = {x: this.state.displayWidth, y: this.state.displayHeight};
-    const pathElement = createPathElement('bodiceFront', sloperPath, displayDimensions);
-    return pathElement
+    return sloperPath;
   }
 
-  generateinchToPixelRatio = () => {
+  getScaleFactor = () => {
     // Making this function to call the helper function. Should be named better.
     // Calling this because you can't set the state from here because this is in the render fn
     // const size = this.props.size;
-    const size = 'Small';
-    const frontPath = front(size); 
-
+    const sloperPath = this.generatePath();
     const displayDimensions = {x: this.state.displayWidth, y: this.state.displayHeight};
-    return calculateInchToPixelRatio(frontPath, displayDimensions)
+    return calculateScaleFactor(sloperPath, displayDimensions);
+  }
+
+  calculatePathDimensions = () => {
+    const sloperPath = this.generatePath();
+    const scaleFactor = this.getScaleFactor();
+    const width = getWidth(sloperPath) * scaleFactor;
+    const height = getHeight(sloperPath) * scaleFactor;
+    return {width: width, height: height};
   }
 
   componentDidMount() {
@@ -70,7 +83,7 @@ class GeneratePage extends Component {
         </div>
         <div className="ContentPanelPattern">
           <div className="PatternDisplay" id="PatternDisplay" ref={ (PatternDisplayElement) => this.PatternDisplayElement = PatternDisplayElement}>
-            <svg>
+            <svg width={`${this.calculatePathDimensions().width}px`} height={`${this.calculatePathDimensions().height}px`}>
             {this.generatePathElement() }
             </svg>
           </div>
@@ -78,7 +91,7 @@ class GeneratePage extends Component {
             <PrintButton size={this.props.size} 
                          displayWidth={this.state.displayWidth} 
                          displayHeight={this.state.displayHeight}
-                         inchToPixelRatio={this.generateinchToPixelRatio()}/>
+                         scaleFactor={this.getScaleFactor()}/>
           </div>
         </div>
       </div>
@@ -92,7 +105,7 @@ class PrintButton extends Component {
 
     const canvas = _createCanvasElement(this.props.displayWidth,
                                        this.props.displayHeight,
-                                       this.props.inchToPixelRatio);
+                                       this.props.scaleFactor);
     const initialVals = _calculatePatternPageInitialValues(canvas);
     const doc = _initializeDoc();
     const pdfTitle = "sewing"

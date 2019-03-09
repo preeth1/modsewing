@@ -119,15 +119,11 @@ html,body,#root {
 	align-items: center;
 	justify-content: center;
 	height: 90%;
-	width: 40%;
+	width: 70%;
 	border:1px solid;
 	border-radius:30px;
 }
 
-svg {
-	height: 100%;
-	width: 100%;
-}
 
 .PrintButtonPanel {
 	display: flex;
@@ -135,7 +131,7 @@ svg {
 	align-items: center;
 	justify-content: center;
 	height: 90%;
-	width: 40%;
+	width: 10%;
 	border:1px solid;
 	border-radius:30px;
 }
