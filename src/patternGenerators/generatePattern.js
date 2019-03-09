@@ -105,7 +105,7 @@ class PrintButton extends Component {
 
     const canvas = _createCanvasElement(this.props.displayWidth,
                                        this.props.displayHeight,
-                                       this.props.inchToPixelRatio);
+                                       this.props.scaleFactor);
     const initialVals = _calculatePatternPageInitialValues(canvas);
     const doc = _initializeDoc();
     const pdfTitle = "sewing"
