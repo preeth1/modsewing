@@ -124,10 +124,6 @@ html,body,#root {
 	border-radius:30px;
 }
 
-svg {
-	height: 100%;
-	width: 100%;
-}
 
 .PrintButtonPanel {
 	display: flex;
