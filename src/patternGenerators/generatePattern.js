@@ -8,6 +8,7 @@ import { createPathElement,
          calculateInchToPixelRatio,
          joinPaths,
          translatePath,
+         getHeight,
          getWidth } from 'svgHelpers/elements'
 import { _createCanvasElement,
         _initializeDoc,
@@ -29,6 +30,16 @@ class GeneratePage extends Component {
   }
 
   generatePathElement = () => {
+    const sloperPath = this.generatePath();
+    const displayDimensions = {x: this.state.displayWidth, y: this.state.displayHeight};
+    const pathElement = createPathElement('bodiceFront', sloperPath, displayDimensions);
+    const pathdims=this.calculatePathDimensions();
+    console.log("pathdims ht: " + pathdims.height)
+    console.log("pathdims wd: " + pathdims.height)
+    return pathElement
+  }
+
+  generatePath = () => {
     // const size = this.props.size;
     const size = 'Small';
     const frontPath = front(size); 
@@ -36,20 +47,25 @@ class GeneratePage extends Component {
     const backPathWidth = getWidth(backPath);
     backPath = translatePath(backPath, {x: backPathWidth, y: 0});
     const sloperPath = joinPaths(frontPath, backPath);
-    const displayDimensions = {x: this.state.displayWidth, y: this.state.displayHeight};
-    const pathElement = createPathElement('bodiceFront', sloperPath, displayDimensions);
-    return pathElement
+    return sloperPath;
   }
 
   generateinchToPixelRatio = () => {
     // Making this function to call the helper function. Should be named better.
     // Calling this because you can't set the state from here because this is in the render fn
     // const size = this.props.size;
-    const size = 'Small';
-    const frontPath = front(size); 
-
+    const sloperPath = this.generatePath();
     const displayDimensions = {x: this.state.displayWidth, y: this.state.displayHeight};
-    return calculateInchToPixelRatio(frontPath, displayDimensions)
+    return calculateInchToPixelRatio(sloperPath, displayDimensions)
+  }
+
+  calculatePathDimensions = () => {
+    const sloperPath = this.generatePath();
+    const ratio = this.generateinchToPixelRatio();
+    const width = getWidth(sloperPath) * ratio;
+    const height = getHeight(sloperPath) * ratio;
+    debugger
+    return {width: width, height: height};
   }
 
   componentDidMount() {
@@ -70,7 +86,7 @@ class GeneratePage extends Component {
         </div>
         <div className="ContentPanelPattern">
           <div className="PatternDisplay" id="PatternDisplay" ref={ (PatternDisplayElement) => this.PatternDisplayElement = PatternDisplayElement}>
-            <svg>
+            <svg width={`${this.calculatePathDimensions().width}px`} height={`${this.calculatePathDimensions().height}px`}>
             {this.generatePathElement() }
             </svg>
           </div>
