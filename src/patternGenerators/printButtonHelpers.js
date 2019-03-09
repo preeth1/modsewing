@@ -15,6 +15,7 @@ export const _createCanvasElement = (canvasWidth, canvasHeight, inchToPixelRatio
   var canvas = document.createElement('canvas');
   canvas.width = canvasWidth;
   canvas.height = canvasHeight;
+  // This function makes the canvas only as big as the svg
   canvg(canvas, svg);
   const width = canvas.width/inchToPixelRatio
   const height = canvas.height/inchToPixelRatio;

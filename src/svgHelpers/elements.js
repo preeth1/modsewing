@@ -102,7 +102,6 @@ export const calculateScaleFactor = (path, displayDimensions) => {
   const widthRatio = displayDimensions.x / getWidth(path);
   const heightRatio = displayDimensions.y / getHeight(path);
   const scaleFactor = (widthRatio < heightRatio) ? (widthRatio * DISPLAY_FRACTION_TO_FILL) : (heightRatio * DISPLAY_FRACTION_TO_FILL);
-  console.log("scaleFactor: " + scaleFactor)
   return scaleFactor;
 }
 
