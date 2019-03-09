@@ -5,11 +5,11 @@ import { front,
         back } from 'slopers/bodice.js'
 
 import { createPathElement, 
-         calculateInchToPixelRatio,
          joinPaths,
          translatePath,
          getHeight,
-         getWidth } from 'svgHelpers/elements'
+         getWidth,
+         calculateScaleFactor } from 'svgHelpers/elements'
 import { _createCanvasElement,
         _initializeDoc,
         _addPreviewPage,
@@ -34,8 +34,6 @@ class GeneratePage extends Component {
     const displayDimensions = {x: this.state.displayWidth, y: this.state.displayHeight};
     const pathElement = createPathElement('bodiceFront', sloperPath, displayDimensions);
     const pathdims=this.calculatePathDimensions();
-    console.log("pathdims ht: " + pathdims.height)
-    console.log("pathdims wd: " + pathdims.height)
     return pathElement
   }
 
@@ -50,21 +48,20 @@ class GeneratePage extends Component {
     return sloperPath;
   }
 
-  generateinchToPixelRatio = () => {
+  getScaleFactor = () => {
     // Making this function to call the helper function. Should be named better.
     // Calling this because you can't set the state from here because this is in the render fn
     // const size = this.props.size;
     const sloperPath = this.generatePath();
     const displayDimensions = {x: this.state.displayWidth, y: this.state.displayHeight};
-    return calculateInchToPixelRatio(sloperPath, displayDimensions)
+    return calculateScaleFactor(sloperPath, displayDimensions);
   }
 
   calculatePathDimensions = () => {
     const sloperPath = this.generatePath();
-    const ratio = this.generateinchToPixelRatio();
-    const width = getWidth(sloperPath) * ratio;
-    const height = getHeight(sloperPath) * ratio;
-    debugger
+    const scaleFactor = this.getScaleFactor();
+    const width = getWidth(sloperPath) * scaleFactor;
+    const height = getHeight(sloperPath) * scaleFactor;
     return {width: width, height: height};
   }
 
@@ -94,7 +91,7 @@ class GeneratePage extends Component {
             <PrintButton size={this.props.size} 
                          displayWidth={this.state.displayWidth} 
                          displayHeight={this.state.displayHeight}
-                         inchToPixelRatio={this.generateinchToPixelRatio()}/>
+                         scaleFactor={this.getScaleFactor()}/>
           </div>
         </div>
       </div>
