@@ -4,9 +4,7 @@ import { STANDARD_MEASUREMENTS,
         SHOULDERDARTMOVE } from 'constants.js'
 import { convertMeasurements } from 'measurements'	
 import { absMovePen, 
-				 relMovePen, 
 				 drawAbsLine, 
-				 drawRelLine, 
 				 drawAbsBez } from 'svgHelpers/drawing'
 import { calculateArmholeShoulderCenterFrontDart,
          calculateSideDart,

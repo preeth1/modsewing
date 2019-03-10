@@ -13,13 +13,8 @@ import { createPathElement,
 import { _createCanvasElement,
         _initializeDoc,
         _addPreviewPage,
-        _addPatternPage,
         _calculatePatternPageInitialValues,
         _generatePatternPages } from 'patternGenerators/printButtonHelpers'
-import { a4 } from '..//constants'; 
-import * as jsPDF  from 'jspdf'
-import * as canvg  from 'canvg'
-import _ from 'lodash';
 
 class GeneratePage extends Component {
 
@@ -32,7 +27,6 @@ class GeneratePage extends Component {
     const sloperPath = this.generatePath();
     const displayDimensions = {x: this.state.displayWidth, y: this.state.displayHeight};
     const pathElement = createPathElement('bodiceFront', sloperPath, displayDimensions);
-    const pathdims=this.calculatePathDimensions();
     return pathElement
   }
 
