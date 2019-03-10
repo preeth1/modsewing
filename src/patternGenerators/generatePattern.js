@@ -26,7 +26,6 @@ class GeneratePage extends Component {
   state = {
     displayWidth: 300,
     displayHeight: 150,
-    inchToPixelRatio: 1,
   }
 
   generatePathElement = () => {

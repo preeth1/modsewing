@@ -3,22 +3,21 @@ import 'App.css';
 import logoImage from 'images/logo.png';
 import { front } from 'slopers/bodice.js'
 
-import { createPathElement, 
-         calculateInchToPixelRatio } from 'svgHelpers/elements'
+import { createPathElement } from 'svgHelpers/elements'
 import { a4 } from '..//constants'; 
 import * as jsPDF  from 'jspdf'
 import * as canvg  from 'canvg'
 import _ from 'lodash';
 
-export const _createCanvasElement = (canvasWidth, canvasHeight, inchToPixelRatio) => {
+export const _createCanvasElement = (canvasWidth, canvasHeight, scaleFactor) => {
   var svg = document.getElementById('PatternDisplay').innerHTML;
   var canvas = document.createElement('canvas');
   canvas.width = canvasWidth;
   canvas.height = canvasHeight;
   // This function makes the canvas only as big as the svg
   canvg(canvas, svg);
-  const width = canvas.width/inchToPixelRatio
-  const height = canvas.height/inchToPixelRatio;
+  const width = canvas.width/scaleFactor
+  const height = canvas.height/scaleFactor;
   const image = canvas.toDataURL('image/png');
   return {width: width, height: height, image: image};
 }
