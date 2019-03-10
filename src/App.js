@@ -55,12 +55,19 @@ class Measurements extends Component {
     this.props.updateSizeFn(name, event.currentTarget.value);
   }
 
+  handleFocus = () => {
+    console.log("handleFocus!!")
+  }
+
   generateMeasurementLabels = () => {
     let measurementLabels = []
     _.each(MEASUREMENTS, (value, name) => {
       measurementLabels.push(<label className="MeasurementLabel">
                   { name }: 
-                  <input type="text" value={this.props.measurements[name]} onChange={(e) => this.handleChange(name, e)} />
+                  <input type="text" 
+                  value={this.props.measurements[name]} 
+                  onChange={(e) => this.handleChange(name, e)}
+                  onFocus = {this.handleFocus} />
                 </label>
                 )
     })
