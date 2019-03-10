@@ -9,7 +9,6 @@ import _ from 'lodash';
 
 class App extends Component {
   state = {
-    size: '',
     measurements: MEASUREMENTS,
   }
 
@@ -24,11 +23,11 @@ class App extends Component {
       <Router history={history}>
         <div className="App">
           <Route exact path='/' render={(props) => 
-            <MeasurementsPage size={this.state.size} measurements={this.state.measurements} 
+            <MeasurementsPage measurements={this.state.measurements} 
             updateSizeFn={this.updateSize} history={history}/>}
           />
           <Route exact path='/generatePattern' render={(props) => 
-            <GeneratePage size={this.state.size}/>}
+            <GeneratePage measurements={this.state.measurements}/>}
           />
         </div>
       </Router>
@@ -42,8 +41,8 @@ class MeasurementsPage extends Component {
   render () {
     return (
       <div className="MeasurementsPage">
-        <Measurements size={this.props.size} measurements={this.props.measurements} updateSizeFn={this.props.updateSizeFn} />
-        <GenerateButton size={this.props.size} history={this.props.history}/>
+        <Measurements measurements={this.props.measurements} updateSizeFn={this.props.updateSizeFn} />
+        <GenerateButton measurements={this.props.measurements} history={this.props.history}/>
       </div>
     )
   }

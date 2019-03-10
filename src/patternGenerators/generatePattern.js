@@ -31,10 +31,8 @@ class GeneratePage extends Component {
   }
 
   generatePath = () => {
-    // const size = this.props.size;
-    const size = 'Small';
-    const frontPath = front(size); 
-    let backPath = back(size); 
+    const frontPath = front(this.props.measurements); 
+    let backPath = back(this.props.measurements); 
     const backPathWidth = getWidth(backPath);
     backPath = translatePath(backPath, {x: backPathWidth, y: 0});
     const sloperPath = joinPaths(frontPath, backPath);
@@ -44,7 +42,6 @@ class GeneratePage extends Component {
   getScaleFactor = () => {
     // Making this function to call the helper function. Should be named better.
     // Calling this because you can't set the state from here because this is in the render fn
-    // const size = this.props.size;
     const sloperPath = this.generatePath();
     const displayDimensions = {x: this.state.displayWidth, y: this.state.displayHeight};
     return calculateScaleFactor(sloperPath, displayDimensions);
@@ -81,7 +78,7 @@ class GeneratePage extends Component {
             </svg>
           </div>
           <div className="PrintButtonPanel">
-            <PrintButton size={this.props.size} 
+            <PrintButton measurements={this.props.measurements} 
                          displayWidth={this.state.displayWidth} 
                          displayHeight={this.state.displayHeight}
                          scaleFactor={this.getScaleFactor()}/>
