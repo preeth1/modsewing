@@ -6,7 +6,6 @@ import GeneratePage from 'patternGenerators/generatePattern.js'
 import history from 'history.js';
 import { MEASUREMENTS } from 'constants.js'
 import _ from 'lodash';
-import spongebob from 'images/spongebob.png'
 
 class App extends Component {
   state = {
@@ -16,12 +15,12 @@ class App extends Component {
 
   updateSize = (name, value) => {
     const newMeas = this.state.measurements;
-    newMeas[name] = value
+    newMeas[name].measurement = value
     this.setState({measurements: newMeas});
   }
 
-  handleFocusFn = () => {
-    this.setState({displayImage: spongebob});
+  handleFocusFn = (measurementInfo) => {
+    this.setState({displayImage: measurementInfo.image});
   }
 
   render() {
@@ -60,22 +59,22 @@ class MeasurementsPage extends Component {
 class Measurements extends Component {
 
   handleChange = (name, event) => {
-    this.props.updateSizeFn(name, event.currentTarget.value);
+    this.props.updateSizeFn(name, event.currentTarget.measurementInfo);
   }
 
-  handleFocus = () => {
-    this.props.handleFocusFn()
+  handleFocus = (measurementInfo) => {
+    this.props.handleFocusFn(measurementInfo)
   }
 
   generateMeasurementLabels = () => {
     let measurementLabels = []
-    _.each(MEASUREMENTS, (value, name) => {
+    _.each(MEASUREMENTS, (measurementInfo, measurementName) => {
       measurementLabels.push(<label className="MeasurementLabel">
-                  { name }: 
+                  { measurementName }: 
                   <input type="text" 
-                  value={this.props.measurements[name]} 
-                  onChange={(e) => this.handleChange(name, e)}
-                  onFocus = {this.handleFocus} />
+                  value={this.props.measurements[measurementName].measurement} 
+                  onChange={(event) => this.handleChange(measurementName, event)}
+                  onFocus = {() => this.handleFocus(measurementInfo)} />
                 </label>
                 )
     })
