@@ -49,24 +49,32 @@ class Measurements extends Component {
     this.props.updateSizeFn(event.currentTarget.value);
   }
 
-  render () {
+render () {
     return (
       <div className="Measurements">
         <div className="LogoPanel">
           <img className="LogoImage" src={logoImage} alt="Modsewing"/>
         </div>
-        <div className="ContentPanelMeasurements">
-          <div className="HeaderPanel">
-            Choose a size
-          </div>
-          <div className="ButtonPanel">
-            <div className="SizeButtonPanel">
-              <label className="container">
-                <input type="radio" name="radio" onChange={this.onSizeButtonChange} value="Small"></input> Small
-              </label> 
+          <form onSubmit={this.handleSubmit} className="ContentPanelMeasurements">
+            <div className="MeasurementPanel">
+              <div className="MeasurementBox">
+
+              </div>
+              <div className="MeasurementBox">
+
+              </div>
+
             </div>
-          </div>
-        </div>
+            <div className="ImagePanel">
+              <div className="MeasurementImage">
+
+              </div>
+              <div className="MeasurementImageDescription">
+
+              </div>
+
+            </div>
+          </form>
       </div>
       )
   }
