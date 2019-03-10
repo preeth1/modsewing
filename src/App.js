@@ -6,10 +6,12 @@ import GeneratePage from 'patternGenerators/generatePattern.js'
 import history from 'history.js';
 import { MEASUREMENTS } from 'constants.js'
 import _ from 'lodash';
+import spongebob from 'images/spongebob.png'
 
 class App extends Component {
   state = {
     measurements: MEASUREMENTS,
+    displayImage: ""
   }
 
   updateSize = (name, value) => {
@@ -18,13 +20,17 @@ class App extends Component {
     this.setState({measurements: newMeas});
   }
 
+  handleFocusFn = () => {
+    this.setState({displayImage: spongebob});
+  }
+
   render() {
     return (
       <Router history={history}>
         <div className="App">
           <Route exact path='/' render={(props) => 
             <MeasurementsPage measurements={this.state.measurements} 
-            updateSizeFn={this.updateSize} history={history}/>}
+            updateSizeFn={this.updateSize} handleFocusFn={this.handleFocusFn} history={history} displayImage={this.state.displayImage}/>}
           />
           <Route exact path='/generatePattern' render={(props) => 
             <GeneratePage measurements={this.state.measurements}/>}
@@ -41,7 +47,10 @@ class MeasurementsPage extends Component {
   render () {
     return (
       <div className="MeasurementsPage">
-        <Measurements measurements={this.props.measurements} updateSizeFn={this.props.updateSizeFn} />
+        <Measurements measurements={this.props.measurements} 
+        updateSizeFn={this.props.updateSizeFn}
+        handleFocusFn={this.props.handleFocusFn}
+        displayImage={this.props.displayImage} />
         <GenerateButton measurements={this.props.measurements} history={this.props.history}/>
       </div>
     )
@@ -55,7 +64,7 @@ class Measurements extends Component {
   }
 
   handleFocus = () => {
-    console.log("handleFocus!!")
+    this.props.handleFocusFn()
   }
 
   generateMeasurementLabels = () => {
@@ -87,9 +96,7 @@ render () {
 
             </div>
             <div className="ImagePanel">
-              <div className="MeasurementImage">
-
-              </div>
+              <img className="MeasurementImage" src={this.props.displayImage} alt="instruction"/>
               <div className="MeasurementImageDescription">
 
               </div>
