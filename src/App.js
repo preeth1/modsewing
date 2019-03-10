@@ -4,14 +4,19 @@ import 'App.css';
 import logoImage from 'images/logo.png';
 import GeneratePage from 'patternGenerators/generatePattern.js'
 import history from 'history.js';
+import { MEASUREMENTS } from 'constants.js'
+import _ from 'lodash';
 
 class App extends Component {
   state = {
     size: '',
+    measurements: MEASUREMENTS,
   }
 
-  updateSize = (size) => {
-    this.setState({size: size});
+  updateSize = (name, value) => {
+    const newMeas = this.state.measurements;
+    newMeas[name] = value
+    this.setState({measurements: newMeas});
   }
 
   render() {
@@ -19,7 +24,8 @@ class App extends Component {
       <Router history={history}>
         <div className="App">
           <Route exact path='/' render={(props) => 
-            <MeasurementsPage size={this.state.size} updateSizeFn={this.updateSize} history={history}/>}
+            <MeasurementsPage size={this.state.size} measurements={this.state.measurements} 
+            updateSizeFn={this.updateSize} history={history}/>}
           />
           <Route exact path='/generatePattern' render={(props) => 
             <GeneratePage size={this.state.size}/>}
@@ -36,7 +42,7 @@ class MeasurementsPage extends Component {
   render () {
     return (
       <div className="MeasurementsPage">
-        <Measurements size={this.props.size} updateSizeFn={this.props.updateSizeFn} />
+        <Measurements size={this.props.size} measurements={this.props.measurements} updateSizeFn={this.props.updateSizeFn} />
         <GenerateButton size={this.props.size} history={this.props.history}/>
       </div>
     )
@@ -44,9 +50,21 @@ class MeasurementsPage extends Component {
 }
 
 class Measurements extends Component {
-  
-  onSizeButtonChange = (event) => {
-    this.props.updateSizeFn(event.currentTarget.value);
+
+  handleChange = (name, event) => {
+    this.props.updateSizeFn(name, event.currentTarget.value);
+  }
+
+  generateMeasurementLabels = () => {
+    let measurementLabels = []
+    _.each(MEASUREMENTS, (value, name) => {
+      measurementLabels.push(<label className="MeasurementLabel">
+                  { name }: 
+                  <input type="text" value={this.props.measurements[name]} onChange={(e) => this.handleChange(name, e)} />
+                </label>
+                )
+    })
+    return measurementLabels
   }
 
 render () {
@@ -57,12 +75,9 @@ render () {
         </div>
           <form onSubmit={this.handleSubmit} className="ContentPanelMeasurements">
             <div className="MeasurementPanel">
-              <div className="MeasurementBox">
+              
+                {this.generateMeasurementLabels()}
 
-              </div>
-              <div className="MeasurementBox">
-
-              </div>
 
             </div>
             <div className="ImagePanel">

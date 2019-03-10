@@ -144,17 +144,9 @@ html,body,#root {
 .MeasurementPanel {
 	display: flex;
 	flex-direction: column;
-	justify-content: center;
+	justify-content: space-around;
 	align-items: center;
 	height: 100%;
-	width: 100%;
-}
-
-.MeasurementBox {
-	display: flex;
-	justify-content: center;
-	align-items: center;
-	height:50%;
 	width: 100%;
 }
 
@@ -181,6 +173,14 @@ html,body,#root {
 	align-items: center;
 	height: 30%;
 	width: 100%;
+}
+
+
+.MeasurementLabel {
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	font-size: .2em;
 }
 
 
