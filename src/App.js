@@ -95,8 +95,21 @@ render () {
         </div>
           <div className="ContentPanelMeasurements">
             <div className="MeasurementButton MeasurementHelperButton">
+            Take your measurements
             </div>
             <div className="MeasurementButton MeasurementBuiltInButton">
+            Use a built-in measurement
+              <div className="BuiltInButtonPanel">
+                <div className="BuiltInButton">
+                S
+                </div>
+                <div className="BuiltInButton">
+                M
+                </div>
+                <div className="BuiltInButton">
+                L
+                </div>
+              </div>
             </div>
           </div>
       </div>

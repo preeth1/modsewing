@@ -1,3 +1,9 @@
+/*Japanese Indigo: #264653
+Jungle Green: #2A9D8F
+Hansa Yellow: #E9C46A
+Sandy Brown: #F4A261
+Light Red Ochre: #E76F51*/
+
 html,body,#root {
 	height: 100%;
 	width: 100%;
@@ -69,11 +75,35 @@ html,body,#root {
 
 .MeasurementButton {
 	display: flex;
+	flex-direction: column;
 	justify-content: center;
 	align-items: center;
-	font-size: .2em;
+	font-size: .4em;
+	background-color: #F4A261;
+	color: white;
 	border-radius:30px;
-	background-color: purple;
+	height: 50%;
+	width: 30%;
+	padding: 5%;
+}
+
+.BuiltInButtonPanel {
+	display: flex;
+	flex-direction: row;
+	justify-content: space-around;
+	align-items: center;
+	width: 100%;
+	height: 50%;
+}
+
+.BuiltInButton {
+	display: flex;
+	flex-direction: row;
+	justify-content: space-around;
+	align-items: center;
+	width: 25%;
+	height: 20%;
+	background-color: #E76F51;
 }
 
 .MeasurementLabel {
@@ -81,16 +111,6 @@ html,body,#root {
 	justify-content: center;
 	align-items: center;
 	font-size: .2em;
-}
-
-.MeasurementButton {
-	display: flex;
-	justify-content: center;
-	align-items: center;
-	font-size: .2em;
-	background-color: purple;
-	height: 50%;
-	width: 30%;
 }
 
 .ContentPanelPattern {
