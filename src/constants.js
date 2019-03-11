@@ -28,15 +28,43 @@ export const SHOULDERDARTMOVE = 1/4;
 
 
 export const MEASUREMENTS = {
-    neck: {measurement: 14.25, image: neck, text: "Im ready!!!!!"},
-    shoulder: {measurement: 4.75, image: shoulder, text: "Im ready!!!!!"},
-    frontLength: {measurement: 15.5, image: frontLength, text: "Im ready!!!!!"},
-    backLength: {measurement: 17, image: backLength, text: "Im ready!!!!!"},
-    figureLength: {measurement: 8.5, image: figureLength, text: "Im ready!!!!!"},
-    figureBreadth: {measurement: 8, image: figureBreadth, text: "Im ready!!!!!"},
-    crossFront: {measurement: 12.5, image: crossFront, text: "Im ready!!!!!"},
-    crossBack: {measurement: 13.25, image: crossBack, text: "Im ready!!!!!"},
-    bust: {measurement: 36, image: bust, text: "Im ready!!!!!"},
+    neck: {
+        measurement: 14.25,
+        image: neck,
+        text: "Im ready!!!!!"},
+    shoulder: {
+        measurement: 4.75,
+        image: shoulder,
+        text:
+        "Im ready!!!!!"},
+    frontLength: {
+        measurement: 15.5,
+        image: frontLength,
+         text: "Im ready!!!!!"},
+    backLength: {
+        measurement: 17,
+        image: backLength,
+        text: "Im ready!!!!!"},
+    figureLength: {
+        measurement: 8.5,
+        image: figureLength,
+        text: "Im ready!!!!!"},
+    figureBreadth: {
+        measurement: 8,
+        image: figureBreadth,
+        text: "Im ready!!!!!"},
+    crossFront: {
+        measurement: 12.5,
+         image: crossFront,
+        text: "Im ready!!!!!"},
+    crossBack: {
+        measurement: 13.25,
+        image: crossBack, text:
+        "Im ready!!!!!"},
+    bust: {
+        measurement: 36,
+         image: bust,
+        text: "Im ready!!!!!"},
 
 
     // NEED TO FIX THIS TO AN UNDERBUST MEASUREMENT HELPER!
