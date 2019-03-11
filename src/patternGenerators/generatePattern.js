@@ -31,6 +31,7 @@ class GeneratePage extends Component {
   }
 
   generatePath = () => {
+    debugger
     const frontPath = front(this.props.measurements); 
     let backPath = back(this.props.measurements); 
     const backPathWidth = getWidth(backPath);

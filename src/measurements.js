@@ -1,28 +1,28 @@
 export const convertMeasurements = (measurements) => {
   const convertedMeasurements = {
-	  neck: createFrontBack(measurements.neck, 6, 1/4, 3/8),	
-	  shoulder: measurements.shoulder,
-	  length: {front: measurements.frontLength,
-	  	back: measurements.backLength},
-	  figureLength: measurements.figureLength,
-	  figureBreadth: measurements.figureBreadth / 2,
+	  neck: createFrontBack(measurements.neck.measurement, 6, 1/4, 3/8),	
+	  shoulder: measurements.shoulder.measurement,
+	  length: {front: measurements.frontLength.measurement,
+	  	back: measurements.backLength.measurement},
+	  figureLength: measurements.figureLength.measurement,
+	  figureBreadth: measurements.figureBreadth.measurement / 2,
 	  cross: {
-	  	front: measurements.crossFront / 2,
-	  	back: measurements.crossBack / 2,
+	  	front: measurements.crossFront.measurement / 2,
+	  	back: measurements.crossBack.measurement / 2,
 	  },
-	  bust: createFrontBack(measurements.bust, 4, 1/4, -1/4),
-	  cup: measurements.bust - measurements.underBust,
-	  waist: createFrontBack(measurements.waist, 4, 1/4, -1/4),
+	  bust: createFrontBack(measurements.bust.measurement, 4, 1/4, -1/4),
+	  cup: measurements.bust.measurement - measurements.underBust.measurement,
+	  waist: createFrontBack(measurements.waist.measurement, 4, 1/4, -1/4),
 	  hip: {
-	  	high: createFrontBack(measurements.highHip, 4, 1/4, -1/4),
-	  	low: createFrontBack(measurements.lowHip, 4, 1/4, -1/4),
+	  	high: createFrontBack(measurements.highHip.measurement, 4, 1/4, -1/4),
+	  	low: createFrontBack(measurements.lowHip.measurement, 4, 1/4, -1/4),
 	  },
-	  side: measurements.side,
-	  armhole: createFrontBack(measurements.armhole, 2, -1/4, 1/4),
+	  side: measurements.side.measurement,
+	  armhole: createFrontBack(measurements.armhole.measurement, 2, -1/4, 1/4),
   };
   
-  convertedMeasurements.hip.high.depth = measurements.highHipDepth;
-  convertedMeasurements.hip.low.depth = measurements.lowHipDepth;
+  convertedMeasurements.hip.high.depth = measurements.highHipDepth.measurement;
+  convertedMeasurements.hip.low.depth = measurements.lowHipDepth.measurement;
   return convertedMeasurements;
 };
 
