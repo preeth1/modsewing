@@ -2,6 +2,8 @@ import { convertMeasurements,
 				 createFrontBack,
 				} from 'measurements'
 
+import { MEASUREMENTS } from 'constants.js'
+
 it('creates front and back measurements- the values should change from initial', () => {
 	const measurement = 10;
 	const divideBy= 2;
@@ -19,40 +21,9 @@ it('creates front and back measurements- the values should not change from initi
 });
 
 it('converts measurements', () => {
-	const measurements = {
-    neck: 14.25,
-    shoulder: 10,
-    frontLength: 10,
-    backLength: 10,
-    figureLength: 10,
-    figureBreadth: 10,
-    crossFront:10,
-    crossBack: 10,
-    bust: 10,
-    underBust: 10,
-    waist: 10,
-    highHip: 10,
-    highHipDepth: 10,
-    lowHip: 10,
-    lowHipDepth: 10,
-    side: 10,
-    armhole: 10
-	};
-	const convertedMeasurements = convertMeasurements(measurements);
+	const convertedMeasurements = convertMeasurements(MEASUREMENTS);
 	expect(convertedMeasurements).toEqual(
-		{
-			armhole: {back: 5.25, front: 4.75},
-			bust: {back: 2.25, front: 2.75},
-			cross: {back: 5, front: 5},
-			figureBreadth: 5, figureLength: 10,
-			hip: {
-				high: {back: 2.25, depth: 10, front: 2.75},
-				low: {back: 2.25, depth: 10, front: 2.75}},
-			length: {back: 10, front: 10},
-			neck: {back: 2.75, front: 2.625},
-			shoulder: 10, side: 10,
-			cup: 0,
-			waist: {back: 2.25, front: 2.75}}
+		{"armhole": {"back": 8.625, "front": 8.125}, "bust": {"back": 8.75, "front": 9.25}, "cross": {"back": 6.625, "front": 6.25}, "cup": 7, "figureBreadth": 4, "figureLength": 8.5, "hip": {"high": {"back": 8.25, "depth": 4.5, "front": 8.75}, "low": {"back": 9, "depth": 8.5, "front": 9.5}}, "length": {"back": 17, "front": 15.5}, "neck": {"back": 2.75, "front": 2.625}, "shoulder": 4.75, "side": 9, "waist": {"back": 6.25, "front": 6.75}}
 		);
 });
 
