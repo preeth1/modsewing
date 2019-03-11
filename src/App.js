@@ -92,6 +92,7 @@ render () {
       <div className="Measurements">
         <div className="LogoPanel">
           <img className="LogoImage" src={logoImage} alt="Modsewing"/>
+          MODSEWING
         </div>
           <div className="ContentPanelMeasurements">
             <div className="MeasurementButton MeasurementHelperButton">
