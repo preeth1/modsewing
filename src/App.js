@@ -10,8 +10,8 @@ import _ from 'lodash';
 class App extends Component {
   state = {
     measurements: MEASUREMENTS,
-    displayImage: "",
-    imageDescription: "",
+    displayImage: MEASUREMENTS.neck.image,
+    imageDescription: MEASUREMENTS.neck.helpText,
   }
 
   updateSize = (name, value) => {
