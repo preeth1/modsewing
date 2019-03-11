@@ -21,7 +21,6 @@ class App extends Component {
   }
 
   handleFocusFn = (measurementInfo) => {
-    debugger
     this.setState({displayImage: measurementInfo.image});
     this.setState({imageDescription: measurementInfo.helpText});
   }
