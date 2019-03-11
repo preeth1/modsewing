@@ -57,7 +57,6 @@ class MeasurementsPage extends Component {
         handleFocusFn={this.props.handleFocusFn}
         displayImage={this.props.displayImage}
         imageDescription={this.props.imageDescription} />
-        <GenerateButton measurements={this.props.measurements} history={this.props.history}/>
       </div>
     )
   }
