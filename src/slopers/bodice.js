@@ -1,12 +1,9 @@
-import { STANDARD_MEASUREMENTS,
-        EASE,
+import {EASE,
         WAISTSHAPING,
         SHOULDERDARTMOVE } from 'constants.js'
 import { convertMeasurements } from 'measurements'	
 import { absMovePen, 
-				 relMovePen, 
 				 drawAbsLine, 
-				 drawRelLine, 
 				 drawAbsBez } from 'svgHelpers/drawing'
 import { calculateArmholeShoulderCenterFrontDart,
          calculateSideDart,
@@ -17,10 +14,10 @@ import { quadraticBezierLength,
          calculateCoordAlongLine } from 'svgHelpers/pathMath.js'
 
 
-export const front = (size) => {
+export const front = (measurements) => {
 
-  const convertedMeasurements = convertMeasurements(STANDARD_MEASUREMENTS[size]);
-  const fc = calculateFrontCoordinates(STANDARD_MEASUREMENTS[size], convertedMeasurements);
+  const convertedMeasurements = convertMeasurements(measurements);
+  const fc = calculateFrontCoordinates(measurements, convertedMeasurements);
 
   const frontPath = [
     // Draw the sloper outline
@@ -68,10 +65,10 @@ export const front = (size) => {
 	return frontPath;
 }
 
-export const back = (size) => {
+export const back = (measurements) => {
 
-  const convertedMeasurements = convertMeasurements(STANDARD_MEASUREMENTS[size]);
-  const bc = calculateBackCoordinates(STANDARD_MEASUREMENTS[size], convertedMeasurements);
+  const convertedMeasurements = convertMeasurements(measurements);
+  const bc = calculateBackCoordinates(measurements, convertedMeasurements);
 
   const backPath = [
     // Draw the sloper outline
@@ -116,7 +113,7 @@ export const back = (size) => {
 
 export const calculateFrontCoordinates = (measurements, convertedMeasurements) => {
   const cm = convertedMeasurements;
-  const waistDartWidth = calculateWaistDart(measurements.waist, measurements.lowHip);
+  const waistDartWidth = calculateWaistDart(measurements.waist.measurement, measurements.lowHip.measurement);
   const shoulderDartWidth = calculateArmholeShoulderCenterFrontDart(cm.cup);
   const sideDartWidth = calculateSideDart(cm.cup);
   const highHipFromBottom = cm.hip.low.depth - cm.hip.high.depth;
@@ -214,7 +211,7 @@ export const calculateFrontCoordinates = (measurements, convertedMeasurements) =
 
 export const calculateBackCoordinates = (measurements, convertedMeasurements) => {
   const cm = convertedMeasurements;
-  const waistDartWidth = calculateWaistDart(measurements.waist, measurements.lowHip);
+  const waistDartWidth = calculateWaistDart(measurements.waist.measurement, measurements.lowHip.measurement);
   const shoulderDartWidth = calculateArmholeShoulderCenterFrontDart(cm.cup);
   const highHipFromBottom = cm.hip.low.depth - cm.hip.high.depth;
   let back = {}

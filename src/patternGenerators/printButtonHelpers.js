@@ -1,9 +1,4 @@
-import React, { Component } from 'react';
 import 'App.css';
-import logoImage from 'images/logo.png';
-import { front } from 'slopers/bodice.js'
-
-import { createPathElement } from 'svgHelpers/elements'
 import { a4 } from '..//constants'; 
 import * as jsPDF  from 'jspdf'
 import * as canvg  from 'canvg'

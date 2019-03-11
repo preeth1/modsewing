@@ -4,14 +4,26 @@ import 'App.css';
 import logoImage from 'images/logo.png';
 import GeneratePage from 'patternGenerators/generatePattern.js'
 import history from 'history.js';
+import { MEASUREMENTS } from 'constants.js'
+import _ from 'lodash';
 
 class App extends Component {
   state = {
-    size: '',
+    measurements: MEASUREMENTS,
+    displayImage: "",
+    imageDescription: "",
   }
 
-  updateSize = (size) => {
-    this.setState({size: size});
+  updateSize = (name, value) => {
+    const newMeas = this.state.measurements;
+    newMeas[name].measurement = value
+    this.setState({measurements: newMeas});
+  }
+
+  handleFocusFn = (measurementInfo) => {
+    debugger
+    this.setState({displayImage: measurementInfo.image});
+    this.setState({imageDescription: measurementInfo.helpText});
   }
 
   render() {
@@ -19,10 +31,15 @@ class App extends Component {
       <Router history={history}>
         <div className="App">
           <Route exact path='/' render={(props) => 
-            <MeasurementsPage size={this.state.size} updateSizeFn={this.updateSize} history={history}/>}
+            <MeasurementsPage measurements={this.state.measurements} 
+            updateSizeFn={this.updateSize} 
+            handleFocusFn={this.handleFocusFn} 
+            history={history} 
+            displayImage={this.state.displayImage}
+            imageDescription={this.state.imageDescription}/>}
           />
           <Route exact path='/generatePattern' render={(props) => 
-            <GeneratePage size={this.state.size}/>}
+            <GeneratePage measurements={this.state.measurements}/>}
           />
         </div>
       </Router>
@@ -36,37 +53,63 @@ class MeasurementsPage extends Component {
   render () {
     return (
       <div className="MeasurementsPage">
-        <Measurements size={this.props.size} updateSizeFn={this.props.updateSizeFn} />
-        <GenerateButton size={this.props.size} history={this.props.history}/>
+        <Measurements measurements={this.props.measurements} 
+        updateSizeFn={this.props.updateSizeFn}
+        handleFocusFn={this.props.handleFocusFn}
+        displayImage={this.props.displayImage}
+        imageDescription={this.props.imageDescription} />
+        <GenerateButton measurements={this.props.measurements} history={this.props.history}/>
       </div>
     )
   }
 }
 
 class Measurements extends Component {
-  
-  onSizeButtonChange = (event) => {
-    this.props.updateSizeFn(event.currentTarget.value);
+
+  handleChange = (name, event) => {
+    this.props.updateSizeFn(name, event.currentTarget.measurementInfo);
   }
 
-  render () {
+  handleFocus = (measurementInfo) => {
+    this.props.handleFocusFn(measurementInfo)
+  }
+
+  generateMeasurementLabels = () => {
+    let measurementLabels = []
+    _.each(MEASUREMENTS, (measurementInfo, measurementName) => {
+      measurementLabels.push(<label className="MeasurementLabel">
+                  { measurementName }: 
+                  <input type="text" 
+                  value={this.props.measurements[measurementName].measurement} 
+                  onChange={(event) => this.handleChange(measurementName, event)}
+                  onFocus = {() => this.handleFocus(measurementInfo)} />
+                </label>
+                )
+    })
+    return measurementLabels
+  }
+
+render () {
     return (
       <div className="Measurements">
         <div className="LogoPanel">
           <img className="LogoImage" src={logoImage} alt="Modsewing"/>
         </div>
-        <div className="ContentPanelMeasurements">
-          <div className="HeaderPanel">
-            Choose a size
-          </div>
-          <div className="ButtonPanel">
-            <div className="SizeButtonPanel">
-              <label className="container">
-                <input type="radio" name="radio" onChange={this.onSizeButtonChange} value="Small"></input> Small
-              </label> 
+          <form onSubmit={this.handleSubmit} className="ContentPanelMeasurements">
+            <div className="MeasurementPanel">
+              
+                {this.generateMeasurementLabels()}
+
+
             </div>
-          </div>
-        </div>
+            <div className="ImagePanel">
+              <img className="MeasurementImage" src={this.props.displayImage} alt="instruction"/>
+              <div className="MeasurementImageDescription">
+                { this.props.imageDescription }
+              </div>
+
+            </div>
+          </form>
       </div>
       )
   }
