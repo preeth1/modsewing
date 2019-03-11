@@ -94,21 +94,12 @@ render () {
         <div className="LogoPanel">
           <img className="LogoImage" src={logoImage} alt="Modsewing"/>
         </div>
-          <form onSubmit={this.handleSubmit} className="ContentPanelMeasurements">
-            <div className="MeasurementPanel">
-              
-                {this.generateMeasurementLabels()}
-
-
+          <div className="ContentPanelMeasurements">
+            <div className="MeasurementButton MeasurementHelperButton">
             </div>
-            <div className="ImagePanel">
-              <img className="MeasurementImage" src={this.props.displayImage} alt="instruction"/>
-              <div className="MeasurementImageDescription">
-                { this.props.imageDescription }
-              </div>
-
+            <div className="MeasurementButton MeasurementBuiltInButton">
             </div>
-          </form>
+          </div>
       </div>
       )
   }

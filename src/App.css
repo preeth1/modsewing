@@ -60,11 +60,37 @@ html,body,#root {
 .ContentPanelMeasurements, .ContentPanelPattern {
 	display: flex;
 	flex-direction: row;
-	justify-content: center;
+	justify-content: space-evenly;
 	align-items: center;
 	height: 85%;
 	width: 100%;
 	font-size: 4em;
+}
+
+.MeasurementButton {
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	font-size: .2em;
+	border-radius:30px;
+	background-color: purple;
+}
+
+.MeasurementLabel {
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	font-size: .2em;
+}
+
+.MeasurementButton {
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	font-size: .2em;
+	background-color: purple;
+	height: 50%;
+	width: 30%;
 }
 
 .ContentPanelPattern {
@@ -176,13 +202,10 @@ html,body,#root {
 	font-size: .2em;
 }
 
-
 .MeasurementLabel {
 	display: flex;
 	justify-content: center;
 	align-items: center;
 	font-size: .2em;
+	background-color: purple;
 }
-
-
-
