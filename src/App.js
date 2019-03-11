@@ -10,7 +10,8 @@ import _ from 'lodash';
 class App extends Component {
   state = {
     measurements: MEASUREMENTS,
-    displayImage: ""
+    displayImage: "",
+    imageDescription: "",
   }
 
   updateSize = (name, value) => {
@@ -20,7 +21,9 @@ class App extends Component {
   }
 
   handleFocusFn = (measurementInfo) => {
+    debugger
     this.setState({displayImage: measurementInfo.image});
+    this.setState({imageDescription: measurementInfo.text});
   }
 
   render() {
@@ -29,7 +32,11 @@ class App extends Component {
         <div className="App">
           <Route exact path='/' render={(props) => 
             <MeasurementsPage measurements={this.state.measurements} 
-            updateSizeFn={this.updateSize} handleFocusFn={this.handleFocusFn} history={history} displayImage={this.state.displayImage}/>}
+            updateSizeFn={this.updateSize} 
+            handleFocusFn={this.handleFocusFn} 
+            history={history} 
+            displayImage={this.state.displayImage}
+            imageDescription={this.state.imageDescription}/>}
           />
           <Route exact path='/generatePattern' render={(props) => 
             <GeneratePage measurements={this.state.measurements}/>}
@@ -49,7 +56,8 @@ class MeasurementsPage extends Component {
         <Measurements measurements={this.props.measurements} 
         updateSizeFn={this.props.updateSizeFn}
         handleFocusFn={this.props.handleFocusFn}
-        displayImage={this.props.displayImage} />
+        displayImage={this.props.displayImage}
+        imageDescription={this.props.imageDescription} />
         <GenerateButton measurements={this.props.measurements} history={this.props.history}/>
       </div>
     )
@@ -97,7 +105,7 @@ render () {
             <div className="ImagePanel">
               <img className="MeasurementImage" src={this.props.displayImage} alt="instruction"/>
               <div className="MeasurementImageDescription">
-
+                { this.props.imageDescription }
               </div>
 
             </div>
