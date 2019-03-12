@@ -25,10 +25,18 @@ class App extends Component {
     this.setState({imageDescription: measurementInfo.helpText});
   }
 
+  handeLogoClick = (event) => {
+    history.replace('/')
+  }
+
   render() {
     return (
       <Router history={history}>
         <div className="App">
+          <div className="LogoPanel" onClick={this.handeLogoClick}>
+            <img className="LogoImage" src={logoImage} alt="Modsewing"/>
+            MODSEWING
+          </div>
           <Route exact path='/' render={(props) => 
             <Measurements measurements={this.state.measurements}
             updateSizeFn={this.updateSize} 
@@ -85,29 +93,25 @@ class Measurements extends Component {
 render () {
     return (
       <div className="Measurements">
-        <div className="LogoPanel">
-          <img className="LogoImage" src={logoImage} alt="Modsewing"/>
-          MODSEWING
-        </div>
-          <div className="ContentPanelMeasurements">
-            <div className="MeasurementButton MeasurementHelperButton" onClick={this.measurementHelperButtonClicked}>
-            Take your measurements
-            </div>
-            <div className="MeasurementButton MeasurementBuiltInButton">
-            Use a built-in measurement
-              <div className="BuiltInButtonPanel">
-                <div className="BuiltInButton" onClick={this.builtInButtonClicked}>
-                S
-                </div>
-                <div className="BuiltInButton" onClick={this.builtInButtonClicked}>
-                M
-                </div>
-                <div className="BuiltInButton" onClick={this.builtInButtonClicked}>
-                L
-                </div>
+        <div className="ContentPanelMeasurements">
+          <div className="MeasurementButton MeasurementHelperButton" onClick={this.measurementHelperButtonClicked}>
+          Take your measurements
+          </div>
+          <div className="MeasurementButton MeasurementBuiltInButton">
+          Use a built-in measurement
+            <div className="BuiltInButtonPanel">
+              <div className="BuiltInButton" onClick={this.builtInButtonClicked}>
+              S
+              </div>
+              <div className="BuiltInButton" onClick={this.builtInButtonClicked}>
+              M
+              </div>
+              <div className="BuiltInButton" onClick={this.builtInButtonClicked}>
+              L
               </div>
             </div>
           </div>
+        </div>
       </div>
       )
   }
