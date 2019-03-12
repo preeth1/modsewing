@@ -2,28 +2,15 @@ import React, { Component } from 'react';
 import { Router, Route } from 'react-router-dom';
 import 'App.css';
 import logoImage from 'images/logo.png';
-import GeneratePage from 'patternGenerators/generatePattern.js'
-import TutorialPage from 'measurementTutorial.js'
+import GeneratePage from 'patternGenerators/generatePattern.js';
+import TutorialPage from 'measurementTutorial.js';
 import history from 'history.js';
-import { MEASUREMENTS } from 'constants.js'
+import { MEASUREMENTS } from 'constants.js';
 import _ from 'lodash';
 
 class App extends Component {
   state = {
     measurements: MEASUREMENTS,
-    displayImage: MEASUREMENTS.neck.image,
-    imageDescription: MEASUREMENTS.neck.helpText,
-  }
-
-  updateSize = (name, value) => {
-    const newMeas = this.state.measurements;
-    newMeas[name].measurement = value
-    this.setState({measurements: newMeas});
-  }
-
-  handleFocusFn = (measurementInfo) => {
-    this.setState({displayImage: measurementInfo.image});
-    this.setState({imageDescription: measurementInfo.helpText});
   }
 
   handeLogoClick = (event) => {
@@ -40,8 +27,6 @@ class App extends Component {
           </div>
           <Route exact path='/' render={(props) => 
             <MeasurementsPage measurements={this.state.measurements}
-            updateSizeFn={this.updateSize} 
-            handleFocusFn={this.handleFocusFn} 
             history={history} 
             displayImage={this.state.displayImage}
             imageDescription={this.state.imageDescription}/>}
@@ -62,14 +47,6 @@ export default App;
 
 
 class MeasurementsPage extends Component {
-
-  handleChange = (name, event) => {
-    this.props.updateSizeFn(name, event.currentTarget.measurementInfo);
-  }
-
-  handleFocus = (measurementInfo) => {
-    this.props.handleFocusFn(measurementInfo)
-  }
 
   generateMeasurementLabels = () => {
     let measurementLabels = []
