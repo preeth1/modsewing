@@ -79,6 +79,7 @@ html,body,#root {
 	flex-direction: column;
 	justify-content: center;
 	align-items: center;
+	cursor: pointer;
 	font-size: .6em;
 	background-color: #F4A261;
 	color: white;
@@ -118,21 +119,6 @@ html,body,#root {
 .ContentPanelPattern {
 	flex-direction: row;
 	justify-content: space-around;
-}
-
-.GeneratePanel {
- 	display: flex;
-	align-items: center;
-  justify-content: center;
-	cursor: pointer;
-	font-size: 1.5em;
-	height: 20%;
-	width: 100%;
-}
-
-.GenerateButton {
-	height: 50%;
-  width: 50%;
 }
 
 .HeaderPanel {

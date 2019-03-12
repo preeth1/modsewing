@@ -30,7 +30,7 @@ class App extends Component {
       <Router history={history}>
         <div className="App">
           <Route exact path='/' render={(props) => 
-            <MeasurementsPage measurements={this.state.measurements} 
+            <Measurements measurements={this.state.measurements}
             updateSizeFn={this.updateSize} 
             handleFocusFn={this.handleFocusFn} 
             history={history} 
@@ -48,19 +48,6 @@ class App extends Component {
 
 export default App;
 
-class MeasurementsPage extends Component {
-  render () {
-    return (
-      <div className="MeasurementsPage">
-        <Measurements measurements={this.props.measurements} 
-        updateSizeFn={this.props.updateSizeFn}
-        handleFocusFn={this.props.handleFocusFn}
-        displayImage={this.props.displayImage}
-        imageDescription={this.props.imageDescription} />
-      </div>
-    )
-  }
-}
 
 class Measurements extends Component {
 
@@ -87,6 +74,14 @@ class Measurements extends Component {
     return measurementLabels
   }
 
+  builtInButtonClicked = (event) => {
+    this.props.history.replace('/generatePattern')
+  }
+
+  measurementHelperButtonClicked = (event) => {
+    this.props.history.replace('/getMeasurements')
+  }
+
 render () {
     return (
       <div className="Measurements">
@@ -95,19 +90,19 @@ render () {
           MODSEWING
         </div>
           <div className="ContentPanelMeasurements">
-            <div className="MeasurementButton MeasurementHelperButton">
+            <div className="MeasurementButton MeasurementHelperButton" onClick={this.measurementHelperButtonClicked}>
             Take your measurements
             </div>
             <div className="MeasurementButton MeasurementBuiltInButton">
             Use a built-in measurement
               <div className="BuiltInButtonPanel">
-                <div className="BuiltInButton">
+                <div className="BuiltInButton" onClick={this.builtInButtonClicked}>
                 S
                 </div>
-                <div className="BuiltInButton">
+                <div className="BuiltInButton" onClick={this.builtInButtonClicked}>
                 M
                 </div>
-                <div className="BuiltInButton">
+                <div className="BuiltInButton" onClick={this.builtInButtonClicked}>
                 L
                 </div>
               </div>
@@ -117,20 +112,3 @@ render () {
       )
   }
 }
-
-class GenerateButton extends Component {
-  GeneratePatternClicked = (event) => {
-    this.props.history.replace('/generatePattern')
-  }
-
-  render () {
-    return (
-      <div className="GeneratePanel">
-        <div className="CuteButton GenerateButton"  onClick={this.GeneratePatternClicked}>
-          Generate Pattern
-        </div>
-      </div>  
-    )
-  }
-}
-
