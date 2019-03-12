@@ -25,7 +25,6 @@ html,body,#root {
 
 .MeasurementsPage, .GeneratePage, .TutorialPage {
 	display: flex;
-	flex-direction: column;
 	justify-content: center;
 	align-items: center;
 	height: 100%;
@@ -176,22 +175,28 @@ html,body,#root {
   width: 30%;
 }
 
+.TutorialPanel {
+	display: flex;
+	flex-direction: row;
+	justify-content: center;
+	align-items: center;
+	background-color: #F4A261;
+	color: white;
+	font-size: .6em;
+	text-align: center;
+	border-radius:30px;
+	height: 40%;
+	width: 60%;
+	padding: 5%;
+}
+
 .MeasurementPanel {
 	display: flex;
 	flex-direction: column;
 	justify-content: space-around;
 	align-items: center;
 	height: 100%;
-	width: 100%;
-}
-
-.ImagePanel {
-	display: flex;
-	flex-direction: column;
-	justify-content: center;
-	align-items: center;
-	height: 100%;
-	width: 100%;
+	width: 50%;
 }
 
 .MeasurementImage {
@@ -199,10 +204,17 @@ html,body,#root {
 	justify-content: center;
 	align-items: center;
 	height: 100%;
-	width: 100%;
+	width: 50%;
 }
 
-.MeasurementImageDescription {
+.MeasurementTitle {
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	height: 30%;
+	width: 100%;
+}
+.MeasurementDescription {
 	display: flex;
 	justify-content: center;
 	align-items: center;
@@ -215,6 +227,7 @@ html,body,#root {
 	display: flex;
 	justify-content: center;
 	align-items: center;
+	height: 30%;
+	width: 100%;
 	font-size: .2em;
-	background-color: purple;
 }
