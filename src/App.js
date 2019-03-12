@@ -3,6 +3,7 @@ import { Router, Route } from 'react-router-dom';
 import 'App.css';
 import logoImage from 'images/logo.png';
 import GeneratePage from 'patternGenerators/generatePattern.js'
+import TutorialPage from 'measurementTutorial.js'
 import history from 'history.js';
 import { MEASUREMENTS } from 'constants.js'
 import _ from 'lodash';
@@ -38,7 +39,7 @@ class App extends Component {
             MODSEWING
           </div>
           <Route exact path='/' render={(props) => 
-            <Measurements measurements={this.state.measurements}
+            <MeasurementsPage measurements={this.state.measurements}
             updateSizeFn={this.updateSize} 
             handleFocusFn={this.handleFocusFn} 
             history={history} 
@@ -47,6 +48,9 @@ class App extends Component {
           />
           <Route exact path='/generatePattern' render={(props) => 
             <GeneratePage measurements={this.state.measurements}/>}
+          />
+          <Route exact path='/getMeasurements' render={(props) =>
+            <TutorialPage measurements={this.state.measurements}/>}
           />
         </div>
       </Router>
@@ -57,7 +61,7 @@ class App extends Component {
 export default App;
 
 
-class Measurements extends Component {
+class MeasurementsPage extends Component {
 
   handleChange = (name, event) => {
     this.props.updateSizeFn(name, event.currentTarget.measurementInfo);
@@ -86,7 +90,7 @@ class Measurements extends Component {
     this.props.history.replace('/generatePattern')
   }
 
-  measurementHelperButtonClicked = (event) => {
+  measurementTutorialButtonClicked = (event) => {
     this.props.history.replace('/getMeasurements')
   }
 
@@ -94,7 +98,7 @@ render () {
     return (
       <div className="Measurements">
         <div className="ContentPanelMeasurements">
-          <div className="MeasurementButton MeasurementHelperButton" onClick={this.measurementHelperButtonClicked}>
+          <div className="MeasurementButton measurementTutorialButton" onClick={this.measurementTutorialButtonClicked}>
           Take your measurements
           </div>
           <div className="MeasurementButton MeasurementBuiltInButton">
