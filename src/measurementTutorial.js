@@ -23,6 +23,10 @@ state = {
     this.setState({measurementIndex: newMeasurementIndex})
   }
 
+  showFinishButton = () => {
+    return this.state.measurementIndex == MEASUREMENTS.length - 1;
+  }
+
   render () {
     return (
       <div className="TutorialPage">
@@ -36,6 +40,7 @@ state = {
             </div>
             <input className="MeasurementLabel" onChange={this.handleChange} type="text" name="value" value={MEASUREMENTS[this.state.measurementIndex].measurement}/>
             <button type="button" onClick={ this.handleClick }>Next!</button>
+            { this.showFinishButton() && <button type="button" onClick={ this.handleClick }>Finish!</button> }
           </div>
           <img className="MeasurementImage" src={ MEASUREMENTS[this.state.measurementIndex].image } alt="instruction"/>
           </div>
