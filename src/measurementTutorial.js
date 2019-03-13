@@ -4,9 +4,7 @@ import { MEASUREMENTS } from 'constants.js';
 class TutorialPage extends Component {
 
 state = {
-    title: MEASUREMENTS[0].friendlyName,
-    image: MEASUREMENTS[0].image,
-    description: MEASUREMENTS[0].helpText,
+    measurementIndex: 0,
   }
     updateSize = (name, value) => {
     const newMeas = this.state.measurements;
@@ -19,21 +17,26 @@ state = {
     this.setState({imageDescription: measurementInfo.helpText});
   }
 
+  handleClick = () => {
+    let newMeasurementIndex = this.state.measurementIndex + 1;
+    this.setState({measurementIndex: newMeasurementIndex})
+  }
+
   render () {
     return (
       <div className="TutorialPage">
         <div className="TutorialPanel">
           <div className="MeasurementPanel">
             <div className="MeasurementTitle">
-              { this.state.title }
+              { MEASUREMENTS[this.state.measurementIndex].friendlyName }
             </div>
             <div className="MeasurementDescription">
-              { this.state.description }
+              { MEASUREMENTS[this.state.measurementIndex].helpText }
             </div>
             <input className="MeasurementLabel" type="text" name="LastName" value="Mouse"/>
-            <button type="button">Next!</button>
+            <button type="button" onClick={ this.handleClick }>Next!</button>
           </div>
-          <img className="MeasurementImage" src={ this.state.image } alt="instruction"/>        
+          <img className="MeasurementImage" src={ MEASUREMENTS[this.state.measurementIndex].image } alt="instruction"/>
           </div>
       </div>
     )
