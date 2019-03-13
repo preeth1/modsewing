@@ -37,7 +37,7 @@ state = {
         <div className="TutorialPanel">
           <div className="MeasurementPanel">
             <div className="MeasurementTitle">
-              { MEASUREMENTS[this.state.measurementIndex].friendlyName }
+              { MEASUREMENTS[this.state.measurementIndex].friendlyName } ({this.state.measurementIndex + 1} / {MEASUREMENTS.length})
             </div>
             <div className="MeasurementDescription">
               { MEASUREMENTS[this.state.measurementIndex].helpText }
