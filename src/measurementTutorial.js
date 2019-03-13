@@ -5,16 +5,17 @@ class TutorialPage extends Component {
 
 state = {
     measurementIndex: 0,
+    measurements: MEASUREMENTS
   }
-    updateSize = (name, value) => {
-    const newMeas = this.state.measurements;
-    newMeas[name].measurement = value
-    this.setState({measurements: newMeas});
+    updateSize = (value) => {
+      console.log(value)
+      let newMeas = this.state.measurements;
+      newMeas[this.state.measurementIndex].measurement = value
+      this.setState({measurements: newMeas});
   }
 
-  handleFocusFn = (measurementInfo) => {
-    this.setState({displayImage: measurementInfo.image});
-    this.setState({imageDescription: measurementInfo.helpText});
+  handleChange = (event) => {
+    this.updateSize(event.currentTarget.value);
   }
 
   handleClick = () => {
@@ -33,7 +34,7 @@ state = {
             <div className="MeasurementDescription">
               { MEASUREMENTS[this.state.measurementIndex].helpText }
             </div>
-            <input className="MeasurementLabel" type="text" name="LastName" value="Mouse"/>
+            <input className="MeasurementLabel" onChange={this.handleChange} type="text" name="value" value={MEASUREMENTS[this.state.measurementIndex].measurement}/>
             <button type="button" onClick={ this.handleClick }>Next!</button>
           </div>
           <img className="MeasurementImage" src={ MEASUREMENTS[this.state.measurementIndex].image } alt="instruction"/>
