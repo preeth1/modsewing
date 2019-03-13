@@ -1,12 +1,11 @@
 import React, { Component } from 'react';
-import { MEASUREMENTS } from 'constants.js';
 
 class TutorialPage extends Component {
 
 state = {
-    title: MEASUREMENTS.neck.friendlyName,
-    image: MEASUREMENTS.neck.image,
-    description: MEASUREMENTS.neck.helpText,
+    title: "MEASUREMENTS.neck.friendlyName",
+    image: "MEASUREMENTS.neck.image",
+    description: "MEASUREMENTS.neck.helpText",
   }
     updateSize = (name, value) => {
     const newMeas = this.state.measurements;
@@ -25,7 +24,7 @@ state = {
         <div className="TutorialPanel">
           <div className="MeasurementPanel">
             <div className="MeasurementTitle">
-              { this.state.title }
+              TITLE
             </div>
             <div className="MeasurementDescription">
               { this.state.description }

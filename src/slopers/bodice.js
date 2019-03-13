@@ -1,7 +1,8 @@
 import {EASE,
         WAISTSHAPING,
         SHOULDERDARTMOVE } from 'constants.js'
-import { convertMeasurements } from 'measurements'	
+import { convertMeasurements,
+         get } from 'measurements'	
 import { absMovePen, 
 				 drawAbsLine, 
 				 drawAbsBez } from 'svgHelpers/drawing'
@@ -113,7 +114,7 @@ export const back = (measurements) => {
 
 export const calculateFrontCoordinates = (measurements, convertedMeasurements) => {
   const cm = convertedMeasurements;
-  const waistDartWidth = calculateWaistDart(measurements.waist.measurement, measurements.lowHip.measurement);
+  const waistDartWidth = calculateWaistDart(get("waist").measurement, get("lowHip").measurement);
   const shoulderDartWidth = calculateArmholeShoulderCenterFrontDart(cm.cup);
   const sideDartWidth = calculateSideDart(cm.cup);
   const highHipFromBottom = cm.hip.low.depth - cm.hip.high.depth;
@@ -211,7 +212,7 @@ export const calculateFrontCoordinates = (measurements, convertedMeasurements) =
 
 export const calculateBackCoordinates = (measurements, convertedMeasurements) => {
   const cm = convertedMeasurements;
-  const waistDartWidth = calculateWaistDart(measurements.waist.measurement, measurements.lowHip.measurement);
+  const waistDartWidth = calculateWaistDart(get("waist").measurement, get("lowHip").measurement);
   const shoulderDartWidth = calculateArmholeShoulderCenterFrontDart(cm.cup);
   const highHipFromBottom = cm.hip.low.depth - cm.hip.high.depth;
   let back = {}
