@@ -27,6 +27,10 @@ state = {
     return this.state.measurementIndex == MEASUREMENTS.length - 1;
   }
 
+  generatePattern = (event) => {
+    this.props.history.replace('/generatePattern')
+  }
+
   render () {
     return (
       <div className="TutorialPage">
@@ -40,7 +44,7 @@ state = {
             </div>
             <input className="MeasurementLabel" onChange={this.handleChange} type="text" name="value" value={MEASUREMENTS[this.state.measurementIndex].measurement}/>
             <button type="button" onClick={ this.handleClick }>Next!</button>
-            { this.showFinishButton() && <button type="button" onClick={ this.handleClick }>Finish!</button> }
+            { this.showFinishButton() && <button type="button" onClick={ this.generatePattern }>Finish!</button> }
           </div>
           <img className="MeasurementImage" src={ MEASUREMENTS[this.state.measurementIndex].image } alt="instruction"/>
           </div>

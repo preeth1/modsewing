@@ -35,7 +35,7 @@ class App extends Component {
             <GeneratePage measurements={this.state.measurements}/>}
           />
           <Route exact path='/getMeasurements' render={(props) =>
-            <TutorialPage measurements={this.state.measurements}/>}
+            <TutorialPage history={history} measurements={this.state.measurements}/>}
           />
         </div>
       </Router>
@@ -63,7 +63,7 @@ class MeasurementsPage extends Component {
     return measurementLabels
   }
 
-  builtInButtonClicked = (event) => {
+  generatePattern = (event) => {
     this.props.history.replace('/generatePattern')
   }
 
@@ -81,13 +81,13 @@ render () {
           <div className="MeasurementButton MeasurementBuiltInButton">
           Use a built-in measurement
             <div className="BuiltInButtonPanel">
-              <div className="BuiltInButton" onClick={this.builtInButtonClicked}>
+              <div className="BuiltInButton" onClick={this.generatePattern}>
               S
               </div>
-              <div className="BuiltInButton" onClick={this.builtInButtonClicked}>
+              <div className="BuiltInButton" onClick={this.generatePattern}>
               M
               </div>
-              <div className="BuiltInButton" onClick={this.builtInButtonClicked}>
+              <div className="BuiltInButton" onClick={this.generatePattern}>
               L
               </div>
             </div>
