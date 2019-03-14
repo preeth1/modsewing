@@ -31,16 +31,6 @@ html,body,#root {
 	width: 100%;
 }
 
-.CuteButton {
-	display: flex;
-	align-items: center;
-	justify-content: center;
-	background-color: pink;
-	cursor: pointer;
-	font-size: .2em;
-	border-radius: 20px;
-}
-
 .Measurements {
 	display: flex;
 	flex-direction: column;
@@ -107,13 +97,6 @@ html,body,#root {
 	width: 30%;
 	height: 50%;
 	background-color: #E76F51;
-}
-
-.MeasurementLabel {
-	display: flex;
-	justify-content: center;
-	align-items: center;
-	font-size: .2em;
 }
 
 .ContentPanelPattern {
@@ -199,6 +182,18 @@ html,body,#root {
 	width: 50%;
 }
 
+.CuteButton {
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	background-color: #E9C46A;
+	cursor: pointer;
+	font-size: .2em;
+	border-radius: 5px;
+	height: 100%;
+	width: 30%;
+}
+
 .MeasurementImage {
 	display: flex;
 	justify-content: center;
@@ -220,11 +215,30 @@ html,body,#root {
 	font-size: 2em;
 }
 
+.MeasurementLabelPanel {
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	height: 10%;
+	width: 100%;
+	font-size: 1em;
+}
+
+.MeasurementErrorPanel {
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	height: 10%;
+	width: 100%;
+	font-size: 1.5em;
+	color: red;
+}
+
 .MeasurementLabel {
 	display: flex;
 	justify-content: center;
 	align-items: center;
-	height: 30%;
-	width: 100%;
+	height: 100%;
+	width: 50%;
 	font-size: 2em;
 }

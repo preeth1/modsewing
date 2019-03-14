@@ -5,22 +5,35 @@ class TutorialPage extends Component {
 
 state = {
     measurementIndex: 0,
-    measurements: MEASUREMENTS
+    measurements: MEASUREMENTS,
+    measurementError: '',
+    displayMeasurement: ''
   }
     updateSize = (value) => {
-      console.log(value)
-      let newMeas = this.state.measurements;
-      newMeas[this.state.measurementIndex].measurement = value
-      this.setState({measurements: newMeas});
+      let newMeasurementIndex = this.state.measurementIndex + 1;
+      this.setState({measurementIndex: newMeasurementIndex})
+      this.setState({displayMeasurement: 0});
+      let newMeasurement = this.state.measurements;
+      newMeasurement[this.state.measurementIndex].measurement = value
+      this.setState({measurements: newMeasurement});
   }
 
   handleChange = (event) => {
-    this.updateSize(event.currentTarget.value);
+    this.setState({displayMeasurement: event.currentTarget.value});
   }
 
-  handleClick = () => {
-    let newMeasurementIndex = this.state.measurementIndex + 1;
-    this.setState({measurementIndex: newMeasurementIndex})
+  handleNextClick = () => {
+    if (!this.isPositiveValidNumber()) {
+      this.setState({measurementError: 'Make sure you enter a valid measurement!'});
+  } else {
+      this.setState({measurementError: ''});
+      this.updateSize(this.state.displayMeasurement);
+    }
+  }
+
+  isPositiveValidNumber = () => {
+    const positiveValidNumber = RegExp('^[+]?([1-9][0-9]*(?:[\.][0-9]*)?|0*\.0*[1-9][0-9]*)(?:[eE][+-][0-9]+)?$')
+    return positiveValidNumber.test(this.state.displayMeasurement)
   }
 
   showFinishButton = () => {
@@ -42,9 +55,14 @@ state = {
             <div className="MeasurementDescription">
               { MEASUREMENTS[this.state.measurementIndex].helpText }
             </div>
-            <input className="MeasurementLabel" onChange={this.handleChange} type="text" name="value" value={MEASUREMENTS[this.state.measurementIndex].measurement}/>
-            <button type="button" onClick={ this.handleClick }>Next!</button>
-            { this.showFinishButton() && <button type="button" onClick={ this.generatePattern }>Finish!</button> }
+            <div className="MeasurementLabelPanel">
+              <input className="MeasurementLabel" onChange={this.handleChange} type="text" name="value" value={this.state.displayMeasurement}/>
+              { !this.showFinishButton() && <div className="CuteButton NextButton" onClick={ this.handleNextClick }>Next!</div> }
+              { this.showFinishButton() && <div className="CuteButton FinishButton" onClick={ this.generatePattern }>Finish!</div> }
+            </div>
+            <div className="MeasurementErrorPanel">
+            { this.state.measurementError }
+            </div>
           </div>
           <img className="MeasurementImage" src={ MEASUREMENTS[this.state.measurementIndex].image } alt="instruction"/>
           </div>
