@@ -7,12 +7,12 @@ state = {
     measurementIndex: 0,
     measurements: MEASUREMENTS,
     measurementError: '',
-    displayMeasurement: ''
+    displayMeasurement: 'Enter measurement'
   }
     updateSize = (value) => {
       let newMeasurementIndex = this.state.measurementIndex + 1;
       this.setState({measurementIndex: newMeasurementIndex})
-      this.setState({displayMeasurement: 0});
+      this.setState({displayMeasurement: 'Enter measurement'});
       let newMeasurement = this.state.measurements;
       newMeasurement[this.state.measurementIndex].measurement = value
       this.setState({measurements: newMeasurement});
@@ -20,6 +20,10 @@ state = {
 
   handleChange = (event) => {
     this.setState({displayMeasurement: event.currentTarget.value});
+  }
+
+  handleFocus = () => {
+    this.setState({displayMeasurement: ''});
   }
 
   handleNextClick = () => {
@@ -56,7 +60,7 @@ state = {
               { MEASUREMENTS[this.state.measurementIndex].helpText }
             </div>
             <div className="MeasurementLabelPanel">
-              <input className="MeasurementLabel" onChange={this.handleChange} type="text" name="value" value={this.state.displayMeasurement}/>
+              <input className="MeasurementLabel" onFocus={this.handleFocus} onChange={this.handleChange} type="text" name="value" value={this.state.displayMeasurement}/>
               { !this.showFinishButton() && <div className="CuteButton NextButton" onClick={ this.handleNextClick }>Next!</div> }
               { this.showFinishButton() && <div className="CuteButton FinishButton" onClick={ this.generatePattern }>Finish!</div> }
             </div>
