@@ -3,10 +3,8 @@ import frontLength from 'images/measurements/frontLength.png'
 import side from 'images/measurements/side.png'
 import backLength from 'images/measurements/backLength.png'
 import highHip from 'images/measurements/highHip.png'
-import skirtLength from 'images/measurements/skirtLength.png'
 import bust from 'images/measurements/bust.png'
 import highHipDepth from 'images/measurements/highHipDepth.png'
-import underbust from 'images/measurements/underbust.png'
 import crossBack from 'images/measurements/crossBack.png'
 import lowHip from 'images/measurements/lowHip.png'
 import crossFront from 'images/measurements/crossFront.png'
@@ -17,17 +15,10 @@ import neck from 'images/measurements/neck.png'
 import figureLength from 'images/measurements/figureLength.png'
 import shoulder from 'images/measurements/shoulder.png'
 
-
-
-
 export const DISPLAY_FRACTION_TO_FILL = 0.9;
 export const EASE = 3/8;
 export const WAISTSHAPING = 3/8;
 export const SHOULDERDARTMOVE = 1/4;
-
-
-
-
 
 export const MEASUREMENTS = [
     {

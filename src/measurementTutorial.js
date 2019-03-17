@@ -28,7 +28,7 @@ state = {
   }
 
   handleNextClick = () => {
-    if (!this.isPositiveValidNumber(this.state.displayMeasurement)) {
+    if (!isPositiveValidNumber(this.state.displayMeasurement)) {
       this.setState({measurementError: 'Make sure you enter a valid measurement!'});
   } else {
       this.setState({measurementError: ''});
@@ -37,7 +37,7 @@ state = {
   }
 
   showFinishButton = () => {
-    return this.state.measurementIndex == MEASUREMENTS.length - 1;
+    return this.state.measurementIndex === MEASUREMENTS.length - 1;
   }
 
   generatePattern = (event) => {

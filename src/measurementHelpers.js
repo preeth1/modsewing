@@ -37,11 +37,11 @@ export const createFrontBack = (measurement, divideBy=1, frontChange=0, backChan
 
 export const get = (name) => {
   return _.find(MEASUREMENTS, (entry) => {
-    return entry.name == name;
+    return entry.name === name;
   })
 }
 
 export const isPositiveValidNumber = (input) => {
-  const positiveValidNumber = RegExp('^[+]?([0-9]+(?:[\.][0-9]*)?|\.[0-9]+)$')
+  const positiveValidNumber = RegExp('^[+]?([0-9]+(?:[.][0-9]*)?|.[0-9]+)$')
   return positiveValidNumber.test(input) && input > 0
 }
