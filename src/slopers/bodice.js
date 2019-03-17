@@ -2,7 +2,7 @@ import {EASE,
         WAISTSHAPING,
         SHOULDERDARTMOVE } from 'constants.js'
 import { convertMeasurements,
-         get } from 'measurements'	
+         get } from 'measurementHelpers'	
 import { absMovePen, 
 				 drawAbsLine, 
 				 drawAbsBez } from 'svgHelpers/drawing'

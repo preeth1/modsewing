@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import { MEASUREMENTS } from 'constants.js';
+import { isPositiveValidNumber } from 'measurementHelpers.js';
 
 class TutorialPage extends Component {
 
@@ -27,17 +28,12 @@ state = {
   }
 
   handleNextClick = () => {
-    if (!this.isPositiveValidNumber()) {
+    if (!this.isPositiveValidNumber(this.state.displayMeasurement)) {
       this.setState({measurementError: 'Make sure you enter a valid measurement!'});
   } else {
       this.setState({measurementError: ''});
       this.updateSize(this.state.displayMeasurement);
     }
-  }
-
-  isPositiveValidNumber = () => {
-    const positiveValidNumber = RegExp('^[+]?([1-9][0-9]*(?:[\.][0-9]*)?|0*\.0*[1-9][0-9]*)(?:[eE][+-][0-9]+)?$')
-    return positiveValidNumber.test(this.state.displayMeasurement)
   }
 
   showFinishButton = () => {

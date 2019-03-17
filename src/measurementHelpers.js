@@ -40,3 +40,8 @@ export const get = (name) => {
     return entry.name == name;
   })
 }
+
+export const isPositiveValidNumber = (input) => {
+  const positiveValidNumber = RegExp('^[+]?([0-9]+(?:[\.][0-9]*)?|\.[0-9]+)$')
+  return positiveValidNumber.test(input) && input > 0
+}
