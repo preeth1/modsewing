@@ -8,7 +8,7 @@ class TutorialPage extends Component {
 
 state = {
     measurementIndex: 0,
-    measurements: MEASUREMENTS,
+    measurements: JSON.parse(JSON.stringify(MEASUREMENTS)),
     measurementError: '',
     displayMeasurement: 'Enter measurement'
   }
@@ -52,10 +52,10 @@ state = {
   }
 
   generatePattern = (event) => {
-    // Try making the pattern
     try {
-      const frontPath = front(this.props.measurements); 
-      let backPath = back(this.props.measurements);
+      // Include these in the try block because they will generate an error if measurements didn't work
+      front(this.props.measurements);
+      back(this.props.measurements);
       this.props.history.replace('/generatePattern')
     }
     catch(error) {
