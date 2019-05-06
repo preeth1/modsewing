@@ -1,31 +1,34 @@
-import { MEASUREMENTS } from 'constants.js';
 import _ from 'lodash';
+import { front,
+        back } from 'slopers/bodice.js'
 
 export const convertMeasurements = (measurements) => {
   const convertedMeasurements = {
-	  neck: createFrontBack(get("neck").measurement, 6, 1/4, 3/8),	
-	  shoulder: get("shoulder").measurement,
-	  length: {front: get("frontLength").measurement,
-	  	back: get("backLength").measurement},
-	  figureLength: get("figureLength").measurement,
-	  figureBreadth: get("figureBreadth").measurement / 2,
+	  neck: createFrontBack(get("neck", measurements).measurement, 6, 1/4, 3/8),	
+	  shoulder: get("shoulder", measurements).measurement,
+	  length: {
+	  	front: get("frontLength", measurements).measurement,
+	  	back: get("backLength", measurements).measurement
+	  },
+	  figureLength: get("figureLength", measurements).measurement,
+	  figureBreadth: get("figureBreadth", measurements).measurement / 2,
 	  cross: {
-	  	front: get("crossFront").measurement / 2,
-	  	back: get("crossBack").measurement / 2,
+	  	front: get("crossFront", measurements).measurement / 2,
+	  	back: get("crossBack", measurements).measurement / 2,
 	  },
-	  bust: createFrontBack(get("bust").measurement, 4, 1/4, -1/4),
-	  cup: get("bust").measurement - get("underBust").measurement,
-	  waist: createFrontBack(get("waist").measurement, 4, 1/4, -1/4),
+	  bust: createFrontBack(get("bust", measurements).measurement, 4, 1/4, -1/4),
+	  cup: get("bust", measurements).measurement - get("underBust", measurements).measurement,
+	  waist: createFrontBack(get("waist", measurements).measurement, 4, 1/4, -1/4),
 	  hip: {
-	  	high: createFrontBack(get("highHip").measurement, 4, 1/4, -1/4),
-	  	low: createFrontBack(get("lowHip").measurement, 4, 1/4, -1/4),
+	  	high: createFrontBack(get("highHip", measurements).measurement, 4, 1/4, -1/4),
+	  	low: createFrontBack(get("lowHip", measurements).measurement, 4, 1/4, -1/4),
 	  },
-	  side: get("side").measurement,
-	  armhole: createFrontBack(get("armhole").measurement, 2, -1/4, 1/4),
+	  side: get("side", measurements).measurement,
+	  armhole: createFrontBack(get("armhole", measurements).measurement, 2, -1/4, 1/4),
   };
   
-  convertedMeasurements.hip.high.depth = get("highHipDepth").measurement;
-  convertedMeasurements.hip.low.depth = get("lowHipDepth").measurement;
+  convertedMeasurements.hip.high.depth = get("highHipDepth", measurements).measurement;
+  convertedMeasurements.hip.low.depth = get("lowHipDepth", measurements).measurement;
   return convertedMeasurements;
 };
 
@@ -35,8 +38,8 @@ export const createFrontBack = (measurement, divideBy=1, frontChange=0, backChan
 	return {front: front, back: back};
 };
 
-export const get = (name) => {
-  return _.find(MEASUREMENTS, (entry) => {
+export const get = (name, measurements) => {
+  return _.find(measurements, (entry) => {
     return entry.name === name;
   })
 }
@@ -44,4 +47,18 @@ export const get = (name) => {
 export const isPositiveValidNumber = (input) => {
   const positiveValidNumber = RegExp('^[+]?([0-9]+(?:[.][0-9]*)?|.[0-9]+)$')
   return positiveValidNumber.test(input) && input > 0
+}
+
+export const brokePattern = (measurements) => {
+	let brokePattern = false;
+	try {
+          // Include these in the try block because they will generate an error if measurements didn't work
+          front(measurements);
+          back(measurements);
+        }
+        catch(error) {
+          brokePattern = true;
+        }
+
+  return brokePattern
 }

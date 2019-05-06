@@ -1,24 +1,30 @@
 import React, { Component } from 'react';
 import { MEASUREMENTS } from 'constants.js';
-import { isPositiveValidNumber } from 'measurementHelpers.js';
+import { isPositiveValidNumber,
+        brokePattern } from 'measurementHelpers.js';
 import { front,
         back } from 'slopers/bodice.js'
 
 class TutorialPage extends Component {
 
-state = {
-    measurementIndex: 0,
-    measurements: JSON.parse(JSON.stringify(MEASUREMENTS)),
-    measurementError: '',
-    displayMeasurement: 'Enter measurement'
+  state = {
+      measurementIndex: 0,
+      measurements: JSON.parse(JSON.stringify(MEASUREMENTS)),
+      measurementError: '',
+      displayMeasurement: 'Enter measurement'
   }
-    updateSize = (value) => {
-      let newMeasurementIndex = this.state.measurementIndex + 1;
-      let newMeasurement = this.state.measurements;
-      newMeasurement[this.state.measurementIndex].measurement = value;
-      this.setState({measurementIndex: newMeasurementIndex,
-                    displayMeasurement: 'Enter measurement',
-                    measurements: newMeasurement});
+
+  updateMeasurement = (value) => {
+    let newMeasurement = this.state.measurements;
+    newMeasurement[this.state.measurementIndex].measurement = parseFloat(value);
+    this.setState({measurements: newMeasurement});
+  }
+
+  advanceTutorial = () => {
+    let newMeasurementIndex = this.state.measurementIndex + 1;
+    let newMeasurement = this.state.measurements;
+    this.setState({measurementIndex: newMeasurementIndex,
+                  displayMeasurement: 'Enter measurement'});
   }
 
   handleChange = (event) => {
@@ -32,11 +38,16 @@ state = {
   handleNextClick = () => {
     if (!isPositiveValidNumber(this.state.displayMeasurement)) {
       this.setState({measurementError: 'Make sure you enter a valid measurement!'});
-  } else {
-      this.setState({measurementError: ''});
-      this.updateSize(this.state.displayMeasurement);
+    } else {
+        this.setState({measurementError: ''});
+        this.updateMeasurement(this.state.displayMeasurement);
+        if (brokePattern(this.state.measurements)) {
+          this.setState({measurementError: 'Broke the pattern!!!'});
+        } else {
+          this.advanceTutorial();
+        }
+      }
     }
-  }
 
   handleBackClick = () => {
     let newMeasurementIndex = this.state.measurementIndex - 1;
@@ -52,15 +63,7 @@ state = {
   }
 
   generatePattern = (event) => {
-    try {
-      // Include these in the try block because they will generate an error if measurements didn't work
-      front(this.props.measurements);
-      back(this.props.measurements);
-      this.props.history.replace('/generatePattern')
-    }
-    catch(error) {
-      this.setState({measurementError: 'Something went wrong!'});
-    }
+    this.props.history.replace('/generatePattern')
   }
 
   render () {

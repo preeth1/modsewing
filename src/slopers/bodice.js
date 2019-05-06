@@ -114,7 +114,7 @@ export const back = (measurements) => {
 
 export const calculateFrontCoordinates = (measurements, convertedMeasurements) => {
   const cm = convertedMeasurements;
-  const waistDartWidth = calculateWaistDart(get("waist").measurement, get("lowHip").measurement);
+  const waistDartWidth = calculateWaistDart(get("waist", measurements).measurement, get("lowHip", measurements).measurement);
   const shoulderDartWidth = calculateArmholeShoulderCenterFrontDart(cm.cup);
   const sideDartWidth = calculateSideDart(cm.cup);
   const highHipFromBottom = cm.hip.low.depth - cm.hip.high.depth;
@@ -212,7 +212,7 @@ export const calculateFrontCoordinates = (measurements, convertedMeasurements) =
 
 export const calculateBackCoordinates = (measurements, convertedMeasurements) => {
   const cm = convertedMeasurements;
-  const waistDartWidth = calculateWaistDart(get("waist").measurement, get("lowHip").measurement);
+  const waistDartWidth = calculateWaistDart(get("waist", measurements).measurement, get("lowHip", measurements).measurement);
   const shoulderDartWidth = calculateArmholeShoulderCenterFrontDart(cm.cup);
   const highHipFromBottom = cm.hip.low.depth - cm.hip.high.depth;
   let back = {}
