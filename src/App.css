@@ -1,9 +1,3 @@
-/*Japanese Indigo: #264653
-Jungle Green: #2A9D8F
-Hansa Yellow: #E9C46A
-Sandy Brown: #F4A261
-Light Red Ochre: #E76F51*/
-
 html,body,#root {
 	height: 100%;
 	width: 100%;
@@ -12,6 +6,14 @@ html,body,#root {
 * {
 	font-size: 100%;
 	font-family: "Impact";
+}
+
+:root {
+  --main-color: #BFBFBF;
+  --primary-btn-color: #BB8588;
+  --secondary-btn-color: #63585E;
+  --header-color: #96939B;
+  --error-color: #ed6173;
 }
 
 .App {
@@ -47,7 +49,7 @@ html,body,#root {
 	height: 10%;
 	width: 100%;
 	font-size: 4em;
-	color: #2A9D8F;
+	color: var(--header-color);
 }
 
 .LogoImage {
@@ -71,7 +73,7 @@ html,body,#root {
 	align-items: center;
 	cursor: pointer;
 	font-size: .6em;
-	background-color: #F4A261;
+	background-color: var(--main-color);
 	color: white;
 	text-align: center;
 	border-radius:30px;
@@ -96,7 +98,7 @@ html,body,#root {
 	align-items: center;
 	width: 30%;
 	height: 50%;
-	background-color: #E76F51;
+	background-color: var(--secondary-btn-color);
 }
 
 .ContentPanelPattern {
@@ -163,7 +165,7 @@ html,body,#root {
 	flex-direction: row;
 	justify-content: center;
 	align-items: center;
-	background-color: #F4A261;
+	background-color: var(--main-color);
 	color: white;
 	font-size: .6em;
 	text-align: center;
@@ -186,7 +188,7 @@ html,body,#root {
 	display: flex;
 	align-items: center;
 	justify-content: center;
-	background-color: #E9C46A;
+	background-color: var(--primary-btn-color);
 	cursor: pointer;
 	font-size: .2em;
 	border-radius: 5px;
@@ -231,7 +233,7 @@ html,body,#root {
 	height: 10%;
 	width: 100%;
 	font-size: 1.5em;
-	color: red;
+	color: var(--error-color);
 }
 
 .MeasurementLabel {
