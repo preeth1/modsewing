@@ -2,43 +2,40 @@ import React, { Component } from 'react';
 import { Router, Route } from 'react-router-dom';
 import 'App.css';
 import logoImage from 'images/logo.png';
-import GeneratePage from 'patternGenerators/generatePattern.js'
+import GeneratePage from 'patternGenerators/generatePattern.js';
+import TutorialPage from 'measurementTutorial.js';
 import history from 'history.js';
-import { MEASUREMENTS } from 'constants.js'
+import { MEASUREMENTS } from 'constants.js';
 import _ from 'lodash';
 
 class App extends Component {
   state = {
     measurements: MEASUREMENTS,
-    displayImage: MEASUREMENTS.neck.image,
-    imageDescription: MEASUREMENTS.neck.helpText,
   }
 
-  updateSize = (name, value) => {
-    const newMeas = this.state.measurements;
-    newMeas[name].measurement = value
-    this.setState({measurements: newMeas});
-  }
-
-  handleFocusFn = (measurementInfo) => {
-    this.setState({displayImage: measurementInfo.image});
-    this.setState({imageDescription: measurementInfo.helpText});
+  handeLogoClick = (event) => {
+    history.replace('/')
   }
 
   render() {
     return (
       <Router history={history}>
         <div className="App">
+          <div className="LogoPanel" onClick={this.handeLogoClick}>
+            <img className="LogoImage" src={logoImage} alt="Modsewing"/>
+            MODSEWING
+          </div>
           <Route exact path='/' render={(props) => 
-            <MeasurementsPage measurements={this.state.measurements} 
-            updateSizeFn={this.updateSize} 
-            handleFocusFn={this.handleFocusFn} 
+            <MeasurementsPage measurements={this.state.measurements}
             history={history} 
             displayImage={this.state.displayImage}
             imageDescription={this.state.imageDescription}/>}
           />
           <Route exact path='/generatePattern' render={(props) => 
             <GeneratePage measurements={this.state.measurements}/>}
+          />
+          <Route exact path='/getMeasurements' render={(props) =>
+            <TutorialPage history={history} measurements={this.state.measurements}/>}
           />
         </div>
       </Router>
@@ -48,30 +45,8 @@ class App extends Component {
 
 export default App;
 
+
 class MeasurementsPage extends Component {
-  render () {
-    return (
-      <div className="MeasurementsPage">
-        <Measurements measurements={this.props.measurements} 
-        updateSizeFn={this.props.updateSizeFn}
-        handleFocusFn={this.props.handleFocusFn}
-        displayImage={this.props.displayImage}
-        imageDescription={this.props.imageDescription} />
-        <GenerateButton measurements={this.props.measurements} history={this.props.history}/>
-      </div>
-    )
-  }
-}
-
-class Measurements extends Component {
-
-  handleChange = (name, event) => {
-    this.props.updateSizeFn(name, event.currentTarget.measurementInfo);
-  }
-
-  handleFocus = (measurementInfo) => {
-    this.props.handleFocusFn(measurementInfo)
-  }
 
   generateMeasurementLabels = () => {
     let measurementLabels = []
@@ -88,45 +63,37 @@ class Measurements extends Component {
     return measurementLabels
   }
 
+  generatePattern = (event) => {
+    this.props.history.replace('/generatePattern')
+  }
+
+  measurementTutorialButtonClicked = (event) => {
+    this.props.history.replace('/getMeasurements')
+  }
+
 render () {
     return (
       <div className="Measurements">
-        <div className="LogoPanel">
-          <img className="LogoImage" src={logoImage} alt="Modsewing"/>
-        </div>
-          <form onSubmit={this.handleSubmit} className="ContentPanelMeasurements">
-            <div className="MeasurementPanel">
-              
-                {this.generateMeasurementLabels()}
-
-
-            </div>
-            <div className="ImagePanel">
-              <img className="MeasurementImage" src={this.props.displayImage} alt="instruction"/>
-              <div className="MeasurementImageDescription">
-                { this.props.imageDescription }
+        <div className="ContentPanelMeasurements">
+          <div className="MeasurementButton measurementTutorialButton" onClick={this.measurementTutorialButtonClicked}>
+          Take your measurements
+          </div>
+          <div className="MeasurementButton MeasurementBuiltInButton">
+          Use a built-in measurement
+            <div className="BuiltInButtonPanel">
+              <div className="BuiltInButton" onClick={this.generatePattern}>
+              S
               </div>
-
+              <div className="BuiltInButton" onClick={this.generatePattern}>
+              M
+              </div>
+              <div className="BuiltInButton" onClick={this.generatePattern}>
+              L
+              </div>
             </div>
-          </form>
+          </div>
+        </div>
       </div>
       )
   }
 }
-
-class GenerateButton extends Component {
-  GeneratePatternClicked = (event) => {
-    this.props.history.replace('/generatePattern')
-  }
-
-  render () {
-    return (
-      <div className="GeneratePanel">
-        <div className="CuteButton GenerateButton"  onClick={this.GeneratePatternClicked}>
-          Generate Pattern
-        </div>
-      </div>  
-    )
-  }
-}
-

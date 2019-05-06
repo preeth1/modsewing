@@ -1,6 +1,5 @@
 import React, { Component } from 'react';
 import 'App.css';
-import logoImage from 'images/logo.png';
 import { front,
         back } from 'slopers/bodice.js'
 
@@ -68,9 +67,6 @@ class GeneratePage extends Component {
   render () {
     return (
       <div className="GeneratePage">
-        <div className="LogoPanel">
-          <img className="LogoImage" src={logoImage} alt="Modsewing"/>
-        </div>
         <div className="ContentPanelPattern">
           <div className="PatternDisplay" id="PatternDisplay" ref={ (PatternDisplayElement) => this.PatternDisplayElement = PatternDisplayElement}>
             <svg width={`${this.calculatePathDimensions().width}px`} height={`${this.calculatePathDimensions().height}px`}>

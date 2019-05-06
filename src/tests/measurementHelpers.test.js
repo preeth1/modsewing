@@ -1,6 +1,7 @@
 import { convertMeasurements,
 				 createFrontBack,
-				} from 'measurements'
+				 isPositiveValidNumber
+				} from 'measurementHelpers'
 
 import { MEASUREMENTS } from 'constants.js'
 
@@ -27,4 +28,14 @@ it('converts measurements', () => {
 		);
 });
 
+it('Validates inputted measurement', () => {
+	expect(isPositiveValidNumber('10')).toEqual(true);
+	expect(isPositiveValidNumber('10.10')).toEqual(true);
+	expect(isPositiveValidNumber('-10')).toEqual(false);
+	expect(isPositiveValidNumber('a10')).toEqual(false);
+	expect(isPositiveValidNumber('10a')).toEqual(false);
+	expect(isPositiveValidNumber('1a0')).toEqual(false);
+	expect(isPositiveValidNumber('0')).toEqual(false);
+	expect(isPositiveValidNumber('')).toEqual(false);
+});
 
