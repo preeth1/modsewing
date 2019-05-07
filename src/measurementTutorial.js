@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import _ from 'lodash';
-import { MEASUREMENTS } from 'constants.js';
+import { get_measurements } from 'constants.js';
 import { isPositiveValidNumber,
         brokePattern } from 'measurementHelpers.js';
 import { front,
@@ -10,8 +10,8 @@ class TutorialPage extends Component {
 
   state = {
       measurementIndex: 0,
-      measurements: _.cloneDeep(MEASUREMENTS),
-      testMeasurements: _.cloneDeep(MEASUREMENTS),
+      measurements: get_measurements({use_defaults: false}),
+      testMeasurements: get_measurements({}),
       measurementError: '',
       displayText: 'Enter measurement'
   }
@@ -64,7 +64,7 @@ class TutorialPage extends Component {
   }
 
   showFinishButton = () => {
-    return this.state.measurementIndex === MEASUREMENTS.length - 1;
+    return this.state.measurementIndex === this.state.measurements.length - 1;
   }
 
   showBackButton = () => {
@@ -81,10 +81,10 @@ class TutorialPage extends Component {
         <div className="TutorialPanel">
           <div className="MeasurementPanel">
             <div className="MeasurementTitle">
-              { MEASUREMENTS[this.state.measurementIndex].friendlyName } ({this.state.measurementIndex + 1} / {MEASUREMENTS.length})
+              { this.state.measurements[this.state.measurementIndex].friendlyName } ({this.state.measurementIndex + 1} / {this.state.measurements.length})
             </div>
             <div className="MeasurementDescription">
-              { MEASUREMENTS[this.state.measurementIndex].helpText }
+              { this.state.measurements[this.state.measurementIndex].helpText }
             </div>
             <div className="MeasurementLabelPanel">
               <input className="MeasurementLabel" onFocus={this.handleFocus} onChange={this.handleChange} type="text" name="value" value={this.state.displayText}/>
@@ -96,7 +96,7 @@ class TutorialPage extends Component {
             { this.state.measurementError }
             </div>
           </div>
-          <img className="MeasurementImage" src={ MEASUREMENTS[this.state.measurementIndex].image } alt="instruction"/>
+          <img className="MeasurementImage" src={ this.state.measurements[this.state.measurementIndex].image } alt="instruction"/>
           </div>
       </div>
     )
