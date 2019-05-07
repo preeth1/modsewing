@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import _ from 'lodash';
 import { MEASUREMENTS } from 'constants.js';
 import { isPositiveValidNumber,
         brokePattern } from 'measurementHelpers.js';
@@ -9,8 +10,8 @@ class TutorialPage extends Component {
 
   state = {
       measurementIndex: 0,
-      measurements: JSON.parse(JSON.stringify(MEASUREMENTS)),
-      testMeasurements: JSON.parse(JSON.stringify(MEASUREMENTS)),
+      measurements: _.cloneDeep(MEASUREMENTS),
+      testMeasurements: _.cloneDeep(MEASUREMENTS),
       measurementError: '',
       displayText: 'Enter measurement'
   }
