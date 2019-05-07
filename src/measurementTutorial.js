@@ -11,7 +11,7 @@ class TutorialPage extends Component {
       measurementIndex: 0,
       measurements: JSON.parse(JSON.stringify(MEASUREMENTS)),
       measurementError: '',
-      displayMeasurement: 'Enter measurement'
+      displayText: 'Enter measurement'
   }
 
   updateMeasurement = (value) => {
@@ -24,23 +24,23 @@ class TutorialPage extends Component {
     let newMeasurementIndex = this.state.measurementIndex + 1;
     let newMeasurement = this.state.measurements;
     this.setState({measurementIndex: newMeasurementIndex,
-                  displayMeasurement: 'Enter measurement'});
+                  displayText: 'Enter measurement'});
   }
 
   handleChange = (event) => {
-    this.setState({displayMeasurement: event.currentTarget.value});
+    this.setState({displayText: event.currentTarget.value});
   }
 
   handleFocus = () => {
-    this.setState({displayMeasurement: ''});
+    this.setState({displayText: ''});
   }
 
   handleNextClick = () => {
-    if (!isPositiveValidNumber(this.state.displayMeasurement)) {
+    if (!isPositiveValidNumber(this.state.displayText)) {
       this.setState({measurementError: 'Make sure you enter a valid measurement!'});
     } else {
         this.setState({measurementError: ''});
-        this.updateMeasurement(this.state.displayMeasurement);
+        this.updateMeasurement(this.state.displayText);
         if (brokePattern(this.state.measurements)) {
           this.setState({measurementError: 'Broke the pattern!!!'});
         } else {
@@ -78,7 +78,7 @@ class TutorialPage extends Component {
               { MEASUREMENTS[this.state.measurementIndex].helpText }
             </div>
             <div className="MeasurementLabelPanel">
-              <input className="MeasurementLabel" onFocus={this.handleFocus} onChange={this.handleChange} type="text" name="value" value={this.state.displayMeasurement}/>
+              <input className="MeasurementLabel" onFocus={this.handleFocus} onChange={this.handleChange} type="text" name="value" value={this.state.displayText}/>
               { !this.showFinishButton() && <div className="CuteButton NextButton" onClick={ this.handleNextClick }>Next!</div> }
               { this.showBackButton() && <div className="CuteButton BackButton" onClick={ this.handleBackClick }>Back!</div> }
               { this.showFinishButton() && <div className="CuteButton FinishButton" onClick={ this.generatePattern }>Finish!</div> }
