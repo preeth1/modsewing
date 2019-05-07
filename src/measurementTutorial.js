@@ -10,6 +10,7 @@ class TutorialPage extends Component {
   state = {
       measurementIndex: 0,
       measurements: JSON.parse(JSON.stringify(MEASUREMENTS)),
+      testMeasurements: JSON.parse(JSON.stringify(MEASUREMENTS)),
       measurementError: '',
       displayText: 'Enter measurement'
   }
@@ -18,6 +19,12 @@ class TutorialPage extends Component {
     let newMeasurement = this.state.measurements;
     newMeasurement[this.state.measurementIndex].measurement = parseFloat(value);
     this.setState({measurements: newMeasurement});
+  }
+
+  updateTestMeasurement = (value) => {
+    let newMeasurement = this.state.testMeasurements;
+    newMeasurement[this.state.measurementIndex].measurement = parseFloat(value);
+    this.setState({testMeasurements: newMeasurement});
   }
 
   advanceTutorial = () => {
@@ -40,10 +47,11 @@ class TutorialPage extends Component {
       this.setState({measurementError: 'Make sure you enter a valid measurement!'});
     } else {
         this.setState({measurementError: ''});
-        this.updateMeasurement(this.state.displayText);
-        if (brokePattern(this.state.measurements)) {
+        this.updateTestMeasurement(this.state.displayText);
+        if (brokePattern(this.state.testMeasurements)) {
           this.setState({measurementError: 'Broke the pattern!!!'});
         } else {
+          this.updateMeasurement(this.state.displayText);
           this.advanceTutorial();
         }
       }
