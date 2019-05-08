@@ -13,7 +13,7 @@ class TutorialPage extends Component {
       measurements: get_measurements({use_defaults: false}),
       testMeasurements: get_measurements({}),
       measurementError: '',
-      displayText: 'Enter measurement'
+      displayText: 0
   }
 
   updateMeasurement = (value) => {
@@ -32,7 +32,7 @@ class TutorialPage extends Component {
     let newMeasurementIndex = this.state.measurementIndex + 1;
     let newMeasurement = this.state.measurements;
     this.setState({measurementIndex: newMeasurementIndex,
-                  displayText: 'Enter measurement'});
+                  displayText: this.state.measurements[newMeasurementIndex].measurement});
   }
 
   handleChange = (event) => {
@@ -41,6 +41,8 @@ class TutorialPage extends Component {
 
   handleFocus = () => {
     this.setState({displayText: ''});
+    console.log(this.getCurrentMeasurement().friendlyName)
+          console.log(this.getCurrentMeasurement().measurement)
   }
 
   handleNextClick = () => {
@@ -60,7 +62,8 @@ class TutorialPage extends Component {
 
   handleBackClick = () => {
     let newMeasurementIndex = this.state.measurementIndex - 1;
-    this.setState({measurementIndex: newMeasurementIndex})
+    this.setState({measurementIndex: newMeasurementIndex,
+                  displayText: this.state.measurements[newMeasurementIndex].measurement})
   }
 
   showFinishButton = () => {
@@ -96,7 +99,8 @@ class TutorialPage extends Component {
                 onFocus={this.handleFocus}
                 onChange={this.handleChange}
                 type="text"
-                name="value" value={this.state.displayText}
+                name="value"
+                value= {this.state.displayText}
               />
               { !this.showFinishButton() && <div className="CuteButton NextButton" onClick={ this.handleNextClick }>Next!</div> }
               { this.showBackButton() && <div className="CuteButton BackButton" onClick={ this.handleBackClick }>Back!</div> }
