@@ -50,8 +50,10 @@ class TutorialPage extends Component {
       this.setState({measurementError: 'Make sure you enter a valid measurement!'});
     } else {
         this.setState({measurementError: ''});
+        const oldTestMeasurement = this.state.testMeasurements[this.state.measurementIndex].measurement
         this.updateTestMeasurement(this.state.displayText);
         if (brokePattern(this.state.testMeasurements)) {
+          this.updateTestMeasurement(oldTestMeasurement);
           this.setState({measurementError: 'Broke the pattern!!!'});
         } else {
           this.updateMeasurement(this.state.displayText);
@@ -63,7 +65,8 @@ class TutorialPage extends Component {
   handleBackClick = () => {
     let newMeasurementIndex = this.state.measurementIndex - 1;
     this.setState({measurementIndex: newMeasurementIndex,
-                  displayText: this.state.measurements[newMeasurementIndex].measurement})
+                  displayText: this.state.measurements[newMeasurementIndex].measurement,
+                  measurementError: ''})
   }
 
   showFinishButton = () => {
