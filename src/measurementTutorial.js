@@ -75,19 +75,29 @@ class TutorialPage extends Component {
     this.props.history.replace('/generatePattern')
   }
 
+  getCurrentMeasurement = () => {
+    return this.state.measurements[this.state.measurementIndex]
+  }
+
   render () {
     return (
       <div className="TutorialPage">
         <div className="TutorialPanel">
           <div className="MeasurementPanel">
             <div className="MeasurementTitle">
-              { this.state.measurements[this.state.measurementIndex].friendlyName } ({this.state.measurementIndex + 1} / {this.state.measurements.length})
+              { this.getCurrentMeasurement().friendlyName } ({this.state.measurementIndex + 1} / {this.state.measurements.length})
             </div>
             <div className="MeasurementDescription">
-              { this.state.measurements[this.state.measurementIndex].helpText }
+              { this.getCurrentMeasurement().helpText }
             </div>
             <div className="MeasurementLabelPanel">
-              <input className="MeasurementLabel" onFocus={this.handleFocus} onChange={this.handleChange} type="text" name="value" value={this.state.displayText}/>
+              <input
+                className="MeasurementLabel"
+                onFocus={this.handleFocus}
+                onChange={this.handleChange}
+                type="text"
+                name="value" value={this.state.displayText}
+              />
               { !this.showFinishButton() && <div className="CuteButton NextButton" onClick={ this.handleNextClick }>Next!</div> }
               { this.showBackButton() && <div className="CuteButton BackButton" onClick={ this.handleBackClick }>Back!</div> }
               { this.showFinishButton() && <div className="CuteButton FinishButton" onClick={ this.generatePattern }>Finish!</div> }
@@ -96,7 +106,7 @@ class TutorialPage extends Component {
             { this.state.measurementError }
             </div>
           </div>
-          <img className="MeasurementImage" src={ this.state.measurements[this.state.measurementIndex].image } alt="instruction"/>
+          <img className="MeasurementImage" src={ this.getCurrentMeasurement().image } alt="instruction"/>
           </div>
       </div>
     )
