@@ -1,24 +1,27 @@
 import _ from 'lodash';
 
-import neck_DISABLED from 'images/measurements/neck.png'
-import neck from 'images/measurements/dressform.svg'
+import neck from 'images/measurements/neck.svg'
+import shoulder from 'images/measurements/shoulder.svg'
+import waist from 'images/measurements/waist.svg'
 
 
-import armhole from 'images/measurements/armhole.png'
-import frontLength from 'images/measurements/frontLength.png'
-import side from 'images/measurements/side.png'
-import backLength from 'images/measurements/backLength.png'
-import highHip from 'images/measurements/highHip.png'
-import bust from 'images/measurements/bust.png'
-import highHipDepth from 'images/measurements/highHipDepth.png'
-import crossBack from 'images/measurements/crossBack.png'
-import lowHip from 'images/measurements/lowHip.png'
-import crossFront from 'images/measurements/crossFront.png'
-import lowHipDepth from 'images/measurements/lowHipDepth.png'
-import waist from 'images/measurements/waist.png'
-import figureBreadth from 'images/measurements/figureBreadth.png'
-import figureLength from 'images/measurements/figureLength.png'
-import shoulder from 'images/measurements/shoulder.png'
+import frontLength from 'images/measurements/frontLength.svg'
+import side from 'images/measurements/side.svg'
+import highHip from 'images/measurements/highHip.svg'
+import highHipDepth from 'images/measurements/highHipDepth.svg'
+import lowHip from 'images/measurements/lowHip.svg'
+import lowHipDepth from 'images/measurements/lowHipDepth.svg'
+
+import backLength from 'images/measurements/backLength.svg'
+import figureLength from 'images/measurements/figureLength.svg'
+import figureBreadth from 'images/measurements/figureBreadth.svg'
+import crossFront from 'images/measurements/crossFront.svg'
+import crossBack from 'images/measurements/crossBack.svg'
+import bust from 'images/measurements/bust.svg'
+import underbust from 'images/measurements/underBust.svg'
+import armhole from 'images/measurements/armhole.svg'
+
+
 
 export const DISPLAY_FRACTION_TO_FILL = 0.9;
 export const EASE = 3/8;
@@ -44,11 +47,47 @@ export const get_measurements = ({use_defaults = true}) => {
             image: shoulder,
             helpText: 'The length between the base of the neck and the point above the armpit crease.'},
         {
+            name: 'waist',
+            friendlyName: 'Waist',
+            measurement: 26,
+            image: waist,
+            helpText: 'The circumference of the most narrow part of the torso, generally a quarter inch above the belly button. Keep a ribbon tied around your waist (tightly enough to stay in place but not uncomfortable). Later measurements will refer back to this. Make sure the tape measure is level all the way around.'},
+        {
             name: 'frontLength',
             friendlyName: 'Front Length',
             measurement: 15.5,
             image: frontLength,
             helpText: 'The length between the point in the crevice between the collarbones and the waist ribbon.'},
+        {
+            name: 'side',
+            friendlyName: 'Side',
+            measurement: 9,
+            image: side,
+            helpText: 'The length from the armpit to the waist. Take a ruler (or any flat and long object), and tuck it under your armpit . Measure from the top of the ruler to the waist ribbon.'},
+        {
+            name: 'highHip',
+            friendlyName: 'High Hip',
+            measurement: 34,
+            image: highHip,
+            helpText: 'The circumference measured at the top of the hip curve, generally 3-4" below the waist ribbon. Make sure the tape measure is level all the way around.'},
+        {
+            name: 'highHipDepth',
+            friendlyName: 'High Hip Depth',
+            measurement: 4.5,
+            image: highHipDepth,
+            helpText: 'The length between the waist ribbon and the high hip. Keep the measuring tape flush against your side.'},
+        {
+            name: 'lowHip',
+            friendlyName: 'Low Hip',
+            measurement: 37,
+            image: lowHip,
+            helpText: 'The circumference measured at the fullest part of the bottom. Make sure the tape measure is level all the way around.'},
+        {
+            name: 'lowHipDepth',
+            friendlyName: 'Low Hip Depth',
+            measurement: 8.5,
+            image: lowHipDepth,
+            helpText: 'The length between the waist ribbon and the low hip. Keep the measuring tape flush against your side.'},
         {
             name: 'backLength',
             friendlyName: 'Back Length',
@@ -92,44 +131,8 @@ export const get_measurements = ({use_defaults = true}) => {
             name: 'underBust',
             friendlyName: 'Under Bust',
             measurement: 29,
-            image: bust,
-            helpText: 'XXXXXXXX'},
-        {
-            name: 'waist',
-            friendlyName: 'Waist',
-            measurement: 26,
-            image: waist,
-            helpText: 'The circumference of the most narrow part of the torso, generally a quarter inch above the belly button. Keep a ribbon tied around your waist (tightly enough to stay in place but not uncomfortable). Later measurements will refer back to this. Make sure the tape measure is level all the way around.'},
-        {
-            name: 'highHip',
-            friendlyName: 'High Hip',
-            measurement: 34,
-            image: highHip,
-            helpText: 'The circumference measured at the top of the hip curve, generally 3-4" below the waist ribbon. Make sure the tape measure is level all the way around.'},
-        {
-            name: 'highHipDepth',
-            friendlyName: 'High Hip Depth',
-            measurement: 4.5,
-            image: highHipDepth,
-            helpText: 'The length between the waist ribbon and the high hip. Keep the measuring tape flush against your side.'},
-        {
-            name: 'lowHip',
-            friendlyName: 'Low Hip',
-            measurement: 37,
-            image: lowHip,
-            helpText: 'The circumference measured at the fullest part of the bottom. Make sure the tape measure is level all the way around.'},
-        {
-            name: 'lowHipDepth',
-            friendlyName: 'Low Hip Depth',
-            measurement: 8.5,
-            image: lowHipDepth,
-            helpText: 'The length between the waist ribbon and the low hip. Keep the measuring tape flush against your side.'},
-        {
-            name: 'side',
-            friendlyName: 'Side',
-            measurement: 9,
-            image: side,
-            helpText: 'The length from the armpit to the waist. Take a ruler (or any flat and long object), and tuck it under your armpit . Measure from the top of the ruler to the waist ribbon.'},
+            image: underbust,
+            helpText: 'Your circumference just under your breasts, making sure that the tape is lying straight across your back'},
         {
             name: 'armhole',
             friendlyName: 'Armhole',

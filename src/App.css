@@ -9,11 +9,12 @@ html,body,#root {
 }
 
 :root {
-  --main-color: #BFBFBF;
-  --primary-btn-color: #BB8588;
-  --secondary-btn-color: #63585E;
-  --header-color: #96939B;
+  --main-color: #E8E8E8;
+  --font-color: #96939B;
+  --btn-font-color: white;
+  --primary-btn-color: #75BCC6;
   --error-color: #ed6173;
+  --accent-color: #75BCC6;
 }
 
 .App {
@@ -49,8 +50,6 @@ html,body,#root {
 	cursor: pointer;
 	height: 20%;
 	width: 100%;
-	font-size: 4em;
-	color: var(--header-color);
 }
 
 .TitleImage {
@@ -75,7 +74,7 @@ html,body,#root {
 	cursor: pointer;
 	font-size: .6em;
 	background-color: var(--main-color);
-	color: white;
+	color: var(--btn-font-color);
 	text-align: center;
 	border-radius:30px;
 	height: 30%;
@@ -90,16 +89,6 @@ html,body,#root {
 	align-items: center;
 	width: 100%;
 	height: 50%;
-}
-
-.BuiltInButton {
-	display: flex;
-	flex-direction: row;
-	justify-content: space-around;
-	align-items: center;
-	width: 30%;
-	height: 50%;
-	background-color: var(--secondary-btn-color);
 }
 
 .ContentPanelPattern {
@@ -167,7 +156,7 @@ html,body,#root {
 	justify-content: center;
 	align-items: center;
 	background-color: var(--main-color);
-	color: white;
+	color: var(--font-color);
 	font-size: .6em;
 	text-align: center;
 	height: 70%;
@@ -191,6 +180,7 @@ html,body,#root {
 	background-color: var(--primary-btn-color);
 	cursor: pointer;
 	font-size: 1.5em;
+	color: var(--btn-font-color);
 	border-radius: 5px;
 	height: 100%;
 	width: 30%;
