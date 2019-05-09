@@ -5,12 +5,12 @@ import logoImage from 'images/logo.png';
 import GeneratePage from 'patternGenerators/generatePattern.js';
 import TutorialPage from 'measurementTutorial.js';
 import history from 'history.js';
-import { MEASUREMENTS } from 'constants.js';
+import { get_measurements } from 'constants.js';
 import _ from 'lodash';
 
 class App extends Component {
   state = {
-    measurements: MEASUREMENTS,
+    measurements: get_measurements({}),
   }
 
   handeLogoClick = (event) => {
@@ -50,7 +50,7 @@ class MeasurementsPage extends Component {
 
   generateMeasurementLabels = () => {
     let measurementLabels = []
-    _.each(MEASUREMENTS, (measurementInfo, measurementName) => {
+    _.each(get_measurements({}), (measurementInfo, measurementName) => {
       measurementLabels.push(<label className="MeasurementLabel">
                   { measurementName }: 
                   <input type="text" 
