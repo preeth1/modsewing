@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { Router, Route } from 'react-router-dom';
 import 'App.css';
-import logoImage from 'images/logo.png';
+import titleImage from 'images/title.svg';
 import GeneratePage from 'patternGenerators/generatePattern.js';
 import TutorialPage from 'measurementTutorial.js';
 import history from 'history.js';
@@ -22,16 +22,15 @@ class App extends Component {
       <Router history={history}>
         <div className="App">
           <div className="LogoPanel" onClick={this.handeLogoClick}>
-            <img className="LogoImage" src={logoImage} alt="Modsewing"/>
-            MODSEWING
+            <img className="TitleImage" src={titleImage} alt="Modsewing"/>
           </div>
-          <Route exact path='/' render={(props) => 
+          <Route exact path='/' render={(props) =>
             <MeasurementsPage measurements={this.state.measurements}
-            history={history} 
+            history={history}
             displayImage={this.state.displayImage}
             imageDescription={this.state.imageDescription}/>}
           />
-          <Route exact path='/generatePattern' render={(props) => 
+          <Route exact path='/generatePattern' render={(props) =>
             <GeneratePage measurements={this.state.measurements}/>}
           />
           <Route exact path='/getMeasurements' render={(props) =>
@@ -52,9 +51,9 @@ class MeasurementsPage extends Component {
     let measurementLabels = []
     _.each(get_measurements({}), (measurementInfo, measurementName) => {
       measurementLabels.push(<label className="MeasurementLabel">
-                  { measurementName }: 
-                  <input type="text" 
-                  value={this.props.measurements[measurementName].measurement} 
+                  { measurementName }:
+                  <input type="text"
+                  value={this.props.measurements[measurementName].measurement}
                   onChange={(event) => this.handleChange(measurementName, event)}
                   onFocus = {() => this.handleFocus(measurementInfo)} />
                 </label>

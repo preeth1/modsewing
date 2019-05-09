@@ -1,5 +1,9 @@
 import _ from 'lodash';
 
+import neck_DISABLED from 'images/measurements/neck.png'
+import neck from 'images/measurements/dressform.svg'
+
+
 import armhole from 'images/measurements/armhole.png'
 import frontLength from 'images/measurements/frontLength.png'
 import side from 'images/measurements/side.png'
@@ -13,7 +17,6 @@ import crossFront from 'images/measurements/crossFront.png'
 import lowHipDepth from 'images/measurements/lowHipDepth.png'
 import waist from 'images/measurements/waist.png'
 import figureBreadth from 'images/measurements/figureBreadth.png'
-import neck from 'images/measurements/neck.png'
 import figureLength from 'images/measurements/figureLength.png'
 import shoulder from 'images/measurements/shoulder.png'
 
