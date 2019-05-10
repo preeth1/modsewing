@@ -10,7 +10,8 @@ class TutorialPage extends Component {
 
   state = {
       measurementIndex: 0,
-      measurements: get_measurements({use_defaults: false}),
+      // measurements: get_measurements({use_defaults: true}),
+      measurements: get_measurements({}),
       testMeasurements: get_measurements({}),
       measurementError: '',
       displayText: 0
@@ -89,14 +90,14 @@ class TutorialPage extends Component {
     return (
       <div className="TutorialPage">
         <div className="TutorialPanel">
-          <div className="MeasurementPanel">
-            <div className="MeasurementTitle">
+          <div className="DescriptionPanel">
+            <div className="DescriptionTitle">
               { this.getCurrentMeasurement().friendlyName } ({this.state.measurementIndex + 1} / {this.state.measurements.length})
             </div>
-            <div className="MeasurementDescription">
+            <div className="DescriptionText">
               { this.getCurrentMeasurement().helpText }
             </div>
-            <div className="MeasurementLabelPanel">
+            <div className="LabelPanel">
               <input
                 className="MeasurementLabel"
                 onFocus={this.handleFocus}
@@ -105,11 +106,11 @@ class TutorialPage extends Component {
                 name="value"
                 value= {this.state.displayText}
               />
-              { !this.showFinishButton() && <div className="CuteButton NextButton" onClick={ this.handleNextClick }>Next!</div> }
-              { this.showBackButton() && <div className="CuteButton BackButton" onClick={ this.handleBackClick }>Back!</div> }
-              { this.showFinishButton() && <div className="CuteButton FinishButton" onClick={ this.generatePattern }>Finish!</div> }
+              { this.showBackButton() && <div className="CuteButton BackBtn" onClick={ this.handleBackClick }> &#9664; </div> }
+              { !this.showFinishButton() && <div className="CuteButton NextBtn" onClick={ this.handleNextClick }> &#9654; </div> }
+              { this.showFinishButton() && <div className="CuteButton FinishBtn" onClick={ this.generatePattern }>&#x2714;</div> }
             </div>
-            <div className="MeasurementErrorPanel">
+            <div className="ErrorPanel">
             { this.state.measurementError }
             </div>
           </div>
