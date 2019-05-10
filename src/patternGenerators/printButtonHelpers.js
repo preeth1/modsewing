@@ -1,5 +1,5 @@
 import 'App.css';
-import { a4 } from '..//constants'; 
+import { a4 } from '..//constants';
 import * as jsPDF  from 'jspdf'
 import * as canvg  from 'canvg'
 import _ from 'lodash';
@@ -25,16 +25,19 @@ export const _initializeDoc = () => {
 }
 
 export const _addPreviewPage = (doc, canvas) => {
-  doc.setFontSize(22)
-  doc.text(2, 2, 'Pattern Title Page')
-  doc.addImage(canvas.image, 'PNG', 0, 0, 5, 5);
+  doc.setTextColor(150, 147, 155);
+  doc.setFontSize(80)
+  doc.text(.75, 4, 'Bodice Sloper')
+  doc.setFontSize(33)
+  doc.setTextColor(117, 188, 198);
+  doc.text(2, 5, 'www.easysloper.com')
 }
 
 export const _addPatternPage = (doc, canvas, topLeftX, topLeftY, heightPage, widthPage) => {
   doc.addPage();
   doc.addImage(canvas.image, 'PNG', topLeftX, topLeftY, canvas.width, canvas.height);
   doc.setFontSize(50)
-  doc.setTextColor(153, 204, 255);
+  doc.setTextColor(117, 188, 198);
   doc.text(1, 2, 'Row: ' + heightPage)
   doc.text(1, 3, 'Column: ' + widthPage)
 }
