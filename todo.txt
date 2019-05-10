@@ -1,0 +1,13 @@
+##### TODO #####
+
+// 1. You shouldn't test with the actual measurements, test in testMeasurements
+// 2. Clicking the back button when there is an error breaks the whole thing
+// 3. Fix displayText to show the actual measurement (useful for when clicking the back button)
+4. Scale up other test measurements
+5. Clean up code
+6. Add unit tests
+7. Put this on Heroku
+8. Simplify input measurements, try to remove some of them
+// 9. Make the measurement tutorial prettier
+10. Make results page prettier
+11. Make printout prettier
