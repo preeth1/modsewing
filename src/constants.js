@@ -35,17 +35,17 @@ export const a4 = {
 export const get_measurements = ({use_defaults = true}) => {
     const measurements = [
         {
-            name: 'neck',
-            friendlyName: 'Neck',
-            measurement: 14.25,
-            image: neck,
-            helpText: 'The neck circumference. The tape measure goes to a point in the crevice between the collarbones.'},
-        {
             name: 'shoulder',
             friendlyName: 'Shoulder',
             measurement: 4.75,
             image: shoulder,
             helpText: 'The length between the base of the neck and the point above the armpit crease.'},
+        {
+        name: 'neck',
+            friendlyName: 'Neck',
+            measurement: 14.25,
+            image: neck,
+            helpText: 'The neck circumference. The tape measure goes to a point in the crevice between the collarbones.'},
         {
             name: 'waist',
             friendlyName: 'Waist',
