@@ -5,15 +5,16 @@ html,body,#root {
 
 * {
 	font-size: 100%;
-	font-family: "Impact";
+	font-family: "Skia";
 }
 
 :root {
-  --main-color: #BFBFBF;
-  --primary-btn-color: #BB8588;
-  --secondary-btn-color: #63585E;
-  --header-color: #96939B;
+  --main-color: #E8E8E8;
+  --font-color: #96939B;
+  --btn-font-color: white;
+  --primary-btn-color: #75BCC6;
   --error-color: #ed6173;
+  --accent-color: #75BCC6;
 }
 
 .App {
@@ -25,7 +26,7 @@ html,body,#root {
 	width: 100%;
 }
 
-.MeasurementsPage, .GeneratePage, .TutorialPage {
+.MeasurementsPage, .TutorialPage {
 	display: flex;
 	justify-content: center;
 	align-items: center;
@@ -45,18 +46,17 @@ html,body,#root {
 .LogoPanel {
 	display: flex;
 	align-items: center;
+	justify-content: center;
 	cursor: pointer;
-	height: 10%;
+	height: 20%;
 	width: 100%;
-	font-size: 4em;
-	color: var(--header-color);
 }
 
-.LogoImage {
-	height: 100%;
+.TitleImage {
+	height: 40%;
 }
 
-.ContentPanelMeasurements, .ContentPanelPattern {
+.ContentPanelMeasurements, .GeneratePage {
 	display: flex;
 	flex-direction: row;
 	justify-content: space-evenly;
@@ -64,6 +64,10 @@ html,body,#root {
 	height: 90%;
 	width: 100%;
 	font-size: 4em;
+}
+
+.GeneratePage {
+	flex-direction: column;
 }
 
 .MeasurementButton {
@@ -74,7 +78,7 @@ html,body,#root {
 	cursor: pointer;
 	font-size: .6em;
 	background-color: var(--main-color);
-	color: white;
+	color: var(--btn-font-color);
 	text-align: center;
 	border-radius:30px;
 	height: 30%;
@@ -89,21 +93,6 @@ html,body,#root {
 	align-items: center;
 	width: 100%;
 	height: 50%;
-}
-
-.BuiltInButton {
-	display: flex;
-	flex-direction: row;
-	justify-content: space-around;
-	align-items: center;
-	width: 30%;
-	height: 50%;
-	background-color: var(--secondary-btn-color);
-}
-
-.ContentPanelPattern {
-	flex-direction: row;
-	justify-content: space-around;
 }
 
 .HeaderPanel {
@@ -137,10 +126,9 @@ html,body,#root {
 	display: flex;
 	align-items: center;
 	justify-content: center;
-	height: 90%;
+	height: 80%;
 	width: 70%;
-	border:1px solid;
-	border-radius:30px;
+	background-color: var(--main-color);
 }
 
 
@@ -149,15 +137,8 @@ html,body,#root {
 	flex-direction: column;
 	align-items: center;
 	justify-content: center;
-	height: 90%;
-	width: 10%;
-	border:1px solid;
-	border-radius:30px;
-}
-
-.PrintButton {
-	height: 30%;
-  width: 30%;
+	height: 10%;
+	width: 100%;
 }
 
 .TutorialPanel {
@@ -166,11 +147,10 @@ html,body,#root {
 	justify-content: center;
 	align-items: center;
 	background-color: var(--main-color);
-	color: white;
+	color: var(--font-color);
 	font-size: .6em;
 	text-align: center;
-	border-radius:30px;
-	height: 40%;
+	height: 70%;
 	width: 60%;
 	padding: 5%;
 }
@@ -190,11 +170,23 @@ html,body,#root {
 	justify-content: center;
 	background-color: var(--primary-btn-color);
 	cursor: pointer;
-	font-size: .2em;
+	font-size: .5em;
+	color: var(--btn-font-color);
 	border-radius: 5px;
+}
+
+
+.PrintButton {
+	height: 100%;
+	width: 20%;
+}
+
+
+.NextButton {
 	height: 100%;
 	width: 30%;
 }
+
 
 .MeasurementImage {
 	display: flex;
@@ -206,15 +198,17 @@ html,body,#root {
 
 .MeasurementTitle {
 	display: flex;
-	height: 30%;
+	height: 10%;
 	width: 100%;
 	font-size: 4em;
 }
 .MeasurementDescription {
 	display: flex;
-	height: 30%;
+	justify-content: center;
+	align-items: center;
+	height: 50%;
 	width: 100%;
-	font-size: .2em;
+	font-size: 2em;
 }
 
 .MeasurementLabelPanel {
