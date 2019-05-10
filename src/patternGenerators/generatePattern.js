@@ -113,7 +113,7 @@ class PrintButton extends Component {
   render () {
     return (
       <div className="CuteButton PrintBtn" onClick={this.PrintButtonClicked}>
-          Save to PDF
+          Download PDF
       </div>
     )
   }

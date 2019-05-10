@@ -11,5 +11,5 @@
 // 9. Make the measurement tutorial prettier
 10. Make results page prettier
 11. Make printout prettier
-12. Improve error text
+// 12. Improve error text
 13. Animations

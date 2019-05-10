@@ -55,7 +55,7 @@ class TutorialPage extends Component {
         this.updateTestMeasurement(this.state.displayText);
         if (brokePattern(this.state.testMeasurements)) {
           this.updateTestMeasurement(oldTestMeasurement);
-          this.setState({measurementError: 'Broke the pattern!!!'});
+          this.setState({measurementError: 'Hm, something went wrong with this measurement! Sorry!'});
         } else {
           this.updateMeasurement(this.state.displayText);
           this.advanceTutorial();
