@@ -10,7 +10,8 @@ class TutorialPage extends Component {
 
   state = {
       measurementIndex: 0,
-      measurements: get_measurements({use_defaults: true}),
+      // measurements: get_measurements({use_defaults: true}),
+      measurements: get_measurements({}),
       testMeasurements: get_measurements({}),
       measurementError: '',
       displayText: 0

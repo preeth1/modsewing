@@ -13,6 +13,3 @@
 11. Make printout prettier
 12. Improve error text
 13. Animations
-
-
-- Simplify html classnames
