@@ -13,7 +13,7 @@ class App extends Component {
     measurements: get_measurements({}),
   }
 
-  handeLogoClick = (event) => {
+  handleLogoClick = (event) => {
     history.replace('/')
   }
 
@@ -21,7 +21,7 @@ class App extends Component {
     return (
       <Router history={history}>
         <div className="App">
-          <div className="LogoPanel" onClick={this.handeLogoClick}>
+          <div className="LogoPanel" onClick={this.handleLogoClick}>
             <img className="TitleImage" src={titleImage} alt="Modsewing"/>
           </div>
           <Route exact path='/' render={(props) =>

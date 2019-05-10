@@ -6,9 +6,13 @@
 4. Scale up other test measurements
 5. Clean up code
 6. Add unit tests
-7. Put this on Heroku
+7. Put this online with a new url
 8. Simplify input measurements, try to remove some of them
 // 9. Make the measurement tutorial prettier
 10. Make results page prettier
 11. Make printout prettier
 12. Improve error text
+13. Animations
+
+
+- Simplify html classnames

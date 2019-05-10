@@ -68,20 +68,20 @@ class GeneratePage extends Component {
     return (
       <div className="TutorialPage">
         <div className="TutorialPanel">
-          <div className="MeasurementPanel">
-            <div className="MeasurementTitle">
+          <div className="DescriptionPanel">
+            <div className="DescriptionTitle">
               Your pattern
             </div>
-            <div className="MeasurementDescription">
+            <div className="DescriptionText">
               Print it out!
             </div>
-            <div className="MeasurementLabelPanel">
+            <div className="LabelPanel">
               <PrintButton measurements={this.props.measurements}
                            displayWidth={this.state.displayWidth}
                            displayHeight={this.state.displayHeight}
                            scaleFactor={this.getScaleFactor()}/>
               </div>
-              <div className="MeasurementErrorPanel">
+              <div className="ErrorPanel">
               </div>
             </div>
             <div className="PatternDisplay" id="PatternDisplay" ref={ (PatternDisplayElement) => this.PatternDisplayElement = PatternDisplayElement}>

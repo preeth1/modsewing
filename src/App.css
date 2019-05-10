@@ -34,15 +34,6 @@ html,body,#root {
 	width: 100%;
 }
 
-.Measurements {
-	display: flex;
-	flex-direction: column;
-	height: 100%;
-	width: 100%;
-	justify-content: center;
-	align-items: center;
-}
-
 .LogoPanel {
 	display: flex;
 	align-items: center;
@@ -154,7 +145,7 @@ html,body,#root {
 	padding: 5%;
 }
 
-.MeasurementPanel {
+.DescriptionPanel {
 	display: flex;
 	flex-direction: column;
 	justify-content: space-around;
@@ -194,13 +185,13 @@ html,body,#root {
 	width: 50%;
 }
 
-.MeasurementTitle {
+.DescriptionTitle {
 	display: flex;
 	height: 10%;
 	width: 100%;
 	font-size: 4em;
 }
-.MeasurementDescription {
+.DescriptionText {
 	display: flex;
 	justify-content: center;
 	align-items: center;
@@ -209,7 +200,7 @@ html,body,#root {
 	font-size: 2em;
 }
 
-.MeasurementLabelPanel {
+.LabelPanel {
 	display: flex;
 	justify-content: center;
 	align-items: center;
@@ -218,7 +209,7 @@ html,body,#root {
 	font-size: 1em;
 }
 
-.MeasurementErrorPanel {
+.ErrorPanel {
 	display: flex;
 	justify-content: center;
 	align-items: center;

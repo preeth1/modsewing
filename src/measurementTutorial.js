@@ -10,7 +10,7 @@ class TutorialPage extends Component {
 
   state = {
       measurementIndex: 0,
-      measurements: get_measurements({use_defaults: false}),
+      measurements: get_measurements({use_defaults: true}),
       testMeasurements: get_measurements({}),
       measurementError: '',
       displayText: 0
@@ -89,14 +89,14 @@ class TutorialPage extends Component {
     return (
       <div className="TutorialPage">
         <div className="TutorialPanel">
-          <div className="MeasurementPanel">
-            <div className="MeasurementTitle">
+          <div className="DescriptionPanel">
+            <div className="DescriptionTitle">
               { this.getCurrentMeasurement().friendlyName } ({this.state.measurementIndex + 1} / {this.state.measurements.length})
             </div>
-            <div className="MeasurementDescription">
+            <div className="DescriptionText">
               { this.getCurrentMeasurement().helpText }
             </div>
-            <div className="MeasurementLabelPanel">
+            <div className="LabelPanel">
               <input
                 className="MeasurementLabel"
                 onFocus={this.handleFocus}
@@ -109,7 +109,7 @@ class TutorialPage extends Component {
               { !this.showFinishButton() && <div className="CuteButton NextBtn" onClick={ this.handleNextClick }> &#9654; </div> }
               { this.showFinishButton() && <div className="CuteButton FinishBtn" onClick={ this.generatePattern }>&#x2714;</div> }
             </div>
-            <div className="MeasurementErrorPanel">
+            <div className="ErrorPanel">
             { this.state.measurementError }
             </div>
           </div>
