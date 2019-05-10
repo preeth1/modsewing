@@ -3,7 +3,7 @@ import 'App.css';
 import { front,
         back } from 'slopers/bodice.js'
 
-import { createPathElement, 
+import { createPathElement,
          joinPaths,
          translatePath,
          getHeight,
@@ -30,8 +30,8 @@ class GeneratePage extends Component {
   }
 
   generatePath = () => {
-    const frontPath = front(this.props.measurements); 
-    let backPath = back(this.props.measurements); 
+    const frontPath = front(this.props.measurements);
+    let backPath = back(this.props.measurements);
     const backPathWidth = getWidth(backPath);
     backPath = translatePath(backPath, {x: backPathWidth, y: 0});
     const sloperPath = joinPaths(frontPath, backPath);
@@ -67,18 +67,16 @@ class GeneratePage extends Component {
   render () {
     return (
       <div className="GeneratePage">
-        <div className="ContentPanelPattern">
-          <div className="PatternDisplay" id="PatternDisplay" ref={ (PatternDisplayElement) => this.PatternDisplayElement = PatternDisplayElement}>
-            <svg width={`${this.calculatePathDimensions().width}px`} height={`${this.calculatePathDimensions().height}px`}>
-            {this.generatePathElement() }
-            </svg>
-          </div>
-          <div className="PrintButtonPanel">
-            <PrintButton measurements={this.props.measurements} 
-                         displayWidth={this.state.displayWidth} 
-                         displayHeight={this.state.displayHeight}
-                         scaleFactor={this.getScaleFactor()}/>
-          </div>
+        <div className="PatternDisplay" id="PatternDisplay" ref={ (PatternDisplayElement) => this.PatternDisplayElement = PatternDisplayElement}>
+          <svg width={`${this.calculatePathDimensions().width}px`} height={`${this.calculatePathDimensions().height}px`}>
+          {this.generatePathElement() }
+          </svg>
+        </div>
+        <div className="PrintButtonPanel">
+          <PrintButton measurements={this.props.measurements}
+                       displayWidth={this.state.displayWidth}
+                       displayHeight={this.state.displayHeight}
+                       scaleFactor={this.getScaleFactor()}/>
         </div>
       </div>
     )
@@ -102,7 +100,7 @@ class PrintButton extends Component {
 
   render () {
     return (
-      <div className="CuteButton PrintButton" onClick={this.PrintButtonClicked}> 
+      <div className="CuteButton PrintButton" onClick={this.PrintButtonClicked}>
           Print Pattern
       </div>
     )
