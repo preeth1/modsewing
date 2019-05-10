@@ -175,18 +175,15 @@ html,body,#root {
 	border-radius: 5px;
 }
 
-
 .PrintButton {
 	height: 100%;
 	width: 20%;
 }
 
-
 .NextButton {
 	height: 100%;
 	width: 30%;
 }
-
 
 .MeasurementImage {
 	display: flex;
