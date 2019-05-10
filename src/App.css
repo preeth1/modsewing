@@ -128,7 +128,7 @@ html,body,#root {
 	justify-content: center;
 	height: 80%;
 	width: 70%;
-	background-color: var(--main-color);
+	background-color: white;
 }
 
 
@@ -144,7 +144,6 @@ html,body,#root {
 .TutorialPanel {
 	display: flex;
 	flex-direction: row;
-	justify-content: center;
 	align-items: center;
 	background-color: var(--main-color);
 	color: var(--font-color);
@@ -170,19 +169,21 @@ html,body,#root {
 	justify-content: center;
 	background-color: var(--primary-btn-color);
 	cursor: pointer;
-	font-size: .5em;
 	color: var(--btn-font-color);
 	border-radius: 5px;
 }
 
-.PrintButton {
+.BackBtn, .NextBtn, .FinishBtn {
+	font-size: 2em;
 	height: 100%;
-	width: 20%;
+	width: 10%;
+	border-radius: 50%;
 }
 
-.NextButton {
+.PrintBtn {
+	font-size: 3em;
 	height: 100%;
-	width: 30%;
+	width: 80%;
 }
 
 .MeasurementImage {

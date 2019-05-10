@@ -64,19 +64,31 @@ class GeneratePage extends Component {
     this.forceUpdate();
   }
 
-  render () {
+    render () {
     return (
-      <div className="GeneratePage">
-        <div className="PatternDisplay" id="PatternDisplay" ref={ (PatternDisplayElement) => this.PatternDisplayElement = PatternDisplayElement}>
-          <svg width={`${this.calculatePathDimensions().width}px`} height={`${this.calculatePathDimensions().height}px`}>
-          {this.generatePathElement() }
-          </svg>
-        </div>
-        <div className="PrintButtonPanel">
-          <PrintButton measurements={this.props.measurements}
-                       displayWidth={this.state.displayWidth}
-                       displayHeight={this.state.displayHeight}
-                       scaleFactor={this.getScaleFactor()}/>
+      <div className="TutorialPage">
+        <div className="TutorialPanel">
+          <div className="MeasurementPanel">
+            <div className="MeasurementTitle">
+              Your pattern
+            </div>
+            <div className="MeasurementDescription">
+              Print it out!
+            </div>
+            <div className="MeasurementLabelPanel">
+              <PrintButton measurements={this.props.measurements}
+                           displayWidth={this.state.displayWidth}
+                           displayHeight={this.state.displayHeight}
+                           scaleFactor={this.getScaleFactor()}/>
+              </div>
+              <div className="MeasurementErrorPanel">
+              </div>
+            </div>
+            <div className="PatternDisplay" id="PatternDisplay" ref={ (PatternDisplayElement) => this.PatternDisplayElement = PatternDisplayElement}>
+            <svg width={`${this.calculatePathDimensions().width}px`} height={`${this.calculatePathDimensions().height}px`}>
+             {this.generatePathElement() }
+             </svg>
+            </div>
         </div>
       </div>
     )
@@ -100,8 +112,8 @@ class PrintButton extends Component {
 
   render () {
     return (
-      <div className="CuteButton PrintButton" onClick={this.PrintButtonClicked}>
-          Print Pattern
+      <div className="CuteButton PrintBtn" onClick={this.PrintButtonClicked}>
+          Save to PDF
       </div>
     )
   }
