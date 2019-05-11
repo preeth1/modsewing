@@ -14,7 +14,7 @@
 importScripts("https://storage.googleapis.com/workbox-cdn/releases/3.6.3/workbox-sw.js");
 
 importScripts(
-  "/modsewing/precache-manifest.ec0e5faea91a978329f3c2ad0aaa5e09.js"
+  "/modsewing/precache-manifest.012eb26a2ea24f0b8df14342e358c7de.js"
 );
 
 workbox.clientsClaim();

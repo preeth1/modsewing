@@ -1,15 +1,15 @@
 self.__precacheManifest = [
   {
-    "revision": "20be5c4bc96bce742df9",
-    "url": "/modsewing/static/css/main.8f2425b1.chunk.css"
+    "revision": "b88c1276626afb164002",
+    "url": "/modsewing/static/css/main.486e63f1.chunk.css"
   },
   {
-    "revision": "20be5c4bc96bce742df9",
-    "url": "/modsewing/static/js/main.20be5c4b.chunk.js"
+    "revision": "b88c1276626afb164002",
+    "url": "/modsewing/static/js/main.b88c1276.chunk.js"
   },
   {
-    "revision": "fcfd84d2379c7ec0fb38",
-    "url": "/modsewing/static/js/1.fcfd84d2.chunk.js"
+    "revision": "1618bcc28f93d0693a34",
+    "url": "/modsewing/static/js/1.1618bcc2.chunk.js"
   },
   {
     "revision": "9eafb9f1b5cde7a1ff52",
@@ -88,7 +88,7 @@ self.__precacheManifest = [
     "url": "/modsewing/static/media/armhole.69760c20.svg"
   },
   {
-    "revision": "8799ccffd38fcf3b0b73ec75804565d1",
+    "revision": "6bfd7cba1e35a3f4d1b77014c47abb56",
     "url": "/modsewing/index.html"
   }
 ];
