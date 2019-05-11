@@ -163,6 +163,8 @@ html,body,#root {
 	justify-content: center;
 	align-items: center;
 	height: 100%;
-	width: 50%;
+	width: 30%;
 	font-size: 2em;
+	border:none;
+	border-radius: 5px;
 }
