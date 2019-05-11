@@ -53,7 +53,7 @@ it('translates path', () => {
 });
 
 it('gets path height', () => {
-	// Draw a 5x10 rectangle that starts at (2, 4) 
+	// Draw a 5x10 rectangle that starts at (2, 4)
 	const path = [
 					{command: 'M', end: {x: 2, y: 4}, absolute: true},
 					{command: 'l', end: {x: 5, y: 0}, absolute: false},
@@ -66,7 +66,7 @@ it('gets path height', () => {
 });
 
 it('gets path width', () => {
-	// Draw a 5x10 rectangle that starts at (2, 4) 
+	// Draw a 5x10 rectangle that starts at (2, 4)
 	const path = [
 					{command: 'M', end: {x: 2, y: 4}, absolute: true},
 					{command: 'l', end: {x: 5, y: 0}, absolute: false},
@@ -79,7 +79,7 @@ it('gets path width', () => {
 });
 
 it('gets path top left x', () => {
-	// Draw a 5x10 rectangle that starts at (2, 4) 
+	// Draw a 5x10 rectangle that starts at (2, 4)
 	const path = [
 					{command: 'M', end: {x: 2, y: 4}, absolute: true},
 					{command: 'l', end: {x: 5, y: 0}, absolute: false},
@@ -92,7 +92,7 @@ it('gets path top left x', () => {
 });
 
 it('gets path top left y', () => {
-	// Draw a 5x10 rectangle that starts at (2, 4) 
+	// Draw a 5x10 rectangle that starts at (2, 4)
 	const path = [
 					{command: 'M', end: {x: 2, y: 4}, absolute: true},
 					{command: 'l', end: {x: 5, y: 0}, absolute: false},
@@ -117,11 +117,11 @@ it('creates path element', () => {
 	const pathElement = createPathElement(id, path, displayDimensions);
 	expect(pathElement).toEqual(
 		<g transform="translate(0 9) scale(0.9)"> <path
-			d="M 0 0 l 10 0 l 0 10 l -10 0 Z " 
-			fill="none" 
-			id="testId" 
-			stroke="black" 
-			strokeWidth=".5" 
+			d="M 0 0 l 10 0 l 0 10 l -10 0 Z "
+			fill="none"
+			id="testId"
+			stroke="black"
+			strokeWidth=".3"
 			vectorEffect="non-scaling-stroke" /> </g>);
 });
 
@@ -154,7 +154,7 @@ it('adds path to element', () => {
 					id='testId'
 					d='M 10 10 l 10 10 Z '
 					vectorEffect="non-scaling-stroke"
-					strokeWidth=".5"
+					strokeWidth=".3"
 					stroke="black"
 					fill="none"
 					>
@@ -162,7 +162,7 @@ it('adds path to element', () => {
 });
 
 it('centers and scales path', () => {
-	// Draw a 9x9 rectangle that starts at (2, 4) 
+	// Draw a 9x9 rectangle that starts at (2, 4)
 	const path = [
 					{command: 'M', end: {x: 2, y: 4}, absolute: true},
 					{command: 'l', end: {x: 9, y: 0}, absolute: false},
@@ -217,7 +217,7 @@ it('calculates translation without scale factor', () => {
 				 ];
 	const displayWidth = 10;
 	const displayHeight = 10;
-	const scaleFactor = 1; 
+	const scaleFactor = 1;
 	const translation = reflectAboutXAxis(path, scaleFactor);
 	expect(translation).toEqual({x: 0, y: 4});
 });
