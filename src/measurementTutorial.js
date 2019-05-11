@@ -105,8 +105,8 @@ class TutorialPage extends Component {
                 name="value"
                 value= {this.state.displayText}
               /> }
-              { this.showBackButton() && <div className="CuteButton BackBtn" onClick={ this.handleBackClick }>&#9664;</div> }
-              { !this.showFinishButton() && <div className="CuteButton NextBtn" onClick={ this.handleNextClick }>&#9654;</div> }
+              { this.showBackButton() && <div className="CuteButton BackBtn" onClick={ this.handleBackClick }>&#8592;</div> }
+              { !this.showFinishButton() && <div className="CuteButton NextBtn" onClick={ this.handleNextClick }>&#8594;</div> }
               { this.showFinishButton() && <div className="CuteButton FinishBtn" onClick={ this.generatePattern }>&#x2714;</div> }
             </div>
             <div className="ErrorPanel">
