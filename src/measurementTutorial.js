@@ -13,7 +13,7 @@ class TutorialPage extends Component {
       measurements: get_measurements({use_defaults: false}),
       testMeasurements: get_measurements({}),
       measurementError: '',
-      displayText: '0 inches'
+      displayText: '1'
   }
 
   updateMeasurement = (value) => {
@@ -92,23 +92,21 @@ class TutorialPage extends Component {
       <div className="TutorialPage">
         <div className="TutorialPanel">
           <div className="DescriptionPanel">
-            <div className="DescriptionTitle">
-              { this.getCurrentMeasurement().friendlyName } ({this.state.measurementIndex + 1} / {this.state.measurements.length})
-            </div>
+            { this.state.measurementIndex > 0 && <div className="DescriptionTitle"> { this.getCurrentMeasurement().friendlyName } ({this.state.measurementIndex} / {this.state.measurements.length - 1})</div> }
             <div className="DescriptionText">
               { this.getCurrentMeasurement().helpText }
             </div>
             <div className="InputPanel">
-              <input
+              { this.state.measurementIndex > 0 && <input
                 className="MeasurementInput"
                 onFocus={this.handleFocus}
                 onChange={this.handleChange}
                 type="text"
                 name="value"
                 value= {this.state.displayText}
-              />
-              { this.showBackButton() && <div className="CuteButton BackBtn" onClick={ this.handleBackClick }> &#9664; </div> }
-              { !this.showFinishButton() && <div className="CuteButton NextBtn" onClick={ this.handleNextClick }> &#9654; </div> }
+              /> }
+              { this.showBackButton() && <div className="CuteButton BackBtn" onClick={ this.handleBackClick }>&#9664;</div> }
+              { !this.showFinishButton() && <div className="CuteButton NextBtn" onClick={ this.handleNextClick }>&#9654;</div> }
               { this.showFinishButton() && <div className="CuteButton FinishBtn" onClick={ this.generatePattern }>&#x2714;</div> }
             </div>
             <div className="ErrorPanel">
