@@ -36,7 +36,7 @@ export const _addPreviewPage = (doc, canvas) => {
 export const _addPatternPage = (doc, canvas, topLeftX, topLeftY, heightPage, widthPage) => {
   doc.addPage();
   doc.addImage(canvas.image, 'PNG', topLeftX, topLeftY, canvas.width, canvas.height);
-  doc.setFontSize(50)
+  doc.setFontSize(30)
   doc.setTextColor(117, 188, 198);
   doc.text(1, 2, 'Row: ' + heightPage)
   doc.text(1, 3, 'Column: ' + widthPage)
