@@ -9,9 +9,9 @@
    xmlns="http://www.w3.org/2000/svg"
    xmlns:sodipodi="http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd"
    xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape"
-   width="163mm"
-   height="32mm"
-   viewBox="0 0 577.55892 113.38578"
+   width="191mm"
+   height="53mm"
+   viewBox="0 0 676.77183 187.79529"
    id="svg6285"
    version="1.1"
    inkscape:version="0.91 r13725"
@@ -25,11 +25,11 @@
      borderopacity="1.0"
      inkscape:pageopacity="0.0"
      inkscape:pageshadow="2"
-     inkscape:zoom="1.1969231"
-     inkscape:cx="265.95961"
-     inkscape:cy="44.570507"
+     inkscape:zoom="1.4277583"
+     inkscape:cx="605.91489"
+     inkscape:cy="40.938303"
      inkscape:document-units="px"
-     inkscape:current-layer="layer1"
+     inkscape:current-layer="layer2"
      showgrid="false"
      inkscape:window-width="1280"
      inkscape:window-height="698"
@@ -53,23 +53,23 @@
      inkscape:groupmode="layer"
      id="layer1"
      style="display:inline"
-     transform="translate(0,-938.97653)">
+     transform="translate(0,-864.56702)">
     <text
        xml:space="preserve"
        style="font-style:normal;font-weight:normal;font-size:46.5387001px;line-height:125%;font-family:sans-serif;letter-spacing:10.99999619px;word-spacing:0px;fill:#000000;fill-opacity:1;stroke:none;stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"
-       x="5.5288887"
-       y="818.69861"
+       x="11.837654"
+       y="762.6936"
        id="text6837"
        sodipodi:linespacing="125%"
        transform="scale(0.79458576,1.2585174)"><tspan
          sodipodi:role="line"
          id="tspan6839"
-         x="5.5288887"
-         y="818.69861"
+         x="11.837654"
+         y="762.6936"
          style="font-style:normal;font-variant:normal;font-weight:100;font-stretch:normal;font-size:93.07737732px;line-height:125%;font-family:Skia;-inkscape-font-specification:'Skia, Thin';text-align:start;letter-spacing:10.99999619px;writing-mode:lr-tb;text-anchor:start;fill:#75bcc6;fill-opacity:1">EASY SLOPER</tspan></text>
   </g>
   <g
-     transform="translate(0,-938.97653)"
+     transform="translate(0,-864.56702)"
      style="display:inline"
      id="g6964"
      inkscape:groupmode="layer"
@@ -78,13 +78,13 @@
        transform="scale(0.79458576,1.2585174)"
        sodipodi:linespacing="125%"
        id="text6966"
-       y="816.87299"
-       x="1.8487784"
+       y="760.86798"
+       x="8.1575432"
        style="font-style:normal;font-weight:normal;font-size:46.5387001px;line-height:125%;font-family:sans-serif;letter-spacing:0px;word-spacing:0px;fill:#000000;fill-opacity:1;stroke:none;stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"
        xml:space="preserve"><tspan
          style="font-style:normal;font-variant:normal;font-weight:100;font-stretch:normal;font-size:93.07737732px;line-height:125%;font-family:Skia;-inkscape-font-specification:'Skia, Thin';text-align:start;letter-spacing:10.99999619px;writing-mode:lr-tb;text-anchor:start;fill:#ffffff"
-         y="816.87299"
-         x="1.8487784"
+         y="760.86798"
+         x="8.1575432"
          id="tspan6968"
          sodipodi:role="line">EASY SLOPER</tspan></text>
   </g>
@@ -93,19 +93,54 @@
      inkscape:groupmode="layer"
      id="g6970"
      style="display:inline"
-     transform="translate(0,-938.97653)">
+     transform="translate(0,-864.56702)">
     <text
        xml:space="preserve"
        style="font-style:normal;font-weight:normal;font-size:46.5387001px;line-height:125%;font-family:sans-serif;letter-spacing:0px;word-spacing:0px;fill:#000000;fill-opacity:1;stroke:none;stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"
-       x="-1.3056021"
-       y="815.21332"
+       x="5.0031629"
+       y="759.20831"
        id="text6972"
        sodipodi:linespacing="125%"
        transform="scale(0.79458576,1.2585174)"><tspan
          sodipodi:role="line"
          id="tspan6974"
-         x="-1.3056021"
-         y="815.21332"
+         x="5.0031629"
+         y="759.20831"
          style="font-style:normal;font-variant:normal;font-weight:100;font-stretch:normal;font-size:93.07737732px;line-height:125%;font-family:Skia;-inkscape-font-specification:'Skia, Thin';text-align:start;letter-spacing:10.99999619px;writing-mode:lr-tb;text-anchor:start;fill:#6c5d53">EASY SLOPER</tspan></text>
+  </g>
+  <g
+     inkscape:groupmode="layer"
+     id="layer2"
+     inkscape:label="beta"
+     transform="translate(0,67.322851)">
+    <path
+       style="fill:#ff6600;fill-opacity:1;fill-rule:evenodd;stroke:none;stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"
+       d="m 449.57207,49.765469 10.30512,30.948836 c 0,0 5.14299,8.33921 46.32737,-11.485547 34.03199,-16.381838 49.74229,-16.272259 49.74229,-16.272259 L 545.64223,22.364415 c 0,0 -27.86914,5.278216 -47.56564,15.95053 -44.06816,23.877988 -48.50452,11.450524 -48.50452,11.450524 z"
+       id="path4274"
+       inkscape:connector-curvature="0"
+       sodipodi:nodetypes="ccsccsc" />
+    <path
+       style="fill:#c46f37;fill-opacity:1;fill-rule:evenodd;stroke:none;stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"
+       d="m 449.41657,49.788456 c 0,0 0.46047,-4.528481 4.03539,-5.948907 3.57489,-1.42041 5.75168,-1.742092 5.75168,-1.742092 l 0.32522,10.656921 c 0,0 -3.10944,0.637982 -6.06548,-0.352488 -2.95612,-0.990432 -4.04682,-2.61339 -4.04682,-2.61339 z"
+       id="path4276"
+       inkscape:connector-curvature="0" />
+    <path
+       style="fill:#c46f37;fill-opacity:1;fill-rule:evenodd;stroke:none;stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"
+       d="m 545.37409,54.519052 0.164,6.39875 c 0,0 4.35373,-0.465032 6.52808,-2.570531 2.17445,-2.10552 4.03682,-4.878614 4.03682,-4.878614 0,0 -3.11059,-0.253852 -5.44277,0.0907 -2.33222,0.344694 -5.28616,0.959664 -5.28616,0.959664 z"
+       id="path4278"
+       inkscape:connector-curvature="0" />
+    <text
+       xml:space="preserve"
+       style="font-style:normal;font-weight:normal;font-size:24.70141792px;line-height:125%;font-family:sans-serif;letter-spacing:0px;word-spacing:0px;fill:#ffffff;fill-opacity:1;stroke:none;stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"
+       x="392.00488"
+       y="265.93439"
+       id="text4284"
+       sodipodi:linespacing="125%"
+       transform="matrix(0.92366077,-0.41238561,0.4330205,0.88931847,0,0)"><tspan
+         sodipodi:role="line"
+         id="tspan4286"
+         x="392.00488"
+         y="265.93439"
+         style="font-style:normal;font-variant:normal;font-weight:100;font-stretch:normal;font-size:30.87677956px;line-height:125%;font-family:Skia;-inkscape-font-specification:'Skia, Thin';text-align:start;writing-mode:lr-tb;text-anchor:start;fill:#ffffff;fill-opacity:1">BETA</tspan></text>
   </g>
 </svg>
