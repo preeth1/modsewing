@@ -122,7 +122,7 @@ export const get_measurements = ({use_defaults = true}) => {
             helpText: 'The length between the top of your armpit creases on your backside. Keep a natural, relaxed posture during this measurement.'},
         {
             name: 'bust',
-            friendlyName: 'But',
+            friendlyName: 'Bust',
             measurement: 36,
             image: bust,
             helpText: 'The circumference around the chest, with the tape measure passing through the center of the breasts.'},
