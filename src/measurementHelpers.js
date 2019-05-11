@@ -4,7 +4,7 @@ import { front,
 
 export const convertMeasurements = (measurements) => {
   const convertedMeasurements = {
-	  neck: createFrontBack(get("neck", measurements).measurement, 6, 1/4, 3/8),	
+	  neck: createFrontBack(get("neck", measurements).measurement, 6, 1/4, 3/8),
 	  shoulder: get("shoulder", measurements).measurement,
 	  length: {
 	  	front: get("frontLength", measurements).measurement,
@@ -26,7 +26,7 @@ export const convertMeasurements = (measurements) => {
 	  side: get("side", measurements).measurement,
 	  armhole: createFrontBack(get("armhole", measurements).measurement, 2, -1/4, 1/4),
   };
-  
+
   convertedMeasurements.hip.high.depth = get("highHipDepth", measurements).measurement;
   convertedMeasurements.hip.low.depth = get("lowHipDepth", measurements).measurement;
   return convertedMeasurements;
@@ -39,14 +39,14 @@ export const createFrontBack = (measurement, divideBy=1, frontChange=0, backChan
 };
 
 export const get = (name, measurements) => {
-  return _.find(measurements, (entry) => {
+    return _.find(measurements, (entry) => {
     return entry.name === name;
   })
 }
 
 export const isPositiveValidNumber = (input) => {
-  const positiveValidNumber = RegExp('^[+]?([0-9]+(?:[.][0-9]*)?|.[0-9]+)$')
-  return positiveValidNumber.test(input) && input > 0
+    const positiveValidNumber = RegExp('^[+]?([0-9]+(?:[.][0-9]*)?|.[0-9]+)$')
+    return positiveValidNumber.test(input) && input > 0
 }
 
 export const brokePattern = (measurements) => {

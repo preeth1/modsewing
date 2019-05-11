@@ -136,7 +136,7 @@ html,body,#root {
 
 .LabelPanel {
 	display: flex;
-	justify-content: center;
+	justify-content: space-around;
 	align-items: center;
 	height: 10%;
 	width: 100%;
