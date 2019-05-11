@@ -14,7 +14,7 @@ class TutorialPage extends Component {
       measurements: get_measurements({}),
       testMeasurements: get_measurements({}),
       measurementError: '',
-      displayText: 0
+      displayText: 'inches'
   }
 
   updateMeasurement = (value) => {
@@ -48,14 +48,14 @@ class TutorialPage extends Component {
 
   handleNextClick = () => {
     if (!isPositiveValidNumber(this.state.displayText)) {
-      this.setState({measurementError: 'Make sure you enter a valid measurement!'});
+      this.setState({measurementError: 'Make sure you enter a valid measurement in inches!'});
     } else {
         this.setState({measurementError: ''});
         const oldTestMeasurement = this.state.testMeasurements[this.state.measurementIndex].measurement
         this.updateTestMeasurement(this.state.displayText);
         if (brokePattern(this.state.testMeasurements)) {
           this.updateTestMeasurement(oldTestMeasurement);
-          this.setState({measurementError: 'Hm, something went wrong with this measurement! Sorry!'});
+          this.setState({measurementError: 'Hm, something went wrong with this measurement! Sorry, I\'m still working on making this site work... but feel free to email easysloper@gmail.com with suggestions!!'});
         } else {
           this.updateMeasurement(this.state.displayText);
           this.advanceTutorial();
