@@ -75,7 +75,7 @@ class GeneratePage extends Component {
             <div className="DescriptionText">
               Print it out!
             </div>
-            <div className="LabelPanel">
+            <div className="InputPanel">
               <PrintButton measurements={this.props.measurements}
                            displayWidth={this.state.displayWidth}
                            displayHeight={this.state.displayHeight}

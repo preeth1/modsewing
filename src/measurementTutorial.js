@@ -98,9 +98,9 @@ class TutorialPage extends Component {
             <div className="DescriptionText">
               { this.getCurrentMeasurement().helpText }
             </div>
-            <div className="LabelPanel">
+            <div className="InputPanel">
               <input
-                className="MeasurementLabel"
+                className="MeasurementInput"
                 onFocus={this.handleFocus}
                 onChange={this.handleChange}
                 type="text"
