@@ -1,17 +1,15 @@
 import _ from 'lodash';
 
-import neck from 'images/measurements/neck.svg'
+import dressform from 'images/measurements/dressform.svg'
 import shoulder from 'images/measurements/shoulder.svg'
+import neck from 'images/measurements/neck.svg'
 import waist from 'images/measurements/waist.svg'
-
-
 import frontLength from 'images/measurements/frontLength.svg'
 import side from 'images/measurements/side.svg'
 import highHip from 'images/measurements/highHip.svg'
 import highHipDepth from 'images/measurements/highHipDepth.svg'
 import lowHip from 'images/measurements/lowHip.svg'
 import lowHipDepth from 'images/measurements/lowHipDepth.svg'
-
 import backLength from 'images/measurements/backLength.svg'
 import figureLength from 'images/measurements/figureLength.svg'
 import figureBreadth from 'images/measurements/figureBreadth.svg'
@@ -34,6 +32,10 @@ export const a4 = {
 
 export const get_measurements = ({use_defaults = true}) => {
     const measurements = [
+        {
+            image: dressform,
+            helpText: 'This tutorial will help you take your measurements, and generate a bodice sloper for feminine body types. You\'ll need a tape measure, and ribbon or string. \n\nFor best results, take measurements standing up straight, and get someone else to measure you. \n\n Email easysloper@gmail.com with suggestions!\n\n'},
+
         {
             name: 'shoulder',
             friendlyName: 'Shoulder',

@@ -26,7 +26,7 @@
      inkscape:pageopacity="0.0"
      inkscape:pageshadow="2"
      inkscape:zoom="1.4277583"
-     inkscape:cx="605.91489"
+     inkscape:cx="440.97101"
      inkscape:cy="40.938303"
      inkscape:document-units="px"
      inkscape:current-layer="layer2"
@@ -44,7 +44,7 @@
         <dc:format>image/svg+xml</dc:format>
         <dc:type
            rdf:resource="http://purl.org/dc/dcmitype/StillImage" />
-        <dc:title></dc:title>
+        <dc:title />
       </cc:Work>
     </rdf:RDF>
   </metadata>
@@ -141,6 +141,7 @@
          id="tspan4286"
          x="392.00488"
          y="265.93439"
-         style="font-style:normal;font-variant:normal;font-weight:100;font-stretch:normal;font-size:30.87677956px;line-height:125%;font-family:Skia;-inkscape-font-specification:'Skia, Thin';text-align:start;writing-mode:lr-tb;text-anchor:start;fill:#ffffff;fill-opacity:1">BETA</tspan></text>
+         style="font-style:normal;font-variant:normal;font-weight:100;font-stretch:normal;font-size:30.87625846px;line-height:125%;font-family:Skia;-inkscape-font-specification:'Skia, Thin';text-align:start;writing-mode:lr;text-anchor:start;fill:#ffffff;fill-opacity:1"
+         dx="0">BETA</tspan></text>
   </g>
 </svg>
