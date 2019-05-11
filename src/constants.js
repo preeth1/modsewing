@@ -34,7 +34,7 @@ export const get_measurements = ({use_defaults = true}) => {
     const measurements = [
         {
             image: dressform,
-            helpText: 'This tutorial will help you take your measurements, and generate a bodice sloper for feminine body types. You\'ll need a tape measure, and ribbon or string. \n\nFor best results, take measurements standing up straight, and get someone else to measure you. \n\n Email easysloper@gmail.com with suggestions!\n\n'},
+            helpText: 'This tutorial will help you take your measurements, and generate a free, printable bodice sloper for feminine body types. You\'ll need a tape measure, and ribbon or string. \n\nFor best results, take measurements standing up straight, and get someone else to measure you. \n\n Email easysloper@gmail.com with suggestions!\n\n'},
 
         {
             name: 'shoulder',
