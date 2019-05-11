@@ -13,7 +13,7 @@ class TutorialPage extends Component {
       measurements: get_measurements({use_defaults: false}),
       testMeasurements: get_measurements({}),
       measurementError: '',
-      displayText: 'inches'
+      displayText: '0 inches'
   }
 
   updateMeasurement = (value) => {
@@ -32,7 +32,8 @@ class TutorialPage extends Component {
     let newMeasurementIndex = this.state.measurementIndex + 1;
     let newMeasurement = this.state.measurements;
     this.setState({measurementIndex: newMeasurementIndex,
-                  displayText: this.state.measurements[newMeasurementIndex].measurement});
+                  displayText: `${this.state.measurements[newMeasurementIndex].measurement} inches`
+                });
   }
 
   handleChange = (event) => {
@@ -65,7 +66,7 @@ class TutorialPage extends Component {
   handleBackClick = () => {
     let newMeasurementIndex = this.state.measurementIndex - 1;
     this.setState({measurementIndex: newMeasurementIndex,
-                  displayText: this.state.measurements[newMeasurementIndex].measurement,
+                  displayText: `${this.state.measurements[newMeasurementIndex].measurement} inches`,
                   measurementError: ''})
   }
 
