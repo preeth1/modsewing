@@ -1,31 +1,35 @@
 self.__precacheManifest = [
   {
-    "revision": "1674704fc4607a08a734",
-    "url": "/static/css/main.486e63f1.chunk.css"
+    "revision": "bf60792aad5e67156911",
+    "url": "/static/css/main.f154c8dc.chunk.css"
   },
   {
-    "revision": "1674704fc4607a08a734",
-    "url": "/static/js/main.1674704f.chunk.js"
+    "revision": "bf60792aad5e67156911",
+    "url": "/static/js/main.bf60792a.chunk.js"
   },
   {
-    "revision": "1618bcc28f93d0693a34",
-    "url": "/static/js/1.1618bcc2.chunk.js"
+    "revision": "cc41abd33de55674b5ff",
+    "url": "/static/js/1.cc41abd3.chunk.js"
   },
   {
     "revision": "229c360febb4351a89df",
     "url": "/static/js/runtime~main.229c360f.js"
   },
   {
-    "revision": "11421e6951308f1e154bb443f75d7b3a",
-    "url": "/static/media/title.11421e69.svg"
+    "revision": "198fa2053a23237411122b5e76618107",
+    "url": "/static/media/title.198fa205.svg"
   },
   {
-    "revision": "664e9664b39d73d75883e79a1f49d4e8",
-    "url": "/static/media/neck.664e9664.svg"
+    "revision": "b65eb639a38ad792ba687923c7017d55",
+    "url": "/static/media/dressform.b65eb639.svg"
   },
   {
     "revision": "3547d7bb470325a9bce8e8ef8f705fd9",
     "url": "/static/media/shoulder.3547d7bb.svg"
+  },
+  {
+    "revision": "664e9664b39d73d75883e79a1f49d4e8",
+    "url": "/static/media/neck.664e9664.svg"
   },
   {
     "revision": "cc12c9432ce83cab71f72b4526ee07aa",
@@ -88,7 +92,7 @@ self.__precacheManifest = [
     "url": "/static/media/armhole.69760c20.svg"
   },
   {
-    "revision": "2eac82cf91b1f2c51886e2082d0f1087",
+    "revision": "9761d0923cbc4c948b70acd76f142da6",
     "url": "/index.html"
   }
 ];
