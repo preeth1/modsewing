@@ -124,9 +124,6 @@ export const get_measurements = ({use_defaults = true}) => {
             measurement: 36,
             image: bust,
             helpText: 'The circumference around the chest, with the tape measure passing through the center of the breasts.'},
-
-
-        // NEED TO FIX THIS TO AN UNDERBUST MEASUREMENT HELPER!
         {
             name: 'underBust',
             friendlyName: 'Under Bust',
