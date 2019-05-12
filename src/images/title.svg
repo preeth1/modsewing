@@ -9,9 +9,9 @@
    xmlns="http://www.w3.org/2000/svg"
    xmlns:sodipodi="http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd"
    xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape"
-   width="191mm"
-   height="53mm"
-   viewBox="0 0 676.77183 187.79529"
+   width="161mm"
+   height="52mm"
+   viewBox="0 0 570.47253 184.25198"
    id="svg6285"
    version="1.1"
    inkscape:version="0.91 r13725"
@@ -25,8 +25,8 @@
      borderopacity="1.0"
      inkscape:pageopacity="0.0"
      inkscape:pageshadow="2"
-     inkscape:zoom="1.4277583"
-     inkscape:cx="440.97101"
+     inkscape:zoom="0.50478879"
+     inkscape:cx="131.97088"
      inkscape:cy="40.938303"
      inkscape:document-units="px"
      inkscape:current-layer="layer2"
@@ -44,7 +44,7 @@
         <dc:format>image/svg+xml</dc:format>
         <dc:type
            rdf:resource="http://purl.org/dc/dcmitype/StillImage" />
-        <dc:title />
+        <dc:title></dc:title>
       </cc:Work>
     </rdf:RDF>
   </metadata>
@@ -53,7 +53,7 @@
      inkscape:groupmode="layer"
      id="layer1"
      style="display:inline"
-     transform="translate(0,-864.56702)">
+     transform="translate(0,-868.11033)">
     <text
        xml:space="preserve"
        style="font-style:normal;font-weight:normal;font-size:46.5387001px;line-height:125%;font-family:sans-serif;letter-spacing:10.99999619px;word-spacing:0px;fill:#000000;fill-opacity:1;stroke:none;stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"
@@ -69,7 +69,7 @@
          style="font-style:normal;font-variant:normal;font-weight:100;font-stretch:normal;font-size:93.07737732px;line-height:125%;font-family:Skia;-inkscape-font-specification:'Skia, Thin';text-align:start;letter-spacing:10.99999619px;writing-mode:lr-tb;text-anchor:start;fill:#75bcc6;fill-opacity:1">EASY SLOPER</tspan></text>
   </g>
   <g
-     transform="translate(0,-864.56702)"
+     transform="translate(0,-868.11033)"
      style="display:inline"
      id="g6964"
      inkscape:groupmode="layer"
@@ -93,7 +93,7 @@
      inkscape:groupmode="layer"
      id="g6970"
      style="display:inline"
-     transform="translate(0,-864.56702)">
+     transform="translate(0,-868.11033)">
     <text
        xml:space="preserve"
        style="font-style:normal;font-weight:normal;font-size:46.5387001px;line-height:125%;font-family:sans-serif;letter-spacing:0px;word-spacing:0px;fill:#000000;fill-opacity:1;stroke:none;stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"
@@ -112,7 +112,7 @@
      inkscape:groupmode="layer"
      id="layer2"
      inkscape:label="beta"
-     transform="translate(0,67.322851)">
+     transform="translate(0,63.779543)">
     <path
        style="fill:#ff6600;fill-opacity:1;fill-rule:evenodd;stroke:none;stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"
        d="m 449.57207,49.765469 10.30512,30.948836 c 0,0 5.14299,8.33921 46.32737,-11.485547 34.03199,-16.381838 49.74229,-16.272259 49.74229,-16.272259 L 545.64223,22.364415 c 0,0 -27.86914,5.278216 -47.56564,15.95053 -44.06816,23.877988 -48.50452,11.450524 -48.50452,11.450524 z"
@@ -141,7 +141,7 @@
          id="tspan4286"
          x="392.00488"
          y="265.93439"
-         style="font-style:normal;font-variant:normal;font-weight:100;font-stretch:normal;font-size:30.87625846px;line-height:125%;font-family:Skia;-inkscape-font-specification:'Skia, Thin';text-align:start;writing-mode:lr;text-anchor:start;fill:#ffffff;fill-opacity:1"
+         style="font-style:normal;font-variant:normal;font-weight:100;font-stretch:normal;font-size:30.87625885px;line-height:125%;font-family:Skia;-inkscape-font-specification:'Skia, Thin';text-align:start;writing-mode:lr-tb;text-anchor:start;fill:#ffffff;fill-opacity:1"
          dx="0">BETA</tspan></text>
   </g>
 </svg>
